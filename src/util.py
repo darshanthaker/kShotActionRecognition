@@ -4,7 +4,9 @@ import imageio
 import scipy.misc
 from pdb import set_trace
 
-def video_to_frames(filename, resize=(128, 128)):
+IM_SIZE = 2
+
+def video_to_frames(filename, resize=(IM_SIZE, IM_SIZE)):
     vid_reader = imageio.get_reader(filename,  'ffmpeg')
     t = len(vid_reader)
     assert t > 0
