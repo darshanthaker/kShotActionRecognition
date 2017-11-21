@@ -1,7 +1,7 @@
 import numpy as np
 import random
 from compute_dynamic_image import DynamicImageGenerator
-from util import *
+from ../util import *
 
 class InputLoader(object):
 
@@ -14,7 +14,7 @@ class InputLoader(object):
 
     def get_input_and_label(self, example, label_encoding='int'):
         filename = example[0]
-        # TODO: Do some parsing on labels
+        # TODO(dbthaker): Do some different label encodings.
         label = example[1]
         if self.input_rep == 'dynamic_image':
             video = video_to_frames(filename)

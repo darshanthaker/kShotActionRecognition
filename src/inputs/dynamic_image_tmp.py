@@ -2,6 +2,7 @@ import numpy as np
 import tensorflow as tf
 from util import *
 from pdb import set_trace
+from cvxpy import *
 import matplotlib.pyplot as plt
 
 def eval_score(V, t, d):
@@ -30,12 +31,30 @@ def eval_gradient(d, V, T, lam=0.001):
     grad += lam * d
     return grad
 
-def gradient_descent(video, num_iterations=100, eta=1e-7):
+def gradient_descent(video, num_iterations=100, eta=1e-7, lam=0.001):
     [T, H, W, _] = video.shape
     stacked_frames = video.reshape((H*W*3, T))
     V = np.zeros((H*W*3, T))
     for i in range(T):
         V[:, i] = np.sum(stacked_frames[:, 0:(i + 1)], axis=1)
+    d = Variable(H*W*3)
+    hinge_loss = 0
+    for t in range(T):
+        t_score = eval_score(V, t, d)
+        for q in range(t + 1, T):
+            hinge_loss += max_entries(0, 1 - eval_score(V, q, d) + t_score)
+    hinge_loss = 2 * hinge_loss / float(T * (T - 1))
+    regularizer = (lam / 2) * np.linalg.norm(d)**2
+    objective = Minimize(hinge_loss + regularizer)
+    constraints = []
+    prob = Problem(objective, constraints)
+    result = prob.solve()
+    resized_im = d.value.reshape((H, W, 3))
+    plt.imshow(resized_im * 255)
+    plt.colorbar()
+    plt.show()
+
+    """
     d = np.zeros(H*W*3)
     for i in range(num_iterations): 
         print "[{}] Loss = {}".format(i, eval_loss(d, V, T))
@@ -46,6 +65,7 @@ def gradient_descent(video, num_iterations=100, eta=1e-7):
             plt.show()
         grad = eval_gradient(d, V, T)
         d = d - (eta * grad)
+    """
 
 def get_dynamic_image(video):
     gradient_descent(video)

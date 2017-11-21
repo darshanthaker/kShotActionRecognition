@@ -1,5 +1,5 @@
 import numpy as np
-from util import *
+from ../util import *
 from pdb import set_trace
 import matplotlib.pyplot as plt
 
