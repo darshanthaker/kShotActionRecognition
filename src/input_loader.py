@@ -1,7 +1,7 @@
 import numpy as np
 import random
 from compute_dynamic_image import DynamicImageGenerator
-from ../util import *
+from util import *
 
 class InputLoader(object):
 
@@ -26,7 +26,8 @@ class InputLoader(object):
             num_unique_classes=10):
         if sampling_strategy == 'random':
             classes = random.sample(self.label_set, num_unique_classes)
-            examples = list(filter(lambda x: x[1] in classes, zip(self.videos, self.labels)))
+            examples = list(filter(lambda x: x[1] in classes, \
+                zip(self.videos, self.labels)))
             if batch_size > len(examples):
                 print("Batch size too large for number of unique classes.")
         batch_data = list()
