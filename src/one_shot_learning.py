@@ -35,6 +35,7 @@ def main():
     parser.add_argument('--data_dir', default='.data')
     parser.add_argument('--tensorboard_dir', default='./summary/one_shot_learning')
     args = parser.parse_args()
+    np.random.seed(0)
     if args.mode == 'train':
         train(args)
     elif args.mode == 'test':
@@ -82,7 +83,7 @@ def train(args):
                 # with open('state_long.txt', 'w') as f:
                 #     print(state_list, file=f)
                 accuracy = test_f(args, y, output)
-                eprint('')
+                eprint('', end='')
                 for accu in accuracy:
                     print('%.4f' % accu, end='\t')
                 print('%d\t%.4f' % (b, learning_loss))

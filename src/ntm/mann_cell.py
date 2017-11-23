@@ -1,30 +1,39 @@
 import tensorflow as tf
 import numpy as np
+from ntm.controller import DefaultController, AlexNetController
 
 class MANNCell():
     # Q: what is k_strategy
     def __init__(self, rnn_size, memory_size, memory_vector_dim, head_num, gamma=0.95,
-                 reuse=False, k_strategy='separate'):
+                 reuse=False, k_strategy='separate', 
+                 controller_type='default', encoding_size=400):
         self.rnn_size = rnn_size
         self.memory_size = memory_size
         self.memory_vector_dim = memory_vector_dim
         self.head_num = head_num                                    # #(read head) == #(write head)
         self.reuse = reuse
-        self.controller = tf.nn.rnn_cell.BasicLSTMCell(self.rnn_size)
+        #  self.controller = tf.nn.rnn_cell.BasicLSTMCell(self.rnn_size)
+        if controller_type == 'default':
+            self.controller = DefaultController(self.rnn_size)
+        elif controller_type == 'alex':
+            self.controller = AlexNetController(self.rnn_size, encoding_size)
         self.step = 0
         self.gamma = gamma
         self.k_strategy = k_strategy
 
-    def __call__(self, x, prev_state):
+    #  def __call__(self, x, prev_state):
+    def __call__(self, x, shifted_label, prev_state):
         prev_read_vector_list = prev_state['read_vector_list']      # read vector (the content that is read out, length = memory_vector_dim)
         prev_controller_state = prev_state['controller_state']      # state of controller (LSTM hidden state)
 
         # Q: why does it take the prev_read_vector?
         # x + prev_read_vector -> controller (RNN) -> controller_output
 
-        controller_input = tf.concat([x] + prev_read_vector_list, axis=1)
+        #  controller_input = tf.concat([x] + prev_read_vector_list, axis=1)
         with tf.variable_scope('controller', reuse=self.reuse):
-            controller_output, controller_state = self.controller(controller_input, prev_controller_state)
+            #  controller_output, controller_state = self.controller(controller_input, prev_controller_state)
+            #  controller_output, controller_state = self.controller(x, prev_read_vector_list, prev_controller_state)
+            controller_output, controller_state = self.controller(x, shifted_label, prev_read_vector_list, prev_controller_state)
 
         # controller_output     -> k (dim = memory_vector_dim, compared to each vector in M)
         #                       -> a (dim = memory_vector_dim, add vector, only when k_strategy='separate')

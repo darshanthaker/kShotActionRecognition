@@ -94,7 +94,10 @@ class NTMOneShotLearningModel():
         for t in range(args.seq_length):
             # So this is going and calling __call__
             # it is passing both the image and x_label
-            output, state = cell(tf.concat([self.x_image[:, t, :], self.x_label[:, t, :]], axis=1), state)
+            #  output, state = cell(tf.concat([self.x_image[:, t, :], self.x_label[:, t, :]], axis=1), state)
+            #  output, state = cell(self.x_image[:, t, :], state)
+            # Q: the labels are passed in here as part of the input....
+            output, state = cell(self.x_image[:, t, :], self.x_label[:, t, :], state)
             # output, state = cell(self.y[:, t, :], state)
             # go from the memory stored dimensionality to the number of classes / predictions
             with tf.variable_scope("o2o", reuse=(t > 0)):

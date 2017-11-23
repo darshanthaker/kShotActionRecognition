@@ -66,7 +66,8 @@ class OmniglotDataLoader:
 
     def fetch_batch(self, n_classes, batch_size, seq_length,
                     type='train',
-                    sample_strategy='random',
+                    #  sample_strategy='random',
+                    sample_strategy='uniform',
                     augment=True,
                     label_type='one_hot'):
 

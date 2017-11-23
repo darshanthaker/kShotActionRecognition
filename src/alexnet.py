@@ -50,6 +50,23 @@ class AlexNet(object):
                 net['fc_1'] = fc_layer(net['pool_3'], 128)
                 net['fc_2'] = fc_layer(net['fc_1'], 128)
                 net['output'] = fc_layer(net['fc_2'], NUM_CLASSES)
+        elif architecture == 'encoding':
+            with tf.variable_scope(scope + '/' + architecture):
+                net['conv_1'] = conv_layer(input_image, 64, 11, stride=4)
+                net['conv_1'] = lrn_layer(net['conv_1'])
+                net['pool_1'] = pool_layer(net['conv_1'])
+                net['conv_2'] = conv_layer(net['pool_1'], 192, 5)
+                net['conv_2'] = lrn_layer(net['conv_2'])
+                net['pool_2'] = pool_layer(net['conv_2'])
+                net['conv_3'] = conv_layer(net['pool_2'], 384, 3)
+                net['conv_4'] = conv_layer(net['conv_3'], 384, 3)
+                net['conv_5'] = conv_layer(net['conv_4'], 256, 3)
+                net['pool_5'] = pool_layer(net['conv_5'])
+                net['flatten'] = tf.contrib.layers.flatten(net['pool_5'])
+                net['output'] = net['flatten']
+
+                #  net['output'] = tf.reshape(net['pool_3'], [-1, 16384])
+                #  net['output'] = tf.reshape(net['pool_3'], [-1, 16384])
         elif architecture == 'mynet1':
             with tf.variable_scope(scope + '/' + architecture):
                 net['conv_1'] = conv_layer(input_image, 32, 3)
