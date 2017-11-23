@@ -12,11 +12,8 @@ class DefaultController():
 
     def __call__(self, img_inp, label, vector_inp, state, scope='AlexNetController'):
     #  def __call__(self, img_inp, vector_inp, state, scope='DefaultController'):
-        print(img_inp.get_shape(), label.get_shape(), vector_inp[0].get_shape())
         controller_input = tf.concat([img_inp,label], axis=1)
-        print(controller_input.get_shape())
         controller_input = tf.concat([controller_input]+vector_inp, axis=1)
-        print(controller_input.get_shape())
         return self.lstm(controller_input, state)
 
     def zero_state(self,batch_size, dtype):
@@ -36,14 +33,11 @@ class AlexNetController():
         # Q: does the img_inp need to be of 224x224?
         # Have to ensure that the input is in img form. Reshape to get the right input image size
         img_inp = tf.cast(img_inp, tf.float32)
-        print(img_inp)
         img_inp = tf.reshape(img_inp, [-1, self.image_size, self.image_size])
         #  img_inp = tf.stack([img_inp]*3, axis=-1)
         img_inp = tf.expand_dims(img_inp, axis=-1)
         vector_inp = tf.cast(vector_inp, tf.float32)
-        print(img_inp)
         net = self.alexnet.feed_forward(img_inp, architecture='encoding')
-        print(net['output'])
         fc = {}
         with tf.variable_scope(scope):
             # If get casting issue make sure that the architecture is right
@@ -51,9 +45,10 @@ class AlexNetController():
             fc['fc2'] = fc_layer(fc['fc1'], 64)
             fc['fc2'] = fc_layer(fc['fc1'], self.encoding_size)
             fc_output = fc['fc2'] 
-        print("Fc_output: ", fc_output, "Label: ", shifted_label, "Vector: ", vector_inp)
         lstm_input = tf.concat([fc_output,shifted_label], axis=1)
-        lstm_input = tf.concat([[lstm_input],vector_inp], axis=1)
+        # flatten vector_inp
+        vector_inp = [vector_inp[i, :, :] for i in range(vector_inp.get_shape()[0])]
+        lstm_input = tf.concat([lstm_input] + vector_inp, axis=1)
         return self.lstm(lstm_input, state)
 
     def zero_state(self,batch_size, dtype):

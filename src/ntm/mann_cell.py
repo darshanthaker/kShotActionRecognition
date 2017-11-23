@@ -6,7 +6,7 @@ class MANNCell():
     # Q: what is k_strategy
     def __init__(self, rnn_size, memory_size, memory_vector_dim, head_num, gamma=0.95,
                  reuse=False, k_strategy='separate', 
-                 controller_type='default', encoding_size=400):
+                 controller_type='alex', encoding_size=400):
         self.rnn_size = rnn_size
         self.memory_size = memory_size
         self.memory_vector_dim = memory_vector_dim
@@ -30,7 +30,7 @@ class MANNCell():
         # x + prev_read_vector -> controller (RNN) -> controller_output
 
         #  controller_input = tf.concat([x] + prev_read_vector_list, axis=1)
-        with tf.variable_scope('controller', reuse=self.reuse):
+        with tf.variable_scope('controller', reuse=(self.step > 0) or self.reuse):
             #  controller_output, controller_state = self.controller(controller_input, prev_controller_state)
             #  controller_output, controller_state = self.controller(x, prev_read_vector_list, prev_controller_state)
             controller_output, controller_state = self.controller(x, shifted_label, prev_read_vector_list, prev_controller_state)
