@@ -1,7 +1,9 @@
 import numpy as np
 import random
 from compute_dynamic_image import DynamicImageGenerator
-from util import *
+import util
+import os
+from pdb import set_trace
 
 class InputLoader(object):
 
@@ -9,33 +11,82 @@ class InputLoader(object):
         self.input_rep = input_rep
         self.dig = DynamicImageGenerator()
         self.v_type = v_type
-        self.videos, self.labels = get_videos_lst(self.v_type)
+        self.videos, self.labels = util.get_videos_lst(self.v_type)
         self.label_set = set(self.labels)
+        self.label_lst = sorted(list(self.label_set))
+        self.int_labels = [self.get_int_label(str_lab) for str_lab in self.labels]
+        self.int_label_set = set(self.int_labels)
+        
+    def get_int_label(self, str_label):
+        assert type(str_label) == str
+        return self.label_lst.index(str_label) 
 
-    def get_input_and_label(self, example, label_encoding='int'):
-        filename = example[0]
-        # TODO(dbthaker): Do some different label encodings.
+    def get_str_label(self, int_label):
+        assert type(int_label) == int
+        return self.label_lst[int_label]
+
+    def get_label(self, example, num_unique_classes, label_encoding, classes):
         label = example[1]
-        if self.input_rep == 'dynamic_image':
-            video = video_to_frames(filename)
-            dynamic_image_rep = self.dig.get_dynamic_image(video)
-            return dynamic_image_rep, label
+        if label_encoding == 'one_hot':
+            label = classes.index(label)
+            label = util.one_hot_encode(label, num_unique_classes)
+        return label
 
-    def get_next_batch(self, batch_size, 
-            sampling_strategy='random', \
-            num_unique_classes=10):
+    def get_input(self, example):
+        filename = example[0]
+        if self.input_rep == 'dynamic_image':
+            rep = util.find_dynamic_image(filename)
+        return rep
+
+    def fetch_batch(self, num_unique_classes, batch_size, seq_length,
+            sampling_strategy='random',
+            label_encoding='one_hot'):
+        if label_encoding != 'one_hot':
+            raise NotImplementedError('Non one-hot encoding not supported yet')
+
         if sampling_strategy == 'random':
-            classes = random.sample(self.label_set, num_unique_classes)
+            print(self.label_set)
+            classes = random.sample(self.int_label_set, num_unique_classes)
             examples = list(filter(lambda x: x[1] in classes, \
-                zip(self.videos, self.labels)))
-            if batch_size > len(examples):
-                print("Batch size too large for number of unique classes.")
+                zip(self.videos, self.int_labels)))
+            if batch_size * seq_length > len(examples):
+                raise ValueError("Batch size too large for number of unique classes.")
         batch_data = list()
         batch_labels = list()
         np.random.shuffle(examples)
+        examples = examples[:(batch_size * seq_length)]
 
-        for i in range(batch_size):
-            data, label = get_input_and_label(examples[i])
-            batch_data.append(data)
-            batch_labels.append(label)
-        return batch_data, batch_labels
+        batch_data = np.array([self.get_input(examples[i]) \
+                               for i in range(batch_size * seq_length)])
+        batch_labels = np.array([self.get_label(examples[i], num_unique_classes, \
+                                    label_encoding, classes) \
+                                 for i in range(batch_size * seq_length)])
+        batch_data = batch_data.reshape((batch_size, seq_length) + \
+            batch_data.shape[1:])
+        batch_labels = batch_labels.reshape((batch_size, seq_length, \
+            num_unique_classes))
+        shifted_batch_labels = np.concatenate(
+            [np.zeros(shape=[batch_size, 1, num_unique_classes]), \
+             batch_labels[:, :-1, :]], \
+            axis=1)
+        return batch_data, batch_labels, shifted_batch_labels
+
+    def _save_all_dynamic_images(self):
+        for (filename, label) in zip(self.videos, self.labels):
+            if os.path.exists(filename + '.npy'):
+                util.eprint("DI for {} already exists".format(filename))
+                continue
+            video = util.video_to_frames(filename)
+            if video is None:
+                continue
+            dynamic_image_rep = self.dig.get_dynamic_image(video)
+            util.serialize(dynamic_image_rep, filename, dynamic=True)  
+            util.eprint("Serialized DI for {}".format(filename))
+
+def main():
+    input_loader = InputLoader("dynamic_image", "train")
+    input_loader.fetch_batch(2, 4, 4)
+    #input_loader._save_all_dynamic_images()
+
+if __name__=="__main__":
+    main()

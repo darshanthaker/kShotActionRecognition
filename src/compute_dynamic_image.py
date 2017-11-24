@@ -38,8 +38,9 @@ class DynamicImageGenerator(object):
 def main():
     #video = video_to_frames('../data/kinetics_train/videos/abseiling/13yHmtOlaUE_000751_000761.mp4')
     video = video_to_frames('~/dev/test/0347ZoDXyP0_000095_000105.mp4')
-    print "Done parsing video"
+    print("Done parsing video")
     dig = DynamicImageGenerator()
     dig.get_dynamic_image(video)
 
-main()
+if __name__=='__main__':
+    main()
