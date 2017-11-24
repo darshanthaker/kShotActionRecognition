@@ -1,4 +1,5 @@
 from utils import OmniglotDataLoader, one_hot_decode, five_hot_decode, eprint
+from input_loader import InputLoader
 import tensorflow as tf
 import argparse
 import numpy as np
@@ -33,6 +34,7 @@ def main():
     parser.add_argument('--n_test_classes', default=423)
     parser.add_argument('--save_dir', default='./save/one_shot_learning')
     parser.add_argument('--data_dir', default='.data')
+    parser.add_argument('--dataset_type', default='omniglot')
     parser.add_argument('--tensorboard_dir', default='./summary/one_shot_learning')
     args = parser.parse_args()
     np.random.seed(0)
@@ -46,12 +48,15 @@ def train(args):
     eprint("Loading in Model")
     model = NTMOneShotLearningModel(args)
     eprint("Loading Data")
-    data_loader = OmniglotDataLoader(
-        image_size=(args.image_width, args.image_height),
-        n_train_classes=args.n_train_classes,
-        n_test_classes=args.n_test_classes,
-        data_dir=args.data_dir
-    )
+    if args.dataset_type == 'omniglot':
+        data_loader = OmniglotDataLoader(
+            image_size=(args.image_width, args.image_height),
+            n_train_classes=args.n_train_classes,
+            n_test_classes=args.n_test_classes,
+            data_dir=args.data_dir
+        )
+    elif args.dataset_type == 'kinetics':
+        data_loader = InputLoader('dynamic_image', 'train')
     eprint("Starting Session")
     with tf.Session() as sess:
         if args.debug:
