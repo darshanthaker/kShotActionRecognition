@@ -8,7 +8,8 @@ def fc_layer(input, n, activation_fn=tf.nn.relu):
 
 class DefaultController():
     def __init__(self, rnn_size):
-        self.lstm = tf.nn.rnn_cell.BasicLSTMCell(rnn_size)
+        #  self.lstm = tf.nn.rnn_cell.BasicLSTMCell(rnn_size)
+        self.lstm = tf.contrib.rnn.BasicLSTMCell(rnn_size)
 
     def __call__(self, img_inp, label, vector_inp, state, scope='AlexNetController'):
     #  def __call__(self, img_inp, vector_inp, state, scope='DefaultController'):
@@ -23,7 +24,8 @@ class DefaultController():
 class AlexNetController():
 
     def __init__(self, rnn_size, encoding_size, image_size=20):
-        self.lstm = tf.nn.rnn_cell.BasicLSTMCell(rnn_size)
+        #  self.lstm = tf.nn.rnn_cell.BasicLSTMCell(rnn_size)
+        self.lstm = tf.contrib.rnn.BasicLSTMCell(rnn_size)
         # Load in the Alex net  
         self.alexnet = AlexNet()
         self.encoding_size = encoding_size
@@ -53,16 +55,3 @@ class AlexNetController():
 
     def zero_state(self,batch_size, dtype):
         return self.lstm.zero_state(batch_size, dtype)
-
-
-
-
-#  class AlexMANNCell(MANNCell):
-#
-    #  def __init__(self, rnn_size, memory_size, memory_vector_dim, head_num, gamma=0.95, reuse=False, k_strategy='separate'):
-        #  MANNCell.__init__(self, rnn_size, memory_size, memory_vector_dim, head_num, gamma, reuse, k_strategy)
-        #  # replace the controller with AlexNet that passes in the encoding in to the Memory network
-        #  self.controller = AlexNetController(rnn_size, encoding_size)
-#
-    #  def __call__(self, x, prev_state):
-        #

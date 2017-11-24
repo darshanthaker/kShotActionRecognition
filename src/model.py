@@ -110,7 +110,8 @@ class NTMOneShotLearningModel():
                 # matmul + bias
                 output = tf.nn.xw_plus_b(output, o2o_w, o2o_b)
             if args.label_type == 'one_hot':
-                output = tf.nn.softmax(output, dim=1)
+                # Made a change here for making it dim = -1
+                output = tf.nn.softmax(output, dim=-1)
             elif args.label_type == 'five_hot':
                 output = tf.stack([tf.nn.softmax(o) for o in tf.split(output, 5, axis=1)], axis=1)
             self.o.append(output)
