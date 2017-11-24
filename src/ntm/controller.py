@@ -1,5 +1,6 @@
 import tensorflow as tf
 import numpy as np
+from pdb import set_trace
 from alexnet import AlexNet
 
 def fc_layer(input, n, activation_fn=tf.nn.relu):
@@ -7,12 +8,14 @@ def fc_layer(input, n, activation_fn=tf.nn.relu):
         weights_regularizer=tf.nn.l2_loss)  
 
 class DefaultController():
-    def __init__(self, rnn_size):
+    def __init__(self, rnn_size, args=None):
         #  self.lstm = tf.nn.rnn_cell.BasicLSTMCell(rnn_size)
         self.lstm = tf.contrib.rnn.BasicLSTMCell(rnn_size)
+        self.args = args
 
     def __call__(self, img_inp, label, vector_inp, state, scope='AlexNetController'):
     #  def __call__(self, img_inp, vector_inp, state, scope='DefaultController'):
+        img_inp = tf.reshape(img_inp, (self.args.batch_size, -1))
         controller_input = tf.concat([img_inp,label], axis=1)
         controller_input = tf.concat([controller_input]+vector_inp, axis=1)
         return self.lstm(controller_input, state)
@@ -23,9 +26,10 @@ class DefaultController():
 
 class AlexNetController():
 
-    def __init__(self, rnn_size, encoding_size, image_size=20):
+    def __init__(self, rnn_size, encoding_size, image_size=20, args=None):
         #  self.lstm = tf.nn.rnn_cell.BasicLSTMCell(rnn_size)
         self.lstm = tf.contrib.rnn.BasicLSTMCell(rnn_size)
+        self.args = args
         # Load in the Alex net  
         self.alexnet = AlexNet()
         self.encoding_size = encoding_size
@@ -35,9 +39,10 @@ class AlexNetController():
         # Q: does the img_inp need to be of 224x224?
         # Have to ensure that the input is in img form. Reshape to get the right input image size
         img_inp = tf.cast(img_inp, tf.float32)
-        img_inp = tf.reshape(img_inp, [-1, self.image_size, self.image_size])
+        if self.args.dataset_type == 'omniglot':
+            img_inp = tf.reshape(img_inp, [-1, self.image_size, self.image_size])
         #  img_inp = tf.stack([img_inp]*3, axis=-1)
-        img_inp = tf.expand_dims(img_inp, axis=-1)
+            img_inp = tf.expand_dims(img_inp, axis=-1)
         vector_inp = tf.cast(vector_inp, tf.float32)
         net = self.alexnet.feed_forward(img_inp, architecture='encoding')
         fc = {}

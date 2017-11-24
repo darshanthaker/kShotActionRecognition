@@ -13,8 +13,8 @@ def main():
     parser.add_argument('--restore_training', default=False)
     parser.add_argument('--debug', default=False)
     parser.add_argument('--label_type', default="one_hot", help='one_hot or five_hot')
-    parser.add_argument('--n_classes', default=5)
-    parser.add_argument('--seq_length', default=50)
+    parser.add_argument('--n_classes', default=10)
+    parser.add_argument('--seq_length', default=20)
     parser.add_argument('--augment', default=True)
     parser.add_argument('--model', default="MANN", help='LSTM, MANN, MANN2 or NTM')
     parser.add_argument('--read_head_num', default=4)
@@ -57,6 +57,7 @@ def train(args):
         )
     elif args.dataset_type == 'kinetics':
         data_loader = InputLoader('dynamic_image', 'train')
+        test_data_loader = InputLoader('dynamic_image', 'val')
     eprint("Starting Session")
     with tf.Session() as sess:
         if args.debug:
@@ -76,8 +77,7 @@ def train(args):
             # Test
 
             if b % 100 == 0:
-                x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
-                                                              type='test',
+                x_image, x_label, y = test_data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
                                                               augment=args.augment,
                                                               label_type=args.label_type)
                 feed_dict = {model.x_image: x_image, model.x_label: x_label, model.y: y}
@@ -101,7 +101,6 @@ def train(args):
             # Train
 
             x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
-                                                          type='train',
                                                           augment=args.augment,
                                                           label_type=args.label_type)
             feed_dict = {model.x_image: x_image, model.x_label: x_label, model.y: y}

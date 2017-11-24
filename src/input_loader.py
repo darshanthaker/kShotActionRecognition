@@ -19,15 +19,15 @@ class InputLoader(object):
         
     def get_int_label(self, str_label):
         assert type(str_label) == str
-        return self.label_lst.index(str_label) 
+        return int(self.label_lst.index(str_label))
 
     def get_str_label(self, int_label):
         assert type(int_label) == int
         return self.label_lst[int_label]
 
-    def get_label(self, example, num_unique_classes, label_encoding, classes):
+    def get_label(self, example, num_unique_classes, label_type, classes):
         label = example[1]
-        if label_encoding == 'one_hot':
+        if label_type == 'one_hot':
             label = classes.index(label)
             label = util.one_hot_encode(label, num_unique_classes)
         return label
@@ -39,27 +39,29 @@ class InputLoader(object):
         return rep
 
     def fetch_batch(self, num_unique_classes, batch_size, seq_length,
+            augment=False,
             sampling_strategy='random',
-            label_encoding='one_hot'):
-        if label_encoding != 'one_hot':
+            label_type='one_hot'):
+        if label_type != 'one_hot':
             raise NotImplementedError('Non one-hot encoding not supported yet')
 
         if sampling_strategy == 'random':
-            print(self.label_set)
             classes = random.sample(self.int_label_set, num_unique_classes)
-            examples = list(filter(lambda x: x[1] in classes, \
+            filtered_examples = list(filter(lambda x: x[1] in classes, \
                 zip(self.videos, self.int_labels)))
-            if batch_size * seq_length > len(examples):
-                raise ValueError("Batch size too large for number of unique classes.")
+            if seq_length > len(filtered_examples):
+                raise ValueError("Sequence length {} too large for number of unique classes {}" \
+                    .format(seq_length, len(filtered_examples)))
         batch_data = list()
         batch_labels = list()
-        np.random.shuffle(examples)
-        examples = examples[:(batch_size * seq_length)]
+        random_indices = np.random.randint(0, len(filtered_examples), \
+            batch_size * seq_length)
+        examples = [filtered_examples[i] for i in random_indices]
 
         batch_data = np.array([self.get_input(examples[i]) \
                                for i in range(batch_size * seq_length)])
         batch_labels = np.array([self.get_label(examples[i], num_unique_classes, \
-                                    label_encoding, classes) \
+                                    label_type, classes) \
                                  for i in range(batch_size * seq_length)])
         batch_data = batch_data.reshape((batch_size, seq_length) + \
             batch_data.shape[1:])
@@ -85,8 +87,8 @@ class InputLoader(object):
 
 def main():
     input_loader = InputLoader("dynamic_image", "train")
-    input_loader.fetch_batch(2, 4, 4)
-    #input_loader._save_all_dynamic_images()
+    #input_loader.fetch_batch(2, 4, 4)
+    input_loader._save_all_dynamic_images()
 
 if __name__=="__main__":
     main()

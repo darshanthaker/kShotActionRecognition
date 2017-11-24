@@ -38,15 +38,32 @@ def video_to_frames(filename, resize=(IM_SIZE, IM_SIZE)):
 def get_data_dir(v_type):
     return '../data/kinetics_{}/videos'.format(v_type)
 
+def get_vtype_for_lab(unique_labels, label):
+    cutoff = int(0.7 * len(unique_labels))
+    if unique_labels.index(label) <= cutoff:
+        return 'train'
+    else:
+        return 'val'
+
 def get_videos_lst(v_type):
     assert v_type == 'train' or v_type == 'test' or v_type == 'val'
     data_dir = get_data_dir(v_type)
     videos_lst = list()
     labels = list()
+    unique_labels = list()
 
     for label in os.listdir(data_dir):
         new_path = os.path.join(data_dir, label)
         if len(os.listdir(new_path)) == 0:
+            continue
+        unique_labels.append(label)
+    unique_labels = sorted(unique_labels)
+
+    for label in os.listdir(data_dir):
+        new_path = os.path.join(data_dir, label)
+        if len(os.listdir(new_path)) == 0:
+            continue
+        if get_vtype_for_lab(unique_labels, label) != v_type:
             continue
         for filename in os.listdir(new_path):
             full_file_path = os.path.join(data_dir, label, filename)

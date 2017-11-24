@@ -60,8 +60,12 @@ class NTMOneShotLearningModel():
         elif args.label_type == 'five_hot':
             args.output_dim = 25
 
-        self.x_image = tf.placeholder(dtype=tf.float32,
-                                      shape=[args.batch_size, args.seq_length, args.image_width * args.image_height])
+        if args.dataset_type == 'omniglot':
+            self.x_image = tf.placeholder(dtype=tf.float32,
+                                          shape=[args.batch_size, args.seq_length, args.image_width * args.image_height])
+        else:
+            self.x_image = tf.placeholder(dtype=tf.float32,
+                                          shape=[args.batch_size, args.seq_length, args.image_width, args.image_height, 3])
         self.x_label = tf.placeholder(dtype=tf.float32,
                                       shape=[args.batch_size, args.seq_length, args.output_dim])
         self.y = tf.placeholder(dtype=tf.float32,
@@ -81,7 +85,7 @@ class NTMOneShotLearningModel():
         elif args.model == 'MANN':
             import ntm.mann_cell as mann_cell
             cell = mann_cell.MANNCell(args.rnn_size, args.memory_size, args.memory_vector_dim,
-                                    head_num=args.read_head_num)
+                                    head_num=args.read_head_num, args=args)
         elif args.model == 'MANN2':
             import ntm.mann_cell_2 as mann_cell
             cell = mann_cell.MANNCell(args.rnn_size, args.memory_size, args.memory_vector_dim,
@@ -97,7 +101,10 @@ class NTMOneShotLearningModel():
             #  output, state = cell(tf.concat([self.x_image[:, t, :], self.x_label[:, t, :]], axis=1), state)
             #  output, state = cell(self.x_image[:, t, :], state)
             # Q: the labels are passed in here as part of the input....
-            output, state = cell(self.x_image[:, t, :], self.x_label[:, t, :], state)
+            if args.dataset_type == 'omniglot':
+                output, state = cell(self.x_image[:, t, :], self.x_label[:, t, :], state)
+            else:
+                output, state = cell(self.x_image[:, t, :, :, :], self.x_label[:, t, :], state)
             # output, state = cell(self.y[:, t, :], state)
             # go from the memory stored dimensionality to the number of classes / predictions
             with tf.variable_scope("o2o", reuse=(t > 0)):

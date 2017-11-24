@@ -5,18 +5,19 @@ from ntm.controller import DefaultController, AlexNetController
 class MANNCell():
     # Q: what is k_strategy
     def __init__(self, rnn_size, memory_size, memory_vector_dim, head_num, gamma=0.95,
-                 reuse=False, k_strategy='separate', 
+                 reuse=False, k_strategy='separate',  args=None,
                  controller_type='alex', encoding_size=400):
         self.rnn_size = rnn_size
         self.memory_size = memory_size
         self.memory_vector_dim = memory_vector_dim
         self.head_num = head_num                                    # #(read head) == #(write head)
         self.reuse = reuse
+        self.args = args
         #  self.controller = tf.nn.rnn_cell.BasicLSTMCell(self.rnn_size)
         if controller_type == 'default':
-            self.controller = DefaultController(self.rnn_size)
+            self.controller = DefaultController(self.rnn_size, args=self.args)
         elif controller_type == 'alex':
-            self.controller = AlexNetController(self.rnn_size, encoding_size)
+            self.controller = AlexNetController(self.rnn_size, encoding_size, args=self.args)
         self.step = 0
         self.gamma = gamma
         self.k_strategy = k_strategy

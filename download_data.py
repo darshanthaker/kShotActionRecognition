@@ -13,6 +13,8 @@ from joblib import delayed
 from joblib import Parallel
 import pandas as pd
 
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 def create_video_folders(dataset, output_dir, tmp_dir):
     """Creates a directory for each label name in the dataset."""
@@ -83,7 +85,6 @@ def download_clip(video_identifier, output_filename,
          except subprocess.CalledProcessError as err:
             attempts += 1
             if attempts == num_attempts:
-                print "Shit is fucked"
                 return status, err.output
          else:
             break
@@ -103,7 +104,7 @@ def download_clip(video_identifier, output_filename,
         output = subprocess.check_output(command, shell=True,
                                          stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as err:
-        print "Ffmpeg command = {} with return code = {} and output = {}".format(err.cmd, err.returncode, err.output)
+        eprint("Ffmpeg command = {} with return code = {} and output = {}".format(err.cmd, err.returncode, err.output))
         #set_trace()
         return status, err.output
 
@@ -125,7 +126,7 @@ def download_clip_wrapper(row, label_to_dir, trim_format, tmp_dir):
     downloaded, log = download_clip(row['video-id'], output_filename,
                                     row['start-time'], row['end-time'],
                                     tmp_dir=tmp_dir)
-    print "downloaded = {}, log = {}".format(downloaded, log)
+    eprint("downloaded = {}, log = {}".format(downloaded, log))
     status = tuple([clip_id, downloaded, log])
     return status
 
@@ -158,7 +159,7 @@ def parse_kinetics_annotations(input_csv):
                        'time_end': 'end-time',
                        'label': 'label-name',
                        'is_cc': 'is-cc'}, inplace=True)
-    df = trim_dataset(df, 0.1)
+    df = trim_dataset(df, 0.2)
     return df
 
 def main(input_csv, output_dir,
@@ -166,11 +167,11 @@ def main(input_csv, output_dir,
 
     # Reading and parsing Kinetics.
     dataset = parse_kinetics_annotations(input_csv)
-    print "Parsed Kinetics annotations"
+    eprint("Parsed Kinetics annotations")
 
     # Creates folders where videos will be saved later.
     label_to_dir = create_video_folders(dataset, output_dir, tmp_dir)
-    print "Finished creating video folders"
+    eprint("Finished creating video folders")
 
     # Download all clips.
     if num_jobs==1:
@@ -183,7 +184,7 @@ def main(input_csv, output_dir,
             row, label_to_dir,
             trim_format, tmp_dir) for i, row in dataset.iterrows())
 
-    print "Finished downloading videos"
+    eprint("Finished downloading videos")
 
     # Clean tmp dir.
     shutil.rmtree(tmp_dir)
