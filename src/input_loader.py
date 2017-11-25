@@ -36,28 +36,42 @@ class InputLoader(object):
         filename = example[0]
         if self.input_rep == 'dynamic_image':
             rep = util.find_dynamic_image(filename)
+        elif self.input_rep == 'raw_video':
+            rep = util.video_to_frames(filename)
         return rep
 
     def fetch_batch(self, num_unique_classes, batch_size, seq_length,
             augment=False,
-            sampling_strategy='random',
+            sampling_strategy='uniform',
             label_type='one_hot'):
         if label_type != 'one_hot':
             raise NotImplementedError('Non one-hot encoding not supported yet')
 
+        classes = random.sample(self.int_label_set, num_unique_classes)
+        filtered_examples = list(filter(lambda x: x[1] in classes, \
+            zip(self.videos, self.int_labels)))
+        if seq_length > len(filtered_examples):
+            raise ValueError("Sequence length {} too large for number of unique examples {}" \
+                .format(seq_length, len(filtered_examples)))
         if sampling_strategy == 'random':
-            classes = random.sample(self.int_label_set, num_unique_classes)
-            filtered_examples = list(filter(lambda x: x[1] in classes, \
-                zip(self.videos, self.int_labels)))
-            if seq_length > len(filtered_examples):
-                raise ValueError("Sequence length {} too large for number of unique examples {}" \
-                    .format(seq_length, len(filtered_examples)))
+            random_indices = np.random.randint(0, len(filtered_examples), \
+                batch_size * seq_length)
+            examples = [filtered_examples[i] for i in random_indices]
+        elif sampling_strategy == 'uniform':
+            ordered_indices = np.array( \
+                    [np.concatenate([\
+                        [j] * int(seq_length / num_unique_classes) \
+                        for j in range(num_unique_classes)])\
+                     for i in range(batch_size)])
+            for i in range(batch_size):
+                np.random.shuffle(ordered_indices[i, :])
+            for i in np.nditer(ordered_indices):
+                examples.append(
+            examples = [filtered_examples[i] for i in np.nditer(ordered_indices)]
+            set_trace()
+            
         batch_data = list()
         batch_labels = list()
-        random_indices = np.random.randint(0, len(filtered_examples), \
-            batch_size * seq_length)
-        examples = [filtered_examples[i] for i in random_indices]
-
         batch_data = np.array([self.get_input(examples[i]) \
                                for i in range(batch_size * seq_length)])
         batch_labels = np.array([self.get_label(examples[i], num_unique_classes, \
@@ -86,7 +100,7 @@ class InputLoader(object):
             util.eprint("Serialized DI for {}".format(filename))
 
 def main():
-    input_loader = InputLoader("dynamic_image", "train")
+    input_loader = InputLoader("dynamic_image", "val")
     #input_loader.fetch_batch(2, 4, 4)
     input_loader._save_all_dynamic_images()
 
