@@ -14,7 +14,21 @@ IM_SIZE = 128
 def eprint(*args, **kwargs):
     print(str(datetime.now().strftime('%H:%M:%S')),":", *args, file=sys.stderr, **kwargs)
 
-def video_to_frames(filename, resize=(IM_SIZE, IM_SIZE)):
+def sample_frames(video, sample_nframes):
+    if video.shape[0] >= sample_nframes:
+        all_indices = range(video.shape[0] // sample_nframes * sample_nframes)
+        indices = [i % (video.shape[0] // sample_nframes) == 0 for i in all_indices]
+        indices = filter(lambda x: x[1] == True, list(enumerate(indices)))
+        indices = [i[0] for i in indices]
+        ret_video = video[indices, :, :, :]
+    else:
+        ret_video = np.concatenate([np.tile(video, (video.shape[0] // sample_nframes, 1, 1, 1)), \
+                video[0:(video.shape[0] % sample_nframes), :, :, :]], axis=0)
+    if ret_video.shape[0] != sample_nframes:
+        set_trace()
+    return ret_video
+
+def video_to_frames(filename, resize=(IM_SIZE, IM_SIZE), sample_nframes=64):
     try:
         vid_reader = imageio.get_reader(filename,  'ffmpeg')
     except:
@@ -33,10 +47,27 @@ def video_to_frames(filename, resize=(IM_SIZE, IM_SIZE)):
     except:
         eprint("Got an exception! Skipping {}".format(filename))
         return None
+    if sample_nframes is not None:
+        video = sample_frames(video, sample_nframes)
     return video
 
 def get_data_dir(v_type):
     return '../data/kinetics_{}/videos'.format(v_type)
+
+def get_number_of_classes(v_type):
+    assert v_type == 'train' or v_type == 'test' or v_type == 'val'
+    data_dir = get_data_dir(v_type)
+    unique_labels = get_unique_labels(v_type)
+    labels = list()
+
+    for label in os.listdir(data_dir):
+        new_path = os.path.join(data_dir, label)
+        if len(os.listdir(new_path)) == 0:
+            continue
+        if get_vtype_for_lab(unique_labels, label) != v_type:
+            continue
+        labels.append(label)
+    return len(labels)
 
 def get_vtype_for_lab(unique_labels, label):
     cutoff = int(0.7 * len(unique_labels))
@@ -45,19 +76,23 @@ def get_vtype_for_lab(unique_labels, label):
     else:
         return 'val'
 
-def get_videos_lst(v_type):
-    assert v_type == 'train' or v_type == 'test' or v_type == 'val'
+def get_unique_labels(v_type):
     data_dir = get_data_dir(v_type)
-    videos_lst = list()
-    labels = list()
     unique_labels = list()
-
     for label in os.listdir(data_dir):
         new_path = os.path.join(data_dir, label)
         if len(os.listdir(new_path)) == 0:
             continue
         unique_labels.append(label)
     unique_labels = sorted(unique_labels)
+    return unique_labels
+
+def get_videos_lst(v_type):
+    assert v_type == 'train' or v_type == 'test' or v_type == 'val'
+    data_dir = get_data_dir(v_type)
+    videos_lst = list()
+    labels = list()
+    unique_labels = get_unique_labels(v_type)
 
     for label in os.listdir(data_dir):
         new_path = os.path.join(data_dir, label)

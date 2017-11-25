@@ -7,10 +7,11 @@ from pdb import set_trace
 
 class InputLoader(object):
 
-    def __init__(self, input_rep, v_type):
+    def __init__(self, input_rep, v_type, im_size=128):
         self.input_rep = input_rep
         self.dig = DynamicImageGenerator()
         self.v_type = v_type
+        self.im_size = im_size
         self.videos, self.labels = util.get_videos_lst(self.v_type)
         self.label_set = set(self.labels)
         self.label_lst = sorted(list(self.label_set))
@@ -30,6 +31,8 @@ class InputLoader(object):
         if label_type == 'one_hot':
             label = classes.index(label)
             label = util.one_hot_encode(label, num_unique_classes)
+        elif label_type == 'int':
+            label = classes.index(label)
         return label
 
     def get_input(self, example):
@@ -37,8 +40,20 @@ class InputLoader(object):
         if self.input_rep == 'dynamic_image':
             rep = util.find_dynamic_image(filename)
         elif self.input_rep == 'raw_video':
-            rep = util.video_to_frames(filename)
+            rep = util.video_to_frames(filename, resize=(self.im_size, self.im_size))
         return rep
+
+    def fetch_serial_batch(self, batch_size):
+        examples = list(zip(self.videos, self.int_labels))
+        num_unique_classes = len(self.int_label_set)
+        classes = sorted(list(self.int_label_set))
+
+        np.random.shuffle(examples)
+        examples = examples[:batch_size]
+        batch_data = np.array([self.get_input(i) for i in examples])
+        batch_labels = np.array([self.get_label(i, num_unique_classes, 'int', \
+            classes) for i in examples])
+        return batch_data, batch_labels
 
     def fetch_batch(self, num_unique_classes, batch_size, seq_length,
             augment=False,
@@ -65,10 +80,10 @@ class InputLoader(object):
                      for i in range(batch_size)])
             for i in range(batch_size):
                 np.random.shuffle(ordered_indices[i, :])
-            for i in np.nditer(ordered_indices):
-                examples.append(
-            examples = [filtered_examples[i] for i in np.nditer(ordered_indices)]
-            set_trace()
+            # TODO(dbthaker): Finish this shit.
+            #for i in np.nditer(ordered_indices):
+            #    examples.append(
+            #examples = [filtered_examples[i] for i in np.nditer(ordered_indices)]
             
         batch_data = list()
         batch_labels = list()
