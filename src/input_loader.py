@@ -50,7 +50,7 @@ class InputLoader(object):
             filtered_examples = list(filter(lambda x: x[1] in classes, \
                 zip(self.videos, self.int_labels)))
             if seq_length > len(filtered_examples):
-                raise ValueError("Sequence length {} too large for number of unique classes {}" \
+                raise ValueError("Sequence length {} too large for number of unique examples {}" \
                     .format(seq_length, len(filtered_examples)))
         batch_data = list()
         batch_labels = list()

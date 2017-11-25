@@ -5,6 +5,7 @@ import argparse
 import numpy as np
 from model import NTMOneShotLearningModel
 from tensorflow.python import debug as tf_debug
+from pdb import set_trace
 
 
 def main():
@@ -13,8 +14,8 @@ def main():
     parser.add_argument('--restore_training', default=False)
     parser.add_argument('--debug', default=False)
     parser.add_argument('--label_type', default="one_hot", help='one_hot or five_hot')
-    parser.add_argument('--n_classes', default=10)
-    parser.add_argument('--seq_length', default=20)
+    parser.add_argument('--n_classes', default=5)
+    parser.add_argument('--seq_length', default=40)
     parser.add_argument('--augment', default=True)
     parser.add_argument('--model', default="MANN", help='LSTM, MANN, MANN2 or NTM')
     parser.add_argument('--read_head_num', default=4)
