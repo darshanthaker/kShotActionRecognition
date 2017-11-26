@@ -64,9 +64,13 @@ class NTMOneShotLearningModel():
         if args.dataset_type == 'omniglot':
             self.x_image = tf.placeholder(dtype=tf.float32,
                                           shape=[args.batch_size, args.seq_length, args.image_width * args.image_height])
-        else:
+        elif args.dataset_type == 'kinetics_dynamic':
             self.x_image = tf.placeholder(dtype=tf.float32,
                                           shape=[args.batch_size, args.seq_length, args.image_width, args.image_height, 3])
+        elif args.dataset_type == 'kinetics_video':
+            self.x_image = tf.placeholder(dtype=tf.float32,
+                                          shape=[args.batch_size, args.seq_length, args.sample_nframes, args.image_width, args.image_height, 3])
+
         self.x_label = tf.placeholder(dtype=tf.float32,
                                       shape=[args.batch_size, args.seq_length, args.output_dim])
         self.y = tf.placeholder(dtype=tf.float32,

@@ -7,7 +7,8 @@ from pdb import set_trace
 
 class InputLoader(object):
 
-    def __init__(self, input_rep, v_type, im_size=128):
+    def __init__(self, input_rep, v_type, im_size=128, args=None):
+        self.args = args
         self.input_rep = input_rep
         self.dig = DynamicImageGenerator()
         self.v_type = v_type
@@ -40,7 +41,7 @@ class InputLoader(object):
         if self.input_rep == 'dynamic_image':
             rep = util.find_dynamic_image(filename)
         elif self.input_rep == 'raw_video':
-            rep = util.video_to_frames(filename, resize=(self.im_size, self.im_size))
+            rep = util.video_to_frames(filename, resize=(self.im_size, self.im_size), sample_nframes=args.sample_nframes)
         return rep
 
     def fetch_serial_batch(self, batch_size):

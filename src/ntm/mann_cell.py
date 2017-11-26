@@ -18,6 +18,8 @@ class MANNCell():
             self.controller = DefaultController(self.rnn_size, args=self.args)
         elif controller_type == 'alex':
             self.controller = AlexNetController(self.rnn_size, encoding_size, args=self.args)
+        elif controller_type == 'i3d':
+            self.controller = I3DController(self.rnn_size, encoding_size, args=args)
         self.step = 0
         self.gamma = gamma
         self.k_strategy = k_strategy

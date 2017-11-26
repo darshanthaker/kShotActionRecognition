@@ -35,7 +35,8 @@ def main():
     parser.add_argument('--n_test_classes', default=423)
     parser.add_argument('--save_dir', default='./save/one_shot_learning')
     parser.add_argument('--data_dir', default='.data')
-    parser.add_argument('--dataset_type', default='omniglot')
+    parser.add_argument('--dataset_type', default='omniglot') # options: omniglot, kinetics_dynamic, kinetics_video
+    parser.add_argument('--sample_nframes', default=64) # options: omniglot, kinetics_dynamic, kinetics_video
     parser.add_argument('--tensorboard_dir', default='./summary/one_shot_learning')
     args = parser.parse_args()
     np.random.seed(0)
@@ -56,9 +57,13 @@ def train(args):
             n_test_classes=args.n_test_classes,
             data_dir=args.data_dir
         )
-    elif args.dataset_type == 'kinetics':
+    elif args.dataset_type == 'kinetics_dynamic':
         data_loader = InputLoader('dynamic_image', 'train')
         test_data_loader = InputLoader('dynamic_image', 'val')
+    elif args.dataset_type == 'kinetics_video':
+        data_loader = InputLoader('raw_video', 'train', args=args)
+        test_data_loader = InputLoader('raw_video', 'val', args=args)
+
     eprint("Starting Session")
     with tf.Session() as sess:
         if args.debug:

@@ -56,13 +56,13 @@ class InceptionI3D():
 
 
     def __init__(self, encoding_size, args=None, use_logits=True, name='inception_i3d', \
-            spatial_squeeze=True, inputs=None, is_training=None, dropout_keep_prob=1.0): 
+            spatial_squeeze=True): 
         self.args = args
         self.encoding_size = encoding_size
         self._spatial_squeeze = spatial_squeeze
         self.use_logits = use_logits
-        self.create_inputs_compute_graph(inputs, is_training)
-        self.create_compute_graph(dropout_keep_prob)
+        #  self.create_inputs_compute_graph(inputs, is_training)
+        #  self.create_compute_graph(dropout_keep_prob)
 
     def create_inputs_compute_graph(self, inputs, is_training):
         if inputs is None:

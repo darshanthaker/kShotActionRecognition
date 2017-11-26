@@ -2,6 +2,7 @@ import tensorflow as tf
 import numpy as np
 from pdb import set_trace
 from alexnet import AlexNet
+from i3d import InceptionI3D
 
 def fc_layer(input, n, activation_fn=tf.nn.relu):
     return tf.contrib.layers.fully_connected(input, n, activation_fn=activation_fn, \
@@ -60,3 +61,24 @@ class AlexNetController():
 
     def zero_state(self,batch_size, dtype):
         return self.lstm.zero_state(batch_size, dtype)
+
+
+class I3DController():
+
+
+    def __init__(self, rnn_size, encoding_size, is_training, args=None):
+        self.args = args
+        self.lstm = tf.contrib.rnn.BasicLSTMCell(rnn_size)
+        # How to take in the inputs easily
+        self.i3d = InceptionI3D(encoding_size, args=args, use_logits=True)
+        self.is_training = is_training
+
+    def __call__(self, img_video, shifted_label, vector_inp, state, scope='I3DController'):
+        self.i3d.create_inputs_compute_graph(img_video, self.is_training)
+        encoding, end_points= self.i3d.create_compute_graph(1.0)
+        lstm_input = tf.concat([encoding,shifted_label], axis=1)
+        # flatten vector_inp
+        vector_inp = [vector_inp[i, :, :] for i in range(vector_inp.get_shape()[0])]
+        lstm_input = tf.concat([lstm_input] + vector_inp, axis=1)
+        return self.lstm(lstm_input, state)
+
