@@ -1,6 +1,7 @@
 import tensorflow as tf
 import numpy as np
 from pdb import set_trace
+from util import eprint
 
 
 class NTMCopyModel():
@@ -61,6 +62,7 @@ class NTMOneShotLearningModel():
         elif args.label_type == 'five_hot':
             args.output_dim = 25
 
+        eprint("Creating Placeholders")
         if args.dataset_type == 'omniglot':
             self.x_image = tf.placeholder(dtype=tf.float32,
                                           shape=[args.batch_size, args.seq_length, args.image_width * args.image_height])
@@ -68,14 +70,19 @@ class NTMOneShotLearningModel():
             self.x_image = tf.placeholder(dtype=tf.float32,
                                           shape=[args.batch_size, args.seq_length, args.image_width, args.image_height, 3])
         elif args.dataset_type == 'kinetics_video':
+            #  self.x_image = tf.placeholder(dtype=tf.float32,
+                                          #  shape=[args.batch_size, args.seq_length, args.sample_nframes, args.image_width, args.image_height, 3])
             self.x_image = tf.placeholder(dtype=tf.float32,
                                           shape=[args.batch_size, args.seq_length, args.sample_nframes, args.image_width, args.image_height, 3])
+
+            self.is_training = tf.placeholder(tf.bool)
 
         self.x_label = tf.placeholder(dtype=tf.float32,
                                       shape=[args.batch_size, args.seq_length, args.output_dim])
         self.y = tf.placeholder(dtype=tf.float32,
                                 shape=[args.batch_size, args.seq_length, args.output_dim])
 
+        eprint("Creating Cells")
         if args.model == 'LSTM':
             def rnn_cell(rnn_size):
                 return tf.nn.rnn_cell.BasicLSTMCell(rnn_size)
@@ -96,6 +103,7 @@ class NTMOneShotLearningModel():
             cell = mann_cell.MANNCell(args.rnn_size, args.memory_size, args.memory_vector_dim,
                                     head_num=args.read_head_num)
 
+        eprint("Looping through seq")
         # Zero out the memory state
         state = cell.zero_state(args.batch_size, tf.float32)
         self.state_list = [state]   # For debugging. Keep track of previous states
@@ -106,10 +114,13 @@ class NTMOneShotLearningModel():
             #  output, state = cell(tf.concat([self.x_image[:, t, :], self.x_label[:, t, :]], axis=1), state)
             #  output, state = cell(self.x_image[:, t, :], state)
             # Q: the labels are passed in here as part of the input....
+            eprint("Seq: [{}] Passing data into the cell".format(t))
             if args.dataset_type == 'omniglot':
                 output, state = cell(self.x_image[:, t, :], self.x_label[:, t, :], state)
-            else:
+            if args.dataset_type == 'kinetics_dynamic':
                 output, state = cell(self.x_image[:, t, :, :, :], self.x_label[:, t, :], state)
+            elif args.dataset_type == 'kinetics_video':
+                output, state = cell(self.x_image[:, t, :, :, :, :], self.x_label[:, t, :], state)
             # output, state = cell(self.y[:, t, :], state)
             # go from the memory stored dimensionality to the number of classes / predictions
             with tf.variable_scope("o2o", reuse=(t > 0)):
@@ -131,6 +142,7 @@ class NTMOneShotLearningModel():
         self.o = tf.stack(self.o, axis=1)
         self.state_list.append(state)
 
+        eprint("Defining optimizer")
         eps = 1e-8
         if args.label_type == 'one_hot':
             self.learning_loss = -tf.reduce_mean(  # cross entropy function
@@ -152,3 +164,5 @@ class NTMOneShotLearningModel():
             # capped_gvs = [(tf.clip_by_value(grad, -10., 10.), var) for grad, var in gvs]
             # self.train_op = self.optimizer.apply_gradients(gvs)
             self.train_op = self.optimizer.minimize(self.learning_loss)
+
+        eprint("Finished Definining Model")

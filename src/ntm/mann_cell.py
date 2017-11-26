@@ -1,12 +1,12 @@
 import tensorflow as tf
 import numpy as np
-from ntm.controller import DefaultController, AlexNetController
+from ntm.controller import DefaultController, AlexNetController, I3DController
 
 class MANNCell():
     # Q: what is k_strategy
     def __init__(self, rnn_size, memory_size, memory_vector_dim, head_num, gamma=0.95,
                  reuse=False, k_strategy='separate',  args=None,
-                 controller_type='alex', encoding_size=400):
+                 encoding_size=400, is_training=None):
         self.rnn_size = rnn_size
         self.memory_size = memory_size
         self.memory_vector_dim = memory_vector_dim
@@ -14,12 +14,15 @@ class MANNCell():
         self.reuse = reuse
         self.args = args
         #  self.controller = tf.nn.rnn_cell.BasicLSTMCell(self.rnn_size)
-        if controller_type == 'default':
-            self.controller = DefaultController(self.rnn_size, args=self.args)
-        elif controller_type == 'alex':
+        # TODO: have checks to make sure dataset and controller type are valid
+        if args.controller_type == 'alex' and args.dataset_type == 'kinetics_dynamic':
             self.controller = AlexNetController(self.rnn_size, encoding_size, args=self.args)
-        elif controller_type == 'i3d':
-            self.controller = I3DController(self.rnn_size, encoding_size, args=args)
+        elif args.controller_type == 'i3d' and args.dataset_type == 'kinetics_video':
+            # TODO(kapilk): add in is_training parameter
+            print("I3DController")
+            self.controller = I3DController(self.rnn_size, encoding_size, is_training, args=args)
+        else:
+            self.controller = DefaultController(self.rnn_size, args=self.args)
         self.step = 0
         self.gamma = gamma
         self.k_strategy = k_strategy

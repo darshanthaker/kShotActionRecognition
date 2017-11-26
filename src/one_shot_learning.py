@@ -15,16 +15,16 @@ def main():
     parser.add_argument('--debug', default=False)
     parser.add_argument('--label_type', default="one_hot", help='one_hot or five_hot')
     parser.add_argument('--n_classes', default=5)
-    parser.add_argument('--seq_length', default=40)
+    parser.add_argument('--seq_length', default=35)
     parser.add_argument('--augment', default=True)
     parser.add_argument('--model', default="MANN", help='LSTM, MANN, MANN2 or NTM')
     parser.add_argument('--read_head_num', default=4)
-    parser.add_argument('--batch_size', default=16)
+    parser.add_argument('--batch_size', default=16, type=int)
     parser.add_argument('--num_epoches', default=100000)
     parser.add_argument('--learning_rate', default=1e-3)
     parser.add_argument('--rnn_size', default=200)
-    parser.add_argument('--image_width', default=20)
-    parser.add_argument('--image_height', default=20)
+    parser.add_argument('--image_width', default=128)
+    parser.add_argument('--image_height', default=128)
     parser.add_argument('--rnn_num_layers', default=1)
     parser.add_argument('--memory_size', default=128)
     parser.add_argument('--memory_vector_dim', default=40)
@@ -35,8 +35,9 @@ def main():
     parser.add_argument('--n_test_classes', default=423)
     parser.add_argument('--save_dir', default='./save/one_shot_learning')
     parser.add_argument('--data_dir', default='.data')
-    parser.add_argument('--dataset_type', default='omniglot') # options: omniglot, kinetics_dynamic, kinetics_video
-    parser.add_argument('--sample_nframes', default=64) # options: omniglot, kinetics_dynamic, kinetics_video
+    parser.add_argument('--dataset_type', default='kinetics_dynamic') # options: omniglot, kinetics_dynamic, kinetics_video
+    parser.add_argument('--controller_type', default='alex') # options: omniglot, kinetics_dynamic, kinetics_video
+    parser.add_argument('--sample_nframes', default=64, type=int)
     parser.add_argument('--tensorboard_dir', default='./summary/one_shot_learning')
     args = parser.parse_args()
     np.random.seed(0)
@@ -47,6 +48,7 @@ def main():
 
 
 def train(args):
+    eprint("Args: ", args)
     eprint("Loading in Model")
     model = NTMOneShotLearningModel(args)
     eprint("Loading Data")
@@ -105,12 +107,15 @@ def train(args):
                 saver.save(sess, args.save_dir + '/' + args.model + '/model.tfmodel', global_step=b)
 
             # Train
-
+            #  eprint("[{}] Fetch Batch".format(b))
             x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
                                                           augment=args.augment,
                                                           label_type=args.label_type)
+            #  eprint("[{}] Run Sess".format(b))
             feed_dict = {model.x_image: x_image, model.x_label: x_label, model.y: y}
-            sess.run(model.train_op, feed_dict=feed_dict)
+            learning_loss, _ = sess.run([model.learning_loss, model.train_op], feed_dict=feed_dict)
+            #  eprint("[{}] Learning Loss: {:.3f}".format(b, learning_loss))
+
 
 
 def test(args):

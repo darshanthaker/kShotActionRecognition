@@ -41,7 +41,7 @@ class InputLoader(object):
         if self.input_rep == 'dynamic_image':
             rep = util.find_dynamic_image(filename)
         elif self.input_rep == 'raw_video':
-            rep = util.video_to_frames(filename, resize=(self.im_size, self.im_size), sample_nframes=args.sample_nframes)
+            rep = util.video_to_frames(filename, resize=(self.im_size, self.im_size), sample_nframes=self.args.sample_nframes)
         return rep
 
     def fetch_serial_batch(self, batch_size):
@@ -58,7 +58,7 @@ class InputLoader(object):
 
     def fetch_batch(self, num_unique_classes, batch_size, seq_length,
             augment=False,
-            sampling_strategy='uniform',
+            sampling_strategy='random',
             label_type='one_hot'):
         if label_type != 'one_hot':
             raise NotImplementedError('Non one-hot encoding not supported yet')

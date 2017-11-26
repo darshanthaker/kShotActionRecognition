@@ -4,6 +4,7 @@ import util
 from pdb import set_trace
 from input_loader import InputLoader
 from util import eprint
+import argparse
 
 def unit3d(inputs, output_channels, is_training, activation_fn=tf.nn.relu, 
         kernel_shape=(1,1,1), stride=(1,1,1), name='unit3d', use_bias=False):
@@ -17,12 +18,12 @@ def unit3d(inputs, output_channels, is_training, activation_fn=tf.nn.relu,
       Outputs from the module.
     """
     with tf.variable_scope(name):
-        net = tf.layers.conv3d(inputs, output_channels, kernel_shape,
-                 strides=stride,
-                 padding='SAME',
-                 use_bias=False,
-                 activation=activation_fn)
-        net = tf.contrib.layers.batch_norm(net, is_training=is_training)
+            net = tf.layers.conv3d(inputs, output_channels, kernel_shape,
+                     strides=stride,
+                     padding='SAME',
+                     use_bias=False,
+                     activation=activation_fn, name="conv_3d/w")
+            net = tf.contrib.layers.batch_norm(net, is_training=is_training, scope="batch_norm")
     return net
 
 def inception_module(inputs, end_point, is_training, conv_channels=[64, 96, 128, 16, 32, 32]):
@@ -66,7 +67,7 @@ class InceptionI3D():
 
     def create_inputs_compute_graph(self, inputs, is_training):
         if inputs is None:
-            self.inputs = tf.placeholder(tf.float32, (None, 64, 224, 224, 3))
+            self.inputs = tf.placeholder(tf.float32, (None, self.args.sample_nframes, 224, 224, 3))
         else:
             self.inputs = inputs
         
@@ -80,6 +81,7 @@ class InceptionI3D():
         self.labels = tf.one_hot(self.raw_labels, self.encoding_size)
 
     def create_compute_graph(self, dropout_keep_prob): 
+        # TODO(dbthaker/kapilk): take in the pretrained checkpointed weights
         net = self.inputs
         is_training = self.is_training
         end_points = {}
@@ -157,8 +159,12 @@ class InceptionI3D():
 
         end_point = 'Logits'
         with tf.variable_scope(end_point):
+            #  net = tf.nn.avg_pool3d(net, ksize=[1, 2, 7, 7, 1],
+                                 #  strides=[1, 1, 1, 1, 1], padding='VALID')
+            # TODO(kapilk): why does VALID cause stuff to break here
             net = tf.nn.avg_pool3d(net, ksize=[1, 2, 7, 7, 1],
-                                 strides=[1, 1, 1, 1, 1], padding='VALID')
+                                 strides=[1, 1, 1, 1, 1], padding='SAME')
+
             net = tf.contrib.layers.dropout(net, keep_prob=dropout_keep_prob, is_training=is_training)
             logits = unit3d(net, self.encoding_size, is_training,
                           kernel_shape=[1, 1, 1],
@@ -167,10 +173,17 @@ class InceptionI3D():
                           name='Conv3d_0c_1x1')
             if self._spatial_squeeze:
                 logits = tf.squeeze(logits, [2, 3], name='SpatialSqueeze')
+            #  eprint("Logits Pre Flatten Shape: {}".format(logits.get_shape()))
             logits = tf.contrib.layers.flatten(logits)
-            logits = tf.contrib.layers.fully_connected(logits, 174, activation_fn=None)
+            #  eprint("Logits Flatten Shape: {}".format(logits.get_shape()))
+            logits = tf.contrib.layers.fully_connected(logits, self.encoding_size, activation_fn=None)
+            #  eprint("Logits Shape: {}".format(logits.get_shape()))
         self.logits = logits
+        if self.use_logits == True:
+            return self.logits, end_points
 
+
+        # TODO(kapilk): why would we want these averaged logits?
         averaged_logits = tf.reduce_mean(logits, axis=1)
         end_points[end_point] = averaged_logits
         self.end_points = end_points
@@ -188,7 +201,10 @@ class InceptionI3D():
         pass
 
     def train(self, num_epochs=100, batch_size=16):
-        input_loader = InputLoader('raw_video', 'train', im_size=224)
+        with tf.name_scope('RGB/inception_i3d'), tf.variable_scope('RGB/inception_i3d'):
+            self.create_inputs_compute_graph(None, None)
+            self.create_compute_graph(1.0)
+        input_loader = InputLoader('raw_video', 'train', im_size=224, args=self.args)
 
         self.loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits( \
             logits=self.logits, labels=self.labels))
@@ -196,25 +212,52 @@ class InceptionI3D():
         values = [1e-1, 1e-2, 1e-3]
         step_op = tf.Variable(0, name='step', trainable=False)
         learn_rate_op = tf.train.piecewise_constant(step_op, bounds, values)
-        self.minimizer = tf.train.AdamOptimizer(learn_rate_op).minimize(self.loss)
-        self.correct = tf.equal(self.predictions, self.raw_labels)
-        self.accuracy = tf.reduce_mean(tf.cast(self.correct, tf.float32)) 
+
+        with tf.name_scope('optimizer'):
+            # Create any optimizer to update the variables, say a simple SGD:
+            #  self.adam_minimizer = tf.train.AdamOptimizer(learn_rate_op).minimize(self.loss)
+
+            # Wrap the optimizer with sync_replicas_optimizer with 50 replicas: at each
+            # step the optimizer collects 50 gradients before applying to variables.
+            # Note that if you want to have 2 backup replicas, you can change
+            # total_num_replicas=52 and make sure this number matches how many physical
+            # replicas you started in your job.
+            #  self.minimizer = tf.train.SyncReplicasOptimizer(self.adam_minimzer, replicas_to_aggregate=1,
+                                           #  total_num_replicas=1)
+            self.minimizer = tf.train.AdamOptimizer(learn_rate_op).minimize(self.loss)
+            self.correct = tf.equal(self.predictions, self.raw_labels)
+            self.accuracy = tf.reduce_mean(tf.cast(self.correct, tf.float32)) 
+
 
         self.sess = tf.Session()
-        self.sess.run(tf.global_variables_initializer())
+        if self.args.restore_training:
+            saver = tf.train.Saver()
+            ckpt = tf.train.get_checkpoint_state(self.args.save_dir + '/' + self.args.model)
+            saver.restore(self.sess, ckpt.model_checkpoint_path)
+        else:
+            self.sess.run(tf.global_variables_initializer())
 
+
+    
         for epoch in range(num_epochs):
             batch_data, batch_labels = input_loader.fetch_serial_batch(batch_size) 
             eprint('Size of batch shape: {}'.format(batch_data.shape))
             eprint('Size of batch labels: {}'.format(batch_labels.shape))
             feed_dict = {self.inputs:batch_data, self.raw_labels: batch_labels, self.is_training: True}
             loss, accuracy, _ = self.sess.run([self.loss, self.accuracy, self.minimizer], feed_dict=feed_dict)
-            eprint("[{}] Loss: {}, Accuracy: {}".format(epoch, loss, accuracy))
+            eprint("[{}] Loss: {:.4f}, Accuracy: {}".format(epoch, loss, accuracy))
         
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--sample_nframes', default=64) 
+    parser.add_argument('--batch_size', default=8) 
+    parser.add_argument('--save_dir', default='../../kinetics-i3d/data/checkpoints') 
+    parser.add_argument('--model', default='rgb_imagenet') 
+    parser.add_argument('--restore_training', default=False)
+    args = parser.parse_args()
     #i3d = InceptionI3D(util.get_number_of_classes('train'), use_logits=False)
-    i3d = InceptionI3D(174, use_logits=False)
-    i3d.train()
+    i3d = InceptionI3D(174, use_logits=False, args=args)
+    i3d.train(batch_size=args.batch_size)
 
 if __name__=="__main__":
     main()

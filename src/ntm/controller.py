@@ -70,6 +70,7 @@ class I3DController():
         self.args = args
         self.lstm = tf.contrib.rnn.BasicLSTMCell(rnn_size)
         # How to take in the inputs easily
+        self.encoding_size = encoding_size
         self.i3d = InceptionI3D(encoding_size, args=args, use_logits=True)
         self.is_training = is_training
 
@@ -78,7 +79,10 @@ class I3DController():
         encoding, end_points= self.i3d.create_compute_graph(1.0)
         lstm_input = tf.concat([encoding,shifted_label], axis=1)
         # flatten vector_inp
+        vector_inp = tf.convert_to_tensor(vector_inp)
         vector_inp = [vector_inp[i, :, :] for i in range(vector_inp.get_shape()[0])]
         lstm_input = tf.concat([lstm_input] + vector_inp, axis=1)
         return self.lstm(lstm_input, state)
 
+    def zero_state(self,batch_size, dtype):
+        return self.lstm.zero_state(batch_size, dtype)
