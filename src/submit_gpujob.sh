@@ -29,7 +29,8 @@
 #SBATCH -n 1                                        # Total number of mpi tasks requested
 #SBATCH --mail-user=kk28695@tacc.utexas.edu
 #SBATCH --mail-type=end
-#SBATCH -t 1:00:00                                  # Run time (hh:mm:ss) - 4 hours
+#SBATCH -t 12:00:00                                  # Run time (hh:mm:ss) - 4 hours
+#SBATCH -A CS381V-Visual-Recogn
 
 module load cuda/8.0 cudnn/5.1
 python3 one_shot_learning.py --dataset_type=kinetics_dynamic --controller_type=alex --batch_size=32 --image_width=128  --image_height=128 --seq_length=35 --summary_writer=True --model_saver=True
