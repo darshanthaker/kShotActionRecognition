@@ -14,10 +14,12 @@ def main():
     parser.add_argument('--mode', default="train")
     parser.add_argument('--restore_training', default=False)
     parser.add_argument('--summary_writer', default=False)
+    parser.add_argument('--model_saver', default=False)
+    parser.add_argument('--use_subset_classes', default=True)
     parser.add_argument('--debug', default=False)
     parser.add_argument('--label_type', default="one_hot", help='one_hot or five_hot')
     parser.add_argument('--n_classes', default=5, type=int)
-    parser.add_argument('--seq_length', default=35, type=int)
+    parser.add_argument('--seq_length', default=35, type=int) # Bruh.. Don't use above 35
     parser.add_argument('--augment', default=True)
     parser.add_argument('--model', default="MANN", help='LSTM, MANN, MANN2 or NTM')
     parser.add_argument('--read_head_num', default=4)
@@ -40,7 +42,7 @@ def main():
     parser.add_argument('--dataset_type', default='kinetics_dynamic') # options: omniglot, kinetics_dynamic, kinetics_video
     parser.add_argument('--controller_type', default='alex') # options: omniglot, kinetics_dynamic, kinetics_video
     parser.add_argument('--sample_nframes', default=64, type=int)
-    parser.add_argument('--optimizer', default='gd')
+    parser.add_argument('--optimizer', default='adam')
     parser.add_argument('--tensorboard_dir', default='./summary/one_shot_learning')
     args = parser.parse_args()
     np.random.seed(0)
@@ -63,8 +65,8 @@ def train(args):
             data_dir=args.data_dir
         )
     elif args.dataset_type == 'kinetics_dynamic':
-        data_loader = InputLoader('dynamic_image', 'train', im_size=args.image_height)
-        test_data_loader = InputLoader('dynamic_image', 'val', im_size=args.image_height)
+        data_loader = InputLoader('dynamic_image', 'train', im_size=args.image_height, args=args)
+        test_data_loader = InputLoader('dynamic_image', 'val', im_size=args.image_height, args=args)
     elif args.dataset_type == 'kinetics_video':
         data_loader = InputLoader('raw_video', 'train', args=args, im_size=args.image_height)
         test_data_loader = InputLoader('raw_video', 'val', args=args, im_size=args.image_height)
@@ -79,8 +81,10 @@ def train(args):
             ckpt = tf.train.get_checkpoint_state(args.save_dir + '/' + args.model)
             saver.restore(sess, ckpt.model_checkpoint_path)
         else:
-            eprint("Starting saver")
-            saver = tf.train.Saver(tf.global_variables())
+            if args.model_saver:
+                eprint("Starting saver")
+                saver = tf.train.Saver(tf.global_variables())
+                eprint("Finished saver")
             tf.global_variables_initializer().run()
             eprint("Finished Initialization")
         if args.summary_writer:
@@ -112,19 +116,23 @@ def train(args):
 
             # Save model
 
-            if b % 3000 == 0 and b > 0:
+            if b % 3000 == 0 and b > 0 and args.model_saver:
                 saver.save(sess, args.save_dir + '/' + args.model + '/model.tfmodel', global_step=b)
 
             # Train
-            #  eprint("[{}] Fetch Batch".format(b))
+            if args.debug:
+                eprint("[{}] Fetch Batch".format(b))
             x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
                                                           augment=args.augment,
                                                           label_type=args.label_type)
-            #  eprint("[{}] Run Sess".format(b))
+
+            if args.debug:
+                eprint("[{}] Run Sess".format(b))
             #  feed_dict = {model.x_image: x_image, model.x_label: x_label, model.y: y}
             feed_dict = {model.x_image: x_image, model.x_label: x_label, model.y: y, model.is_training: False}
             learning_loss, _ = sess.run([model.learning_loss, model.train_op], feed_dict=feed_dict)
-            eprint("[{}] Learning Loss: {:.3f}".format(b, learning_loss))
+            if args.debug:
+                eprint("[{}] Learning Loss: {:.3f}".format(b, learning_loss))
 
 
 

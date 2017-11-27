@@ -13,7 +13,7 @@ class InputLoader(object):
         self.dig = DynamicImageGenerator()
         self.v_type = v_type
         self.im_size = im_size
-        self.videos, self.labels = util.get_videos_lst(self.v_type)
+        self.videos, self.labels = util.get_videos_lst(self.v_type, args.use_subset_classes)
         self.label_set = set(self.labels)
         self.label_lst = sorted(list(self.label_set))
         self.int_labels = [self.get_int_label(str_lab) for str_lab in self.labels]

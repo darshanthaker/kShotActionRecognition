@@ -87,7 +87,7 @@ def get_unique_labels(v_type):
     unique_labels = sorted(unique_labels)
     return unique_labels
 
-def get_videos_lst(v_type):
+def get_videos_lst(v_type, use_subset_classes=False):
     assert v_type == 'train' or v_type == 'test' or v_type == 'val'
     data_dir = get_data_dir(v_type)
     videos_lst = list()
@@ -98,8 +98,8 @@ def get_videos_lst(v_type):
         new_path = os.path.join(data_dir, label)
         if len(os.listdir(new_path)) == 0:
             continue
-        #if get_vtype_for_lab(unique_labels, label) != v_type:
-        #    continue
+        if use_subset_classes and get_vtype_for_lab(unique_labels, label) != v_type:
+              continue
         for filename in os.listdir(new_path):
             full_file_path = os.path.join(data_dir, label, filename)
             if filename.endswith('.npy'):

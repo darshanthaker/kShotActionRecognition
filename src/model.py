@@ -155,8 +155,8 @@ class NTMOneShotLearningModel():
         self.o = tf.reshape(self.o, shape=[args.batch_size, args.seq_length, -1])
         self.learning_loss_summary = tf.summary.scalar('learning_loss', self.learning_loss)
 
-        eprint("Defining optimizer")
         eprint( "Total number of variables used ", np.sum([v.get_shape().num_elements() for v in tf.trainable_variables()]) )
+        eprint("Defining optimizer")
         with tf.variable_scope('optimizer'):
             if args.optimizer == 'adam':
                 self.optimizer = tf.train.AdamOptimizer(learning_rate=args.learning_rate)
