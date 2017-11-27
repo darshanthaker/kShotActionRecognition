@@ -115,10 +115,10 @@ class InceptionI3D():
         net = inception_module(net, end_point, is_training)
         end_points[end_point] = net
 
-        end_point = 'Mixed_3c'
-        net = inception_module(net, end_point, is_training, conv_channels=[128, 128, 192, 32, 96, 64])
-        end_points[end_point] = net
-
+        #  end_point = 'Mixed_3c'
+        #  net = inception_module(net, end_point, is_training, conv_channels=[128, 128, 192, 32, 96, 64])
+        #  end_points[end_point] = net
+#
         end_point = 'MaxPool3d_4a_3x3'
         net = tf.nn.max_pool3d(net, ksize=[1, 3, 3, 3, 1], strides=[1, 2, 2, 2, 1],
                                padding='SAME', name=end_point)
@@ -128,21 +128,21 @@ class InceptionI3D():
         net = inception_module(net, end_point, is_training, conv_channels=[192, 96, 208, 16, 48, 64])
         end_points[end_point] = net
 
-        end_point = 'Mixed_4c'
-        net = inception_module(net, end_point, is_training, conv_channels=[160, 112, 224, 24, 64, 64])
-        end_points[end_point] = net
+        #  end_point = 'Mixed_4c'
+        #  net = inception_module(net, end_point, is_training, conv_channels=[160, 112, 224, 24, 64, 64])
+        #  end_points[end_point] = net
 
-        end_point = 'Mixed_4d'
-        net = inception_module(net, end_point, is_training, conv_channels=[128, 128, 256, 24, 64, 64])
-        end_points[end_point] = net
+        #  end_point = 'Mixed_4d'
+        #  net = inception_module(net, end_point, is_training, conv_channels=[128, 128, 256, 24, 64, 64])
+        #  end_points[end_point] = net
 
         end_point = 'Mixed_4e'
         net = inception_module(net, end_point, is_training, conv_channels=[112, 144, 288, 32, 64, 64])
         end_points[end_point] = net
 
-        end_point = 'Mixed_4f'
-        net = inception_module(net, end_point, is_training, conv_channels=[256, 160, 320, 32, 128, 128])
-        end_points[end_point] = net
+        #  end_point = 'Mixed_4f'
+        #  net = inception_module(net, end_point, is_training, conv_channels=[256, 160, 320, 32, 128, 128])
+        #  end_points[end_point] = net
 
         end_point = 'MaxPool3d_5a_2x2'
         net = tf.nn.max_pool3d(net, ksize=[1, 2, 2, 2, 1], strides=[1, 2, 2, 2, 1],
@@ -153,17 +153,19 @@ class InceptionI3D():
         net = inception_module(net, end_point, is_training, conv_channels=[256, 160, 320, 32, 128, 128])
         end_points[end_point] = net
 
-        end_point = 'Mixed_5c'
-        net = inception_module(net, end_point, is_training, conv_channels=[384, 192, 384, 48, 128, 128])
-        end_points[end_point] = net
+        #  end_point = 'Mixed_5c'
+        #  net = inception_module(net, end_point, is_training, conv_channels=[384, 192, 384, 48, 128, 128])
+        #  end_points[end_point] = net
 
         end_point = 'Logits'
         with tf.variable_scope(end_point):
-            #  net = tf.nn.avg_pool3d(net, ksize=[1, 2, 7, 7, 1],
-                                 #  strides=[1, 1, 1, 1, 1], padding='VALID')
+            if self.args.image_height == 224: 
+                net = tf.nn.avg_pool3d(net, ksize=[1, 2, 7, 7, 1],
+                                     strides=[1, 1, 1, 1, 1], padding='VALID')
             # TODO(kapilk): why does VALID cause stuff to break here
-            net = tf.nn.avg_pool3d(net, ksize=[1, 2, 7, 7, 1],
-                                 strides=[1, 1, 1, 1, 1], padding='SAME')
+            else:
+                net = tf.nn.avg_pool3d(net, ksize=[1, 2, 7, 7, 1],
+                                     strides=[1, 1, 1, 1, 1], padding='SAME')
 
             net = tf.contrib.layers.dropout(net, keep_prob=dropout_keep_prob, is_training=is_training)
             logits = unit3d(net, self.encoding_size, is_training,

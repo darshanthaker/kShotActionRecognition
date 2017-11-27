@@ -75,7 +75,7 @@ class NTMOneShotLearningModel():
             self.x_image = tf.placeholder(dtype=tf.float32,
                                           shape=[args.batch_size, args.seq_length, args.sample_nframes, args.image_width, args.image_height, 3])
 
-            self.is_training = tf.placeholder(tf.bool)
+        self.is_training = tf.placeholder(tf.bool)
 
         self.x_label = tf.placeholder(dtype=tf.float32,
                                       shape=[args.batch_size, args.seq_length, args.output_dim])
@@ -96,7 +96,7 @@ class NTMOneShotLearningModel():
                                     output_dim=args.output_dim)
         elif args.model == 'MANN':
             import ntm.mann_cell as mann_cell
-            cell = mann_cell.MANNCell(args.rnn_size, args.memory_size, args.memory_vector_dim,
+            cell = mann_cell.MANNCell(args.rnn_size, args.memory_size, args.memory_vector_dim, is_training=self.is_training,
                                     head_num=args.read_head_num, args=args)
         elif args.model == 'MANN2':
             import ntm.mann_cell_2 as mann_cell
@@ -142,7 +142,7 @@ class NTMOneShotLearningModel():
         self.o = tf.stack(self.o, axis=1)
         self.state_list.append(state)
 
-        eprint("Defining optimizer")
+        eprint("Defining Loss")
         eps = 1e-8
         if args.label_type == 'one_hot':
             self.learning_loss = -tf.reduce_mean(  # cross entropy function
@@ -155,8 +155,15 @@ class NTMOneShotLearningModel():
         self.o = tf.reshape(self.o, shape=[args.batch_size, args.seq_length, -1])
         self.learning_loss_summary = tf.summary.scalar('learning_loss', self.learning_loss)
 
+        eprint("Defining optimizer")
+        eprint( "Total number of variables used ", np.sum([v.get_shape().num_elements() for v in tf.trainable_variables()]) )
         with tf.variable_scope('optimizer'):
-            self.optimizer = tf.train.AdamOptimizer(learning_rate=args.learning_rate)
+            if args.optimizer == 'adam':
+                self.optimizer = tf.train.AdamOptimizer(learning_rate=args.learning_rate)
+            elif args.optimizer == 'rms':
+                self.optimizer = tf.train.RMSPropOptimizer(learning_rate=args.learning_rate)
+            else:
+                self.optimizer = tf.train.GradientDescentOptimizer(learning_rate=args.learning_rate)
             # self.optimizer = tf.train.RMSPropOptimizer(
             #     learning_rate=args.learning_rate, momentum=0.9, decay=0.95
             # )
