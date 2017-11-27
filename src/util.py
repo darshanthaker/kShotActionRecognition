@@ -22,8 +22,8 @@ def sample_frames(video, sample_nframes):
         indices = [i[0] for i in indices]
         ret_video = video[indices, :, :, :]
     else:
-        ret_video = np.concatenate([np.tile(video, (video.shape[0] // sample_nframes, 1, 1, 1)), \
-                video[0:(video.shape[0] % sample_nframes), :, :, :]], axis=0)
+        ret_video = np.concatenate([np.tile(video, (sample_nframes // video.shape[0], 1, 1, 1)), \
+                video[0:(sample_nframes % video.shape[0]), :, :, :]], axis=0)
     if ret_video.shape[0] != sample_nframes:
         set_trace()
     return ret_video

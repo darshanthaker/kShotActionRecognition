@@ -6,6 +6,7 @@ import os
 import sys
 import shutil
 import subprocess
+import numpy as np
 import uuid
 from pdb import set_trace
 
@@ -159,7 +160,9 @@ def parse_kinetics_annotations(input_csv):
                        'time_end': 'end-time',
                        'label': 'label-name',
                        'is_cc': 'is-cc'}, inplace=True)
-    df = trim_dataset(df, 0.2)
+    #processed_labels = np.load('tmp_train_labels.npy')
+    #df = df[~df['label-name'].isin(processed_labels)]
+    df = trim_dataset(df, 0.4)
     return df
 
 def main(input_csv, output_dir,
