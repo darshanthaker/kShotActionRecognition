@@ -4,9 +4,9 @@ from ntm.controller import DefaultController, AlexNetController, I3DController
 
 class MANNCell():
     # Q: what is k_strategy
-    def __init__(self, rnn_size, memory_size, memory_vector_dim, head_num, gamma=0.95,
+    def __init__(self, rnn_size, memory_size, memory_vector_dim, head_num, is_training, gamma=0.95,
                  reuse=False, k_strategy='separate',  args=None,
-                 encoding_size=400, is_training=None):
+                 encoding_size=400):
         self.rnn_size = rnn_size
         self.memory_size = memory_size
         self.memory_vector_dim = memory_vector_dim
