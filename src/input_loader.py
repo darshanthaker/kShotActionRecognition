@@ -60,8 +60,8 @@ class InputLoader(object):
             augment=False,
             sampling_strategy='random',
             label_type='one_hot'):
-        if label_type != 'one_hot':
-            raise NotImplementedError('Non one-hot encoding not supported yet')
+        if label_type != 'one_hot' and label_type != 'int':
+            raise NotImplementedError('Non one-hot encoding/int not supported yet')
 
         classes = random.sample(self.int_label_set, num_unique_classes)
         filtered_examples = list(filter(lambda x: x[1] in classes, \
@@ -95,12 +95,16 @@ class InputLoader(object):
                                  for i in range(batch_size * seq_length)])
         batch_data = batch_data.reshape((batch_size, seq_length) + \
             batch_data.shape[1:])
-        batch_labels = batch_labels.reshape((batch_size, seq_length, \
-            num_unique_classes))
-        shifted_batch_labels = np.concatenate(
-            [np.zeros(shape=[batch_size, 1, num_unique_classes]), \
-             batch_labels[:, :-1, :]], \
-            axis=1)
+        if label_type == 'one_hot':
+            batch_labels = batch_labels.reshape((batch_size, seq_length, \
+                num_unique_classes))
+            shifted_batch_labels = np.concatenate(
+                [np.zeros(shape=[batch_size, 1, num_unique_classes]), \
+                 batch_labels[:, :-1, :]], \
+                axis=1)
+        elif label_type =='int':
+            batch_labels = batch_labels.reshape((batch_size, seq_length))
+            shifted_batch_labels = None
         return batch_data, batch_labels, shifted_batch_labels
 
     def sample_from_action(self, action, k, resize=(128, 128), \
@@ -130,7 +134,7 @@ class InputLoader(object):
             util.eprint("Serialized DI for {}".format(filename))
 
 def main():
-    input_loader = InputLoader("dynamic_image", "val")
+    input_loader = InputLoader("dynamic_image", "train")
     #input_loader.fetch_batch(2, 4, 4)
     input_loader._save_all_dynamic_images()
 

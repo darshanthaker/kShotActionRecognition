@@ -98,8 +98,8 @@ def get_videos_lst(v_type):
         new_path = os.path.join(data_dir, label)
         if len(os.listdir(new_path)) == 0:
             continue
-        if get_vtype_for_lab(unique_labels, label) != v_type:
-            continue
+        #if get_vtype_for_lab(unique_labels, label) != v_type:
+        #    continue
         for filename in os.listdir(new_path):
             full_file_path = os.path.join(data_dir, label, filename)
             if filename.endswith('.npy'):
