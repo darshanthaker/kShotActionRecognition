@@ -103,6 +103,20 @@ class InputLoader(object):
             axis=1)
         return batch_data, batch_labels, shifted_batch_labels
 
+    def sample_from_action(self, action, k, resize=(128, 128), \
+            sample_nframes=64):
+        filtered_examples = list(filter(lambda x: x[1] == action, \
+            zip(self.videos, self.labels)))
+        video_names = np.array([x[0] for x in filtered_examples])
+        indices = np.random.randint(len(video_names), size=k)
+        sampled_names = video_names[indices]
+        all_videos = list()
+        for v in sampled_names:
+            video = video_to_frames(v, resize=resize, \
+                sample_nframes=sample_nframes)
+            all_videos.append(video)
+        return np.array(all_vidoes)
+
     def _save_all_dynamic_images(self):
         for (filename, label) in zip(self.videos, self.labels):
             if os.path.exists(filename + '.npy'):
