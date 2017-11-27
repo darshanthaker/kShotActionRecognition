@@ -144,8 +144,9 @@ def evaluate_actions(args):
             flow_saver.restore(sess, _CHECKPOINT_PATHS['flow'])
 
 
-    class_indices = [57, 227, 0, 343]
-    for action_index in class_indices:
+    #  class_indices = [57, 227, 0, 343]
+    #  for action_index in class_indices:
+    for action_index in range(len(kinetics_classes)):
         eprint("[{}] Loading Data".format(action_index))
         batch_videos = data_loader.sample_from_action(kinetics_classes[action_index], args.batch_size, resize=(args.image_height, args.image_height), sample_nframes=args.sample_nframes)
         batch_labels = np.array([action_index] * args.batch_size)
@@ -165,10 +166,10 @@ def evaluate_actions(args):
                 feed_dict=feed_dict)
 
         #  out_predictions = out_predictions[0]
-        sorted_indices = np.argsort(out_predictions)
+        sorted_indices = np.argsort(out_predictions, axis=-1)
         #  sorted_indices = np.argsort(out_predictions)[::-1]
-        best_indices = np.argmax(out_predictions)
-        set_trace()
+        best_indices = np.argmax(out_predictions, axis=-1)
+        #  set_trace()
         #  sorted_indices = sorted_indices[:, 0]
         #  correct = np.equal(sorted_indices, batch_labels)
         #  action_accuracy = np.reduce_mean(correct)

@@ -45,6 +45,7 @@ class InputLoader(object):
             rep = util.find_dynamic_image(filename)
         elif self.input_rep == 'raw_video':
             rep = util.video_to_frames(filename, resize=(self.im_size, self.im_size), sample_nframes=self.args.sample_nframes)
+        rep = (rep/255.0 * 2.0) - 1.0
         return rep
 
     def fetch_serial_batch(self, batch_size):

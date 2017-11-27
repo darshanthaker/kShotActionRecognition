@@ -17,6 +17,7 @@ def main():
     parser.add_argument('--model_saver', default=False)
     parser.add_argument('--use_subset_classes', default=True)
     parser.add_argument('--debug', default=False)
+    parser.add_argument('--tf_debug_flag', default=False)
     parser.add_argument('--label_type', default="one_hot", help='one_hot or five_hot')
     parser.add_argument('--n_classes', default=5, type=int)
     parser.add_argument('--seq_length', default=35, type=int) # Bruh.. Don't use above 35
@@ -74,7 +75,7 @@ def train(args):
     eprint("Starting Session")
     with tf.Session() as sess:
         eprint("Started Session")
-        if args.debug:
+        if args.tf_debug_flag:
             sess = tf_debug.LocalCLIDebugWrapperSession(sess)
         if args.restore_training:
             saver = tf.train.Saver()

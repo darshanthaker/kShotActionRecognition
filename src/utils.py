@@ -11,6 +11,7 @@ import sys
 
 def eprint(*args, **kwargs):
     print(str(datetime.now().strftime('%H:%M:%S')),":", *args, file=sys.stderr, **kwargs)
+    sys.stderr.flush()
 
 
 def generate_random_strings(batch_size, seq_length, vector_dim):

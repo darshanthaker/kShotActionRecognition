@@ -13,6 +13,7 @@ IM_SIZE = 128
 
 def eprint(*args, **kwargs):
     print(str(datetime.now().strftime('%H:%M:%S')),":", *args, file=sys.stderr, **kwargs)
+    sys.stderr.flush()
 
 def sample_frames(video, sample_nframes):
     if video.shape[0] >= sample_nframes:
