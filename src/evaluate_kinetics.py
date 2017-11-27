@@ -43,6 +43,7 @@ _CHECKPOINT_PATHS = {
 }
 
 _LABEL_MAP_PATH = '../i3d_data/label_map.txt'
+_SAMPLE_VIDEO_FRAMES = 79
 
 FLAGS = tf.flags.FLAGS
 
@@ -54,9 +55,13 @@ def main():
     parser.add_argument('--batch_size', default=8, type=int) 
     parser.add_argument('--image_height', default=224, type=int) 
     parser.add_argument('--sample_nframes', default=79, type=int) 
+    parser.add_argument('--use_subset_classes', default=False)
+    parser.add_argument('--imagenet_pretrained', default=True)
     parser.add_argument('--eval_type', default='rgb') 
     args = parser.parse_args()
+    eprint(args)
     evaluate_actions(args)
+    #  test(args)
 
 
 def define_model_rgb(args):
@@ -121,15 +126,26 @@ def evaluate_actions(args):
 
     eprint("Start Session")
     sess = tf.Session()
-    if args.eval_type == 'rgb':
-        rgb_saver.restore(sess, _CHECKPOINT_PATHS['rgb_imagenet'])
-    elif args.eval_type == 'flow':
-        flow_saver.restore(sess, _CHECKPOINT_PATHS['flow_imagenet'])
+    if args.imagenet_pretrained:
+        if args.eval_type == 'rgb':
+            rgb_saver.restore(sess, _CHECKPOINT_PATHS['rgb_imagenet'])
+        elif args.eval_type == 'flow':
+            flow_saver.restore(sess, _CHECKPOINT_PATHS['flow_imagenet'])
+        else:
+            rgb_saver.restore(sess, _CHECKPOINT_PATHS['rgb_imagenet'])
+            flow_saver.restore(sess, _CHECKPOINT_PATHS['flow_imagenet'])
     else:
-        rgb_saver.restore(sess, _CHECKPOINT_PATHS['rgb_imagenet'])
-        flow_saver.restore(sess, _CHECKPOINT_PATHS['flow_imagenet'])
+        if args.eval_type == 'rgb':
+            rgb_saver.restore(sess, _CHECKPOINT_PATHS['rgb'])
+        elif args.eval_type == 'flow':
+            flow_saver.restore(sess, _CHECKPOINT_PATHS['flow'])
+        else:
+            rgb_saver.restore(sess, _CHECKPOINT_PATHS['rgb'])
+            flow_saver.restore(sess, _CHECKPOINT_PATHS['flow'])
 
-    for action_index in range(len(kinetics_classes)):
+
+    class_indices = [57, 227, 0, 343]
+    for action_index in class_indices:
         eprint("[{}] Loading Data".format(action_index))
         batch_videos = data_loader.sample_from_action(kinetics_classes[action_index], args.batch_size, resize=(args.image_height, args.image_height), sample_nframes=args.sample_nframes)
         batch_labels = np.array([action_index] * args.batch_size)
@@ -149,7 +165,7 @@ def evaluate_actions(args):
                 feed_dict=feed_dict)
 
         #  out_predictions = out_predictions[0]
-        #  sorted_indices = np.argsort(out_predictions)[::-1]
+        sorted_indices = np.argsort(out_predictions)
         #  sorted_indices = np.argsort(out_predictions)[::-1]
         best_indices = np.argmax(out_predictions)
         set_trace()
@@ -172,91 +188,110 @@ def evaluate_actions(args):
 
 
 
-#  def test(args):
-    #  tf.logging.set_verbosity(tf.logging.INFO)
+def test(args):
+    tf.logging.set_verbosity(tf.logging.INFO)
     #  eval_type = FLAGS.eval_type
+    eval_type = args.eval_type
     #  imagenet_pretrained = FLAGS.imagenet_pretrained
-#
-    #  if eval_type not in ['rgb', 'flow', 'joint']:
-        #  raise ValueError('Bad `eval_type`, must be one of rgb, flow, joint')
-#
-    #  kinetics_classes = [x.strip() for x in open(_LABEL_MAP_PATH)]
-#
-    #  if eval_type in ['rgb', 'joint']:
-        #  # RGB input has 3 channels.
-        #  rgb_input = tf.placeholder(
-                #  tf.float32,
-                #  shape=(1, _SAMPLE_VIDEO_FRAMES, _IMAGE_SIZE, _IMAGE_SIZE, 3))
-        #  with tf.variable_scope('RGB'):
-            #  rgb_model = i3d.InceptionI3d(
-                    #  _NUM_CLASSES, spatial_squeeze=True, final_endpoint='Logits')
-            #  rgb_logits, _ = rgb_model(
-                    #  rgb_input, is_training=False, dropout_keep_prob=1.0)
-        #  rgb_variable_map = {}
-        #  for variable in tf.global_variables():
-            #  if variable.name.split('/')[0] == 'RGB':
-                #  rgb_variable_map[variable.name.replace(':0', '')] = variable
-        #  rgb_saver = tf.train.Saver(var_list=rgb_variable_map, reshape=True)
-#
-    #  if eval_type in ['flow', 'joint']:
-        #  # Flow input has only 2 channels.
-        #  flow_input = tf.placeholder(
-                #  tf.float32,
-                #  shape=(1, _SAMPLE_VIDEO_FRAMES, _IMAGE_SIZE, _IMAGE_SIZE, 2))
-        #  with tf.variable_scope('Flow'):
-            #  flow_model = i3d.InceptionI3d(
-                    #  _NUM_CLASSES, spatial_squeeze=True, final_endpoint='Logits')
-            #  flow_logits, _ = flow_model(
-                    #  flow_input, is_training=False, dropout_keep_prob=1.0)
-        #  flow_variable_map = {}
-        #  for variable in tf.global_variables():
-            #  if variable.name.split('/')[0] == 'Flow':
-                #  flow_variable_map[variable.name.replace(':0', '')] = variable
-        #  flow_saver = tf.train.Saver(var_list=flow_variable_map, reshape=True)
-#
-    #  if eval_type == 'rgb':
-        #  model_logits = rgb_logits
-    #  elif eval_type == 'flow':
-        #  model_logits = flow_logits
-    #  else:
-        #  model_logits = rgb_logits + flow_logits
-    #  model_predictions = tf.nn.softmax(model_logits)
-#
-    #  with tf.Session() as sess:
-        #  feed_dict = {}
-        #  if eval_type in ['rgb', 'joint']:
-            #  if imagenet_pretrained:
-                #  rgb_saver.restore(sess, _CHECKPOINT_PATHS['rgb_imagenet'])
-            #  else:
-                #  rgb_saver.restore(sess, _CHECKPOINT_PATHS['rgb'])
-            #  tf.logging.info('RGB checkpoint restored')
-            #  rgb_sample = np.load(_SAMPLE_PATHS['rgb'])
-            #  tf.logging.info('RGB data loaded, shape=%s', str(rgb_sample.shape))
-            #  feed_dict[rgb_input] = rgb_sample
-#
-        #  if eval_type in ['flow', 'joint']:
-            #  if imagenet_pretrained:
-                #  flow_saver.restore(sess, _CHECKPOINT_PATHS['flow_imagenet'])
-            #  else:
-                #  flow_saver.restore(sess, _CHECKPOINT_PATHS['flow'])
-            #  tf.logging.info('Flow checkpoint restored')
-            #  flow_sample = np.load(_SAMPLE_PATHS['flow'])
-            #  tf.logging.info('Flow data loaded, shape=%s', str(flow_sample.shape))
-            #  feed_dict[flow_input] = flow_sample
-#
+    imagenet_pretrained = True
+
+    if eval_type not in ['rgb', 'flow', 'joint']:
+        raise ValueError('Bad `eval_type`, must be one of rgb, flow, joint')
+
+    kinetics_classes = [x.strip() for x in open(_LABEL_MAP_PATH)]
+
+    labels = tf.placeholder(tf.int64, 1)
+
+    if eval_type in ['rgb', 'joint']:
+        # RGB input has 3 channels.
+        rgb_input = tf.placeholder(
+                tf.float32,
+                shape=(1, _SAMPLE_VIDEO_FRAMES, _IMAGE_SIZE, _IMAGE_SIZE, 3))
+        with tf.variable_scope('RGB'):
+            rgb_model = InceptionI3d(
+                    _NUM_CLASSES, spatial_squeeze=True, final_endpoint='Logits')
+            rgb_logits, _ = rgb_model(
+                    rgb_input, is_training=False, dropout_keep_prob=1.0)
+        rgb_variable_map = {}
+        for variable in tf.global_variables():
+            if variable.name.split('/')[0] == 'RGB':
+                rgb_variable_map[variable.name.replace(':0', '')] = variable
+        rgb_saver = tf.train.Saver(var_list=rgb_variable_map, reshape=True)
+
+    if eval_type in ['flow', 'joint']:
+        # Flow input has only 2 channels.
+        flow_input = tf.placeholder(
+                tf.float32,
+                shape=(1, _SAMPLE_VIDEO_FRAMES, _IMAGE_SIZE, _IMAGE_SIZE, 2))
+        with tf.variable_scope('Flow'):
+            flow_model = InceptionI3d(
+                    _NUM_CLASSES, spatial_squeeze=True, final_endpoint='Logits')
+            flow_logits, _ = flow_model(
+                    flow_input, is_training=False, dropout_keep_prob=1.0)
+        flow_variable_map = {}
+        for variable in tf.global_variables():
+            if variable.name.split('/')[0] == 'Flow':
+                flow_variable_map[variable.name.replace(':0', '')] = variable
+        flow_saver = tf.train.Saver(var_list=flow_variable_map, reshape=True)
+
+    if eval_type == 'rgb':
+        model_logits = rgb_logits
+    elif eval_type == 'flow':
+        model_logits = flow_logits
+    else:
+        model_logits = rgb_logits + flow_logits
+    model_predictions = tf.nn.softmax(model_logits)
+
+    single_predictions = tf.argmax(model_predictions, axis=1)
+    correct = tf.equal(single_predictions, labels)
+    accuracy = tf.reduce_mean(tf.cast(correct, tf.float32))
+    batch_labels = [227]
+
+
+
+    with tf.Session() as sess:
+        feed_dict = {}
+        if eval_type in ['rgb', 'joint']:
+            if imagenet_pretrained:
+                rgb_saver.restore(sess, _CHECKPOINT_PATHS['rgb_imagenet'])
+            else:
+                rgb_saver.restore(sess, _CHECKPOINT_PATHS['rgb'])
+            tf.logging.info('RGB checkpoint restored')
+            rgb_sample = np.load(_SAMPLE_PATHS['rgb'])
+            tf.logging.info('RGB data loaded, shape=%s', str(rgb_sample.shape))
+            feed_dict[rgb_input] = rgb_sample
+
+        if eval_type in ['flow', 'joint']:
+            if imagenet_pretrained:
+                flow_saver.restore(sess, _CHECKPOINT_PATHS['flow_imagenet'])
+            else:
+                flow_saver.restore(sess, _CHECKPOINT_PATHS['flow'])
+            tf.logging.info('Flow checkpoint restored')
+            flow_sample = np.load(_SAMPLE_PATHS['flow'])
+            tf.logging.info('Flow data loaded, shape=%s', str(flow_sample.shape))
+            feed_dict[flow_input] = flow_sample
+        feed_dict[labels] = batch_labels
+
         #  out_logits, out_predictions = sess.run(
                 #  [model_logits, model_predictions],
                 #  feed_dict=feed_dict)
+
+        out_single_pred, out_correct, out_accuracy, out_logits, out_predictions = sess.run(
+                [single_predictions, correct, accuracy, model_logits, model_predictions],
+                feed_dict=feed_dict)
 #
-        #  out_logits = out_logits[0]
-        #  out_predictions = out_predictions[0]
-        #  sorted_indices = np.argsort(out_predictions)[::-1]
-#
-        #  print('Norm of logits: %f' % np.linalg.norm(out_logits))
-        #  print('\nTop classes and probabilities')
-        #  for index in sorted_indices[:20]:
-            #  print(out_predictions[index], out_logits[index], kinetics_classes[index])
-#
+
+
+        out_logits = out_logits[0]
+        out_predictions = out_predictions[0]
+        sorted_indices = np.argsort(out_predictions)[::-1]
+        set_trace()
+
+        print('Norm of logits: %f' % np.linalg.norm(out_logits))
+        print('\nTop classes and probabilities')
+        for index in sorted_indices[:20]:
+            print(out_predictions[index], out_logits[index], kinetics_classes[index])
+
 
 if __name__ == '__main__':
     main()

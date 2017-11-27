@@ -116,10 +116,10 @@ class InputLoader(object):
         sampled_names = video_names[indices]
         all_videos = list()
         for v in sampled_names:
-            video = video_to_frames(v, resize=resize, \
+            video = util.video_to_frames(v, resize=resize, \
                 sample_nframes=sample_nframes)
             all_videos.append(video)
-        return np.array(all_vidoes)
+        return np.array(all_videos)
 
     def _save_all_dynamic_images(self):
         for (filename, label) in zip(self.videos, self.labels):
