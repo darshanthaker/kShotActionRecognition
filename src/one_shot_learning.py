@@ -1,4 +1,5 @@
-from utils import OmniglotDataLoader, one_hot_decode, five_hot_decode, eprint
+from utils import OmniglotDataLoader, one_hot_decode, five_hot_decode
+from util import eprint, eprint2
 from input_loader import InputLoader
 import tensorflow as tf
 import argparse
@@ -23,21 +24,21 @@ def main():
     parser.add_argument('--seq_length', default=35, type=int) # Bruh.. Don't use above 35
     parser.add_argument('--augment', default=True)
     parser.add_argument('--model', default="MANN", help='LSTM, MANN, MANN2 or NTM')
-    parser.add_argument('--read_head_num', default=4)
+    parser.add_argument('--read_head_num', default=4, type=int)
     parser.add_argument('--batch_size', default=16, type=int)
-    parser.add_argument('--num_epoches', default=100000)
-    parser.add_argument('--learning_rate', default=1e-3)
+    parser.add_argument('--num_epoches', default=100000, type=int)
+    parser.add_argument('--learning_rate', default=1e-3, type=int)
     parser.add_argument('--rnn_size', default=200, type=int)
     parser.add_argument('--image_width', default=128, type=int)
     parser.add_argument('--image_height', default=128, type=int)
-    parser.add_argument('--rnn_num_layers', default=1)
+    parser.add_argument('--rnn_num_layers', default=1, type=int)
     parser.add_argument('--memory_size', default=128, type=int)
-    parser.add_argument('--memory_vector_dim', default=40)
+    parser.add_argument('--memory_vector_dim', default=40, type=int)
     parser.add_argument('--shift_range', default=1, help='Only for model=NTM')
     parser.add_argument('--write_head_num', default=1, help='Only for model=NTM. For MANN #(write_head) = #(read_head)')
-    parser.add_argument('--test_batch_num', default=100)
-    parser.add_argument('--n_train_classes', default=1200)
-    parser.add_argument('--n_test_classes', default=423)
+    parser.add_argument('--test_batch_num', default=100, type=int)
+    parser.add_argument('--n_train_classes', default=1200, type=int)
+    parser.add_argument('--n_test_classes', default=423, type=int)
     parser.add_argument('--save_dir', default='./save/one_shot_learning')
     parser.add_argument('--data_dir', default='.data')
     parser.add_argument('--dataset_type', default='kinetics_dynamic') # options: omniglot, kinetics_dynamic, kinetics_video
@@ -110,10 +111,10 @@ def train(args):
                 # with open('state_long.txt', 'w') as f:
                 #     print(state_list, file=f)
                 accuracy = test_f(args, y, output)
-                print(str(datetime.now().strftime('%H:%M:%S')))
+                eprint()
                 for accu in accuracy:
-                    print('%.4f' % accu, end='\t')
-                print('%d\t%.4f' % (b, learning_loss))
+                    eprint2('%.4f' % accu, end='\t')
+                eprint2('%d\t%.4f' % (b, learning_loss))
 
             # Save model
 

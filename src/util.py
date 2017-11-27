@@ -15,6 +15,12 @@ def eprint(*args, **kwargs):
     print(str(datetime.now().strftime('%H:%M:%S')),":", *args, file=sys.stderr, **kwargs)
     sys.stderr.flush()
 
+def eprint2(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
+    sys.stderr.flush()
+
+
+
 def sample_frames(video, sample_nframes):
     if video.shape[0] >= sample_nframes:
         all_indices = range(video.shape[0] // sample_nframes * sample_nframes)
