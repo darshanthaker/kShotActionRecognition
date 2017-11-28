@@ -42,7 +42,7 @@ class InputLoader(object):
     def get_input(self, example):
         filename = example[0]
         if self.input_rep == 'dynamic_image':
-            rep = util.find_dynamic_image(filename)
+            rep = util.find_dynamic_image(filename, resize=(self.im_size, self.im_size))
         elif self.input_rep == 'raw_video':
             rep = util.video_to_frames(filename, resize=(self.im_size, self.im_size), sample_nframes=self.args.sample_nframes)
         rep = (rep/255.0 * 2.0) - 1.0

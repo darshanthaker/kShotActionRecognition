@@ -137,10 +137,11 @@ def one_hot_encode(x, dim):
 def one_hot_decode(x):
     return np.argmax(x, axis=-1)
 
-def find_dynamic_image(filename):
+def find_dynamic_image(filename, resize=(IM_SIZE, IM_SIZE)):
     if not os.path.exists(filename + '.npy'): 
         raise IOError("Dynamic image for video {} does not exist".format(filename))
-    return np.load(filename + '.npy')
+    im =  np.load(filename + '.npy')
+    return scipy.misc.imresize(im, resize)
 
 
 # For debugging
