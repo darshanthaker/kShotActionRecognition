@@ -27,7 +27,7 @@ from i3d_sonnet import *
 from pdb import set_trace
 from util import eprint
 
-_IMAGE_SIZE = 122
+_IMAGE_SIZE = 224
 _NUM_CLASSES = 400
 
 _SAMPLE_PATHS = {
@@ -56,7 +56,7 @@ def main():
     parser.add_argument('--image_height', default=224, type=int) 
     parser.add_argument('--sample_nframes', default=79, type=int) 
     parser.add_argument('--use_subset_classes', default=False)
-    parser.add_argument('--imagenet_pretrained', default=False)
+    parser.add_argument('--imagenet_pretrained', default=True)
     parser.add_argument('--eval_type', default='rgb') 
     args = parser.parse_args()
     eprint(args)
@@ -146,8 +146,9 @@ def evaluate_actions(args):
 
     #  class_indices = [15, 16, 17, 18, 19]
     #  class_indices = [10, 11, 12, 13, 14, 15]
-    class_indices = [227]
-    class_indices = [0]
+    #  class_indices = [227]
+    #  class_indices = range(41, 100)
+    class_indices = range(101, 200)
     for action_index in class_indices:
     #  for action_index in range(len(kinetics_classes)):
         eprint("[{}] Loading Data".format(action_index))
@@ -169,7 +170,6 @@ def evaluate_actions(args):
                 feed_dict=feed_dict)
 
         #  out_predictions = out_predictions[0]
-        set_trace()
         sorted_indices = np.argsort(out_predictions, axis=-1)
         #  sorted_indices = np.argsort(out_predictions)[::-1]
         best_indices = np.argmax(out_predictions, axis=-1)
@@ -178,7 +178,8 @@ def evaluate_actions(args):
         #  correct = np.equal(sorted_indices, batch_labels)
         #  action_accuracy = np.reduce_mean(correct)
         #  set_trace()
-        eprint("[{}] Action: {}. Accuracy: {:.3f}\n Labels Gen: {}".format(action_index, kinetics_classes[action_index], out_accuracy, out_single_pred))
+        eprint("[{}] Labels Gen: {}".format(action_index, out_single_pred))
+        eprint("{}, {:.3f}".format(kinetics_classes[action_index], out_accuracy))
 
         #  print('Norm of logits: %f' % np.linalg.norm(out_logits))
         #  print('\nTop classes and probabilities')
