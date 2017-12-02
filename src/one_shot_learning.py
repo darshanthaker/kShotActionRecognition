@@ -99,6 +99,7 @@ def train(args):
             # Test
 
             if b % 100 == 0:
+                #set_trace()
                 x_image, x_label, y = test_data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
                                                               augment=args.augment,
                                                               label_type=args.label_type)

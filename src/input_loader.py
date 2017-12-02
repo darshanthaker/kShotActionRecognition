@@ -7,16 +7,21 @@ from pdb import set_trace
 
 class InputLoader(object):
 
-    def __init__(self, input_rep, v_type, im_size=128, use_subset_classes=False, args=None):
+    def __init__(self, input_rep, v_type, im_size=128, use_subset_classes=True, \
+            args=None):
         self.args = args
         self.input_rep = input_rep
         self.dig = DynamicImageGenerator()
         self.v_type = v_type
         self.im_size = im_size
         if args is not None:
-            self.videos, self.labels = util.get_videos_lst(self.v_type, args.use_subset_classes)
+            self.videos, self.labels = util.get_videos_lst(self.v_type, \
+                 args.class_difficulty, \
+                 use_subset_classes=args.use_subset_classes)
         else:
-            self.videos, self.labels = util.get_videos_lst(self.v_type, use_subset_classes)
+            self.videos, self.labels = util.get_videos_lst(self.v_type,  \
+                 args.class_difficulty, \
+                 use_subset_classes=use_subset_classes)
         self.label_set = set(self.labels)
         self.label_lst = sorted(list(self.label_set))
         self.int_labels = [self.get_int_label(str_lab) for str_lab in self.labels]
@@ -138,9 +143,9 @@ class InputLoader(object):
             util.eprint("Serialized DI for {}".format(filename))
 
 def main():
-    input_loader = InputLoader("dynamic_image", "train", use_subset_classes=False)
+    input_loader = InputLoader("dynamic_image", "train", use_subset_classes=True)
     #input_loader.fetch_batch(2, 4, 4)
-    input_loader._save_all_dynamic_images()
+    #input_loader._save_all_dynamic_images()
 
 if __name__=="__main__":
     main()

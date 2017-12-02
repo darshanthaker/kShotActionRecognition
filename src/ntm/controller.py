@@ -15,8 +15,7 @@ class DefaultController():
         self.lstm = tf.contrib.rnn.BasicLSTMCell(rnn_size)
         self.args = args
 
-    def __call__(self, img_inp, label, vector_inp, state, scope='AlexNetController'):
-    #  def __call__(self, img_inp, vector_inp, state, scope='DefaultController'):
+    def __call__(self, img_inp, label, vector_inp, state, scope='DefaultController'):
         img_inp = tf.reshape(img_inp, (self.args.batch_size, -1))
         controller_input = tf.concat([img_inp,label], axis=1)
         controller_input = tf.concat([controller_input]+vector_inp, axis=1)

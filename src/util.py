@@ -64,24 +64,28 @@ def get_data_dir(v_type):
 def get_number_of_classes(v_type):
     assert v_type == 'train' or v_type == 'test' or v_type == 'val'
     data_dir = get_data_dir(v_type)
-    unique_labels = get_unique_labels(v_type)
     labels = list()
 
     for label in os.listdir(data_dir):
         new_path = os.path.join(data_dir, label)
         if len(os.listdir(new_path)) == 0:
             continue
-        if get_vtype_for_lab(unique_labels, label) != v_type:
+        if get_vtype_for_lab(label) != v_type:
             continue
         labels.append(label)
     return len(labels)
 
-def get_vtype_for_lab(unique_labels, label):
-    cutoff = int(0.7 * len(unique_labels))
-    if unique_labels.index(label) <= cutoff:
+def get_vtype_for_lab(class_difficulty, label):
+    train_labs_file = '../data/train_{}_labs.npy'.format(class_difficulty)
+    train_labs = np.load(train_labs_file)
+    val_labs_file = '../data/val_{}_labs.npy'.format(class_difficulty)
+    val_labs = np.load(val_labs_file)
+    if label in train_labs:
         return 'train'
-    else:
+    elif label in val_labs:
         return 'val'
+    else:
+        return None
 
 def get_unique_labels(v_type):
     data_dir = get_data_dir(v_type)
@@ -94,19 +98,18 @@ def get_unique_labels(v_type):
     unique_labels = sorted(unique_labels)
     return unique_labels
 
-def get_videos_lst(v_type, use_subset_classes=False):
+def get_videos_lst(v_type, class_difficulty, use_subset_classes=True):
     assert v_type == 'train' or v_type == 'test' or v_type == 'val'
     data_dir = get_data_dir(v_type)
     videos_lst = list()
     labels = list()
-    unique_labels = get_unique_labels(v_type)
 
     for label in os.listdir(data_dir):
         new_path = os.path.join(data_dir, label)
         if len(os.listdir(new_path)) == 0:
             continue
-        if use_subset_classes and get_vtype_for_lab(unique_labels, label) != v_type:
-              continue
+        if use_subset_classes and get_vtype_for_lab(class_difficulty, label) != v_type:
+            continue
         for filename in os.listdir(new_path):
             full_file_path = os.path.join(data_dir, label, filename)
             if filename.endswith('.npy'):
