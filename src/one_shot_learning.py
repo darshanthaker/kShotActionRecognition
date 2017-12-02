@@ -40,7 +40,7 @@ def main():
     parser.add_argument('--n_train_classes', default=1200, type=int)
     parser.add_argument('--n_test_classes', default=423, type=int)
     parser.add_argument('--save_dir', default='./save/one_shot_learning')
-    parser.add_argument('--data_dir', default='.data')
+    parser.add_argument('--data_dir', default='../../images_background')
     parser.add_argument('--dataset_type', default='kinetics_dynamic') # options: omniglot, kinetics_dynamic, kinetics_video
     parser.add_argument('--controller_type', default='alex') # options: omniglot, kinetics_dynamic, kinetics_video
     parser.add_argument('--sample_nframes', default=64, type=int)
@@ -66,6 +66,7 @@ def train(args):
             n_test_classes=args.n_test_classes,
             data_dir=args.data_dir
         )
+        test_data_loader = data_loader
     elif args.dataset_type == 'kinetics_dynamic':
         data_loader = InputLoader('dynamic_image', 'train', im_size=args.image_height, args=args)
         test_data_loader = InputLoader('dynamic_image', 'val', im_size=args.image_height, args=args)
@@ -99,9 +100,16 @@ def train(args):
             # Test
 
             if b % 100 == 0:
-                x_image, x_label, y = test_data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
-                                                              augment=args.augment,
-                                                              label_type=args.label_type)
+                if args.dataset_type == 'omniglot':
+                    x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
+                                                            type='test',
+                                                            augment=args.augment,
+                                                            label_type=args.label_type)
+                elif args.dataset_type == 'kinetics_dynamic': 
+                    x_image, x_label, y = test_data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
+                                                                  augment=args.augment,
+                                                                  label_type=args.label_type)
+                #  set_trace()
                 feed_dict = {model.x_image: x_image, model.x_label: x_label, model.y: y, model.is_training: False}
                 output, learning_loss = sess.run([model.o, model.learning_loss], feed_dict=feed_dict)
                 if args.summary_writer:
@@ -118,15 +126,21 @@ def train(args):
 
             # Save model
 
-            if b % 3000 == 0 and b > 0 and args.model_saver:
+            if b % 500 == 0 and b > 0 and args.model_saver:
                 saver.save(sess, args.save_dir + '/' + args.model + '/model.tfmodel', global_step=b)
 
             # Train
             if args.debug:
                 eprint("[{}] Fetch Batch".format(b))
-            x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
-                                                          augment=args.augment,
-                                                          label_type=args.label_type)
+            if args.dataset_type == 'omniglot':
+                x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
+                                                              type='train',
+                                                              augment=args.augment,
+                                                              label_type=args.label_type)
+            elif args.dataset_type == 'kinetics_dynamic': 
+                x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
+                                                              augment=args.augment,
+                                                              label_type=args.label_type)
 
             if args.debug:
                 eprint("[{}] Run Sess".format(b))
