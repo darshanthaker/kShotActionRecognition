@@ -19,7 +19,13 @@ def eprint2(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
     sys.stderr.flush()
 
-
+def str2bool(v):
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
 
 def sample_frames(video, sample_nframes):
     if video.shape[0] >= sample_nframes:
@@ -76,9 +82,10 @@ def get_number_of_classes(v_type):
     return len(labels)
 
 def get_vtype_for_lab(class_difficulty, label):
-    train_labs_file = '../data/train_{}_labs.npy'.format(class_difficulty)
+    #train_labs_file = '../data/train_{}_labs.npy'.format(class_difficulty)
+    train_labs_file = '../data/train_labels.npy'
     train_labs = np.load(train_labs_file)
-    val_labs_file = '../data/val_{}_labs.npy'.format(class_difficulty)
+    val_labs_file = '../data/test_labels.npy'
     val_labs = np.load(val_labs_file)
     if label in train_labs:
         return 'train'

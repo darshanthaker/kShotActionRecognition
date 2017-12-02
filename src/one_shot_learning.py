@@ -1,5 +1,5 @@
 from utils import OmniglotDataLoader, one_hot_decode, five_hot_decode
-from util import eprint, eprint2
+from util import eprint, eprint2, str2bool
 from input_loader import InputLoader
 import tensorflow as tf
 import argparse
@@ -9,20 +9,21 @@ from tensorflow.python import debug as tf_debug
 from pdb import set_trace
 from datetime import datetime
 
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--mode', default="train")
-    parser.add_argument('--restore_training', default=False)
-    parser.add_argument('--summary_writer', default=False)
-    parser.add_argument('--model_saver', default=False)
-    parser.add_argument('--use_subset_classes', default=True)
-    parser.add_argument('--debug', default=False)
-    parser.add_argument('--tf_debug_flag', default=False)
+    parser.add_argument('--restore_training', default=False, type=str2bool)
+    parser.add_argument('--summary_writer', default=False, type=str2bool)
+    parser.add_argument('--model_saver', default=False, type=str2bool)
+    parser.add_argument('--use_subset_classes', default=True, type=str2bool)
+    parser.add_argument('--use_pretrained', default=False, type=str2bool)
+    parser.add_argument('--class_difficulty', default='easy')
+    parser.add_argument('--debug', default=False, type=str2bool)
+    parser.add_argument('--tf_debug_flag', default=False, type=str2bool)
     parser.add_argument('--label_type', default="one_hot", help='one_hot or five_hot')
     parser.add_argument('--n_classes', default=5, type=int)
     parser.add_argument('--seq_length', default=35, type=int) # Bruh.. Don't use above 35
-    parser.add_argument('--augment', default=True)
+    parser.add_argument('--augment', default=True, type=str2bool)
     parser.add_argument('--model', default="MANN", help='LSTM, MANN, MANN2 or NTM')
     parser.add_argument('--read_head_num', default=4, type=int)
     parser.add_argument('--batch_size', default=16, type=int)
@@ -42,7 +43,7 @@ def main():
     parser.add_argument('--save_dir', default='./save/one_shot_learning')
     parser.add_argument('--data_dir', default='../../images_background')
     parser.add_argument('--dataset_type', default='kinetics_dynamic') # options: omniglot, kinetics_dynamic, kinetics_video
-    parser.add_argument('--controller_type', default='alex') # options: omniglot, kinetics_dynamic, kinetics_video
+    parser.add_argument('--controller_type', default='alex') # options: alex, vgg19, i3d, default 
     parser.add_argument('--sample_nframes', default=64, type=int)
     parser.add_argument('--optimizer', default='adam')
     parser.add_argument('--tensorboard_dir', default='./summary/one_shot_learning')

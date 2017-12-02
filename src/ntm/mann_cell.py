@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-from ntm.controller import DefaultController, AlexNetController, I3DController
+from ntm.controller import DefaultController, AlexNetController, I3DController, VGG19Controller
 
 class MANNCell():
     # Q: what is k_strategy
@@ -17,6 +17,8 @@ class MANNCell():
         # TODO: have checks to make sure dataset and controller type are valid
         if args.controller_type == 'alex' and args.dataset_type == 'kinetics_dynamic':
             self.controller = AlexNetController(self.rnn_size, encoding_size, args=self.args)
+        elif args.controller_type == 'vgg19' and args.dataset_type == 'kinetics_dynamic':
+            self.controller = VGG19Controller(self.rnn_size, encoding_size, args=self.args)
         elif args.controller_type == 'i3d' and args.dataset_type == 'kinetics_video':
             # TODO(kapilk): add in is_training parameter
             print("I3DController")

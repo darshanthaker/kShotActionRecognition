@@ -2,6 +2,7 @@ import tensorflow as tf
 import numpy as np
 from pdb import set_trace
 from alexnet import AlexNet
+import alexnet_OLD
 from vgg19 import VGG19
 from i3d import InceptionI3D
 
@@ -27,12 +28,17 @@ class DefaultController():
 
 class AlexNetController():
 
-    def __init__(self, rnn_size, encoding_size, image_size=20, args=None):
+    def __init__(self, rnn_size, encoding_size, image_size=128, args=None):
         #  self.lstm = tf.nn.rnn_cell.BasicLSTMCell(rnn_size)
         self.lstm = tf.contrib.rnn.BasicLSTMCell(rnn_size)
         self.args = args
         # Load in the Alex net  
-        self.alexnet = AlexNet()
+        self.use_pretrained = args.use_pretrained
+        if self.use_pretrained:
+            self.alexnet = AlexNet()
+            self.alexnet.load_weights()
+        else:
+            self.alexnet = alexnet_OLD.AlexNet() 
         self.encoding_size = encoding_size
         self.image_size = image_size
 
@@ -46,13 +52,14 @@ class AlexNetController():
             img_inp = tf.expand_dims(img_inp, axis=-1)
         vector_inp = tf.cast(vector_inp, tf.float32)
         net = self.alexnet.feed_forward(img_inp, architecture='encoding')
+        net['flattened'] = tf.contrib.layers.flatten(net['output'])
         fc = {}
         with tf.variable_scope(scope):
             # If get casting issue make sure that the architecture is right
-            fc['fc1'] = fc_layer(net['output'], 256)
+            fc['fc1'] = fc_layer(net['flattened'], 256)
             fc['fc2'] = fc_layer(fc['fc1'], 64)
-            fc['fc2'] = fc_layer(fc['fc1'], self.encoding_size)
-            fc_output = fc['fc2'] 
+            fc['fc3'] = fc_layer(fc['fc2'], self.encoding_size)
+            fc_output = fc['fc3'] 
         lstm_input = tf.concat([fc_output,shifted_label], axis=1)
         # flatten vector_inp
         vector_inp = [vector_inp[i, :, :] for i in range(vector_inp.get_shape()[0])]
@@ -90,10 +97,11 @@ class I3DController():
 
 class VGG19Controller():
 
-    def __init__(self, rnn_size, encoding_size, image_size=20, args=None):
+    def __init__(self, rnn_size, encoding_size, image_size=128, args=None):
         self.lstm = tf.contrib.rnn.BasicLSTMCell(rnn_size)
         self.args = args
         self.vgg19 = VGG19()
+        self.vgg19.load_weights()
         self.encoding_size = encoding_size
         self.image_size = image_size
 
@@ -106,7 +114,7 @@ class VGG19Controller():
         #  img_inp = tf.stack([img_inp]*3, axis=-1)
             img_inp = tf.expand_dims(img_inp, axis=-1)
         vector_inp = tf.cast(vector_inp, tf.float32)
-        net = self.vgg19.feed_forward(img_inp, architecture='encoding')
+        net = self.vgg19.feed_forward(img_inp)
         fc = {}
     
         with tf.variable_scope(scope):

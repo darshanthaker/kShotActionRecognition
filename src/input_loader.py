@@ -19,11 +19,13 @@ class InputLoader(object):
                  args.class_difficulty, \
                  use_subset_classes=args.use_subset_classes)
         else:
+            util.eprint("WARNING: in debug mode")
             self.videos, self.labels = util.get_videos_lst(self.v_type,  \
-                 args.class_difficulty, \
+                 'easy',  # just for debug purposes.
                  use_subset_classes=use_subset_classes)
         self.label_set = set(self.labels)
         self.label_lst = sorted(list(self.label_set))
+        set_trace()
         self.int_labels = [self.get_int_label(str_lab) for str_lab in self.labels]
         self.int_label_set = set(self.int_labels)
         

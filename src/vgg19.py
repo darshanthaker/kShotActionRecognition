@@ -5,7 +5,7 @@ import numpy as np
 import scipy.io
 
 def _conv_layer(input, weights, bias):
-    conv = tf.nn.conv2d(input, tf.constant(weights), strides=(1, 1, 1, 1),
+    conv = tf.nn.conv2d(input, weights, strides=(1, 1, 1, 1),
             padding='SAME')
     return tf.nn.bias_add(conv, bias)
 
@@ -42,6 +42,23 @@ class VGG19:
 
         self.weights = data['layers'][0]
 
+    def load_weights(self):
+        self.net = {}
+        for i, name in enumerate(self.layers):
+            kind = name[:4]
+            if kind == 'conv':
+                kernels = self.weights[i][0][0][2][0][0]
+                bias = self.weights[i][0][0][2][0][1]
+
+                # matconvnet: weights are [width, height, in_channels, out_channels]
+                # tensorflow: weights are [height, width, in_channels, out_channels]
+                kernels = np.transpose(kernels, (1, 0, 2, 3))
+                bias = bias.reshape(-1)
+                self.net['{}_kernel'.format(name)] = tf.Variable(kernels, \
+                    name='{}_kernel'.format(name))
+                self.net['{}_bias'.format(name)] = tf.Variable(bias, \
+                    name='{}_bias'.format(name))
+
     def preprocess(self, image):
         return image-self.mean_pixel
 
@@ -58,14 +75,8 @@ class VGG19:
             for i, name in enumerate(self.layers):
                 kind = name[:4]
                 if kind == 'conv':
-                    kernels = self.weights[i][0][0][2][0][0]
-                    bias = self.weights[i][0][0][2][0][1]
-
-                    # matconvnet: weights are [width, height, in_channels, out_channels]
-                    # tensorflow: weights are [height, width, in_channels, out_channels]
-                    kernels = np.transpose(kernels, (1, 0, 2, 3))
-                    bias = bias.reshape(-1)
-
+                    kernels = self.net['{}_kernel'.format(name)]
+                    bias = self.net['{}_bias'.format(name)]
                     current = _conv_layer(current, kernels, bias)
                 elif kind == 'relu':
                     current = tf.nn.relu(current)
