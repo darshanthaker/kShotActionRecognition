@@ -22,8 +22,8 @@
 # http://www.tacc.utexas.edu/user-services/user-guides/maverick-user-guide
 #-----------------------------------------------------------------------------
 #
-#SBATCH -J kshot_alexnet_memory                            # Job name
-#SBATCH -o job_outputs/memory/kshot-alexnet_memory-%j.out                     # Name of stdout output file (%j expands to jobId)
+#SBATCH -J kshot_default                            # Job name
+#SBATCH -o job_outputs/omniglot/kshot-default-%j.out                     # Name of stdout output file (%j expands to jobId)
 #SBATCH -p gpu                                      # Queue name
 #SBATCH -N 1                                        # Total number of nodes requested (20 cores/node)
 #SBATCH -n 1                                        # Total number of mpi tasks requested
@@ -33,4 +33,4 @@
 #SBATCH -A CS381V-Visual-Recogn
 
 module load cuda/8.0 cudnn/5.1
-python3 one_shot_learning.py --dataset_type=kinetics_dynamic --controller_type=alex --batch_size=32 --image_width=128  --image_height=128 --seq_length=35 --summary_writer=False --model_saver=False --debug=True --memory_vector_dim=80
+python3 one_shot_learning.py --dataset_type=omniglot --controller_type=default --batch_size=16 --image_width=20  --image_height=20 --seq_length=35 --summary_writer=True --model_saver=True --debug=True --memory_vector_dim=40 --n_classes=5
