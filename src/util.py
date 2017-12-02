@@ -16,6 +16,9 @@ def serialize(lst, name):
     with open(name, 'wb') as fp:
         pickle.dump(lst, fp)
 
+def mkdir(path):
+    os.system("mkdir -p {}".format(path + "_plots"))
+
 def eprint(*args, **kwargs):
     print(str(datetime.now().strftime('%H:%M:%S')),":", *args, file=sys.stderr, **kwargs)
     sys.stderr.flush()
