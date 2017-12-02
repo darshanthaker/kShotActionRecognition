@@ -109,7 +109,6 @@ def train(args):
                     x_image, x_label, y = test_data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
                                                                   augment=args.augment,
                                                                   label_type=args.label_type)
-                #  set_trace()
                 feed_dict = {model.x_image: x_image, model.x_label: x_label, model.y: y, model.is_training: False}
                 output, learning_loss = sess.run([model.o, model.learning_loss], feed_dict=feed_dict)
                 if args.summary_writer:
