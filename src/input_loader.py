@@ -123,8 +123,9 @@ class InputLoader(object):
             video = util.video_to_frames(v, resize=resize, \
                 sample_nframes=sample_nframes)
             all_videos.append(video)
-        rep = (rep/255.0 * 2.0) - 1.0
-        return np.array(all_videos)
+        all_videos = np.array(all_videos)
+        all_videos = (all_videos/255.0 * 2.0) - 1.0
+        return all_videos
 
     def _save_all_dynamic_images(self):
         for (filename, label) in zip(self.videos, self.labels):
