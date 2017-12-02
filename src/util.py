@@ -5,11 +5,16 @@ import scipy.misc
 import matplotlib.pyplot as plt
 import pandas as pd
 import os
+import pickle
 from datetime import datetime
 import sys
 from pdb import set_trace
 
 IM_SIZE = 128
+
+def serialize(lst, name):
+    with open(name, 'wb') as fp:
+        pickle.dump(lst, fp)
 
 def eprint(*args, **kwargs):
     print(str(datetime.now().strftime('%H:%M:%S')),":", *args, file=sys.stderr, **kwargs)
