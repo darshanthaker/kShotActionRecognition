@@ -25,7 +25,6 @@ class InputLoader(object):
                  use_subset_classes=use_subset_classes)
         self.label_set = set(self.labels)
         self.label_lst = sorted(list(self.label_set))
-        set_trace()
         self.int_labels = [self.get_int_label(str_lab) for str_lab in self.labels]
         self.int_label_set = set(self.int_labels)
         

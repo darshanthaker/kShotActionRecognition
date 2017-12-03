@@ -1,5 +1,5 @@
 from utils import OmniglotDataLoader, one_hot_decode, five_hot_decode
-from util import eprint, eprint2, str2bool
+from util import eprint, eprint2, str2bool, serialize_plot, gen_exp_name, mkdir
 from input_loader import InputLoader
 import tensorflow as tf
 import argparse
@@ -14,6 +14,7 @@ def main():
     parser.add_argument('--mode', default="train")
     parser.add_argument('--restore_training', default=False, type=str2bool)
     parser.add_argument('--summary_writer', default=False, type=str2bool)
+    parser.add_argument('--serialize', default=True, type=str2bool)
     parser.add_argument('--model_saver', default=False, type=str2bool)
     parser.add_argument('--use_subset_classes', default=True, type=str2bool)
     parser.add_argument('--use_pretrained', default=False, type=str2bool)
@@ -27,7 +28,9 @@ def main():
     parser.add_argument('--model', default="MANN", help='LSTM, MANN, MANN2 or NTM')
     parser.add_argument('--read_head_num', default=4, type=int)
     parser.add_argument('--batch_size', default=16, type=int)
-    parser.add_argument('--num_epoches', default=100000, type=int)
+    parser.add_argument('--num_epoches', default=5000, type=int)
+    parser.add_argument('--model_save_freq', default=500, type=int)
+    parser.add_argument('--validation_freq', default=25, type=int)
     parser.add_argument('--learning_rate', default=1e-3, type=int)
     parser.add_argument('--rnn_size', default=200, type=int)
     parser.add_argument('--image_width', default=128, type=int)
@@ -40,7 +43,7 @@ def main():
     parser.add_argument('--test_batch_num', default=100, type=int)
     parser.add_argument('--n_train_classes', default=1200, type=int)
     parser.add_argument('--n_test_classes', default=423, type=int)
-    parser.add_argument('--save_dir', default='./save/one_shot_learning')
+    parser.add_argument('--save_dir', default='job_outputs/experiments')
     parser.add_argument('--data_dir', default='../../images_background')
     parser.add_argument('--dataset_type', default='kinetics_dynamic') # options: omniglot, kinetics_dynamic, kinetics_video
     parser.add_argument('--controller_type', default='alex') # options: alex, vgg19, i3d, default 
@@ -57,6 +60,8 @@ def main():
 
 def train(args):
     eprint("Args: ", args)
+    exp_name = gen_exp_name(args)
+    eprint(exp_name)
     eprint("Loading in Model")
     model = NTMOneShotLearningModel(args)
     eprint("Loading Data")
@@ -96,11 +101,14 @@ def train(args):
             eprint("Train Writer Finished")
         eprint(args)
         eprint("1st\t2nd\t3rd\t4th\t5th\t6th\t7th\t8th\t9th\t10th\tbatch\tloss")
+
+        loss_list = []
+        accuracy_list = []
         for b in range(args.num_epoches):
 
             # Test
 
-            if b % 100 == 0:
+            if b % args.validation_freq == 0:
                 if args.dataset_type == 'omniglot':
                     x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
                                                             type='test',
@@ -118,15 +126,25 @@ def train(args):
                 # state_list = sess.run(model.state_list, feed_dict=feed_dict)  # For debugging
                 # with open('state_long.txt', 'w') as f:
                 #     print(state_list, file=f)
-                accuracy = test_f(args, y, output)
+                accuracy, total = test_f(args, y, output)
                 eprint()
                 for accu in accuracy:
                     eprint2('%.4f' % accu, end='\t')
+                for tot in total:
+                    eprint2('%f' % tot, end='\t')
+
                 eprint2('%d\t%.4f' % (b, learning_loss))
+
+                if args.serialize:
+                    accuracy_list.append(accuracy)
 
             # Save model
 
-            if b % 500 == 0 and b > 0 and args.model_saver:
+            if b % args.model_save_freq == 0 and b > 0 and args.model_saver:
+                if args.debug:
+                    eprint("saving to: {}".format(args.save_dir + '/' + args.model + '/model.tfmodel'))
+                
+                mkdir(args.save_dir + '/' + args.model)
                 saver.save(sess, args.save_dir + '/' + args.model + '/model.tfmodel', global_step=b)
 
             # Train
@@ -149,6 +167,16 @@ def train(args):
             learning_loss, _ = sess.run([model.learning_loss, model.train_op], feed_dict=feed_dict)
             if args.debug:
                 eprint("[{}] Learning Loss: {:.3f}".format(b, learning_loss))
+            if args.serialize:
+                loss_list.append(learning_loss)
+
+    if args.serialize:
+        dir_name = args.save_dir + '/' + exp_name
+        mkdir(dir_name)
+        rand_val = np.random.randint(0, 100)
+        serialize_plot(loss_list, dir_name, "loss" + rand_val)
+        serialize_plot(accuracy_list, dir_name, "accuracy" + rand_val)
+        serialize_plot(args, dir_name, "arguments" + rand_val)
 
 
 
@@ -206,7 +234,7 @@ def test_f(args, y, output):
             if y_i[j] == output_i[j]:
                 correct[class_count[y_i[j]]] += 1
     #  return [float(correct[i]) / total[i] if total[i] > 0. else 0. for i in range(1, int(args.seq_length/args.n_classes))]
-    return [float(correct[i]) / total[i] if total[i] > 0. else 0. for i in range(1, 8)]
+    return [float(correct[i]) / total[i] if total[i] > 0. else 0. for i in range(1, 8)], total
 
 
 if __name__ == '__main__':
