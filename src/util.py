@@ -12,16 +12,16 @@ from pdb import set_trace
 
 IM_SIZE = 128
 
-def serialize(lst, dirname, name):
+def serialize_plot(lst, dirname, name):
     with open(dirname + '/' + name, 'wb') as fp:
         pickle.dump(lst, fp)
 
 def gen_exp_name(args):
-    return "controller:{}_dataset:{}_nclasses:{}_seqlength:{}_pretrained:{}_classdifficulty:{}_"\
+    return "controller:{}_dataset:{}_nclasses:{}_seqlength:{}_pretrained:{}_classdifficulty:{}"\
                 .format(args.controller_type, args.dataset_type, args.n_classes, args.seq_length, args.use_pretrained, args.class_difficulty)
 
 def mkdir(path):
-    os.system("mkdir -p {}".format(path + "_plots"))
+    os.system("mkdir -p {}".format(path))
 
 def eprint(*args, **kwargs):
     print(str(datetime.now().strftime('%H:%M:%S')),":", *args, file=sys.stderr, **kwargs)
