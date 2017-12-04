@@ -121,7 +121,7 @@ class VGG19Controller():
             # If get casting issue make sure that the architecture is right
             net['relu5_4'] = tf.contrib.layers.flatten(net['relu5_4'])
             net['batch_norm'] = tf.layers.batch_normalization(net['relu5_4'])
-            net['fc_1'] = fc_layer(net['batch_norm'], 256)
+            net['fc_1'] = fc_layer(net['batch_norm'], 128)
             net['fc_2'] = fc_layer(net['fc_1'], 64)
             net['output'] = fc_layer(net['fc_2'], self.encoding_size, activation_fn=None)
             fc_output = net['output'] 

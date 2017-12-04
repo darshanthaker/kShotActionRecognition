@@ -57,6 +57,7 @@ def main():
     parser.add_argument('--sample_nframes', default=79, type=int) 
     parser.add_argument('--use_subset_classes', default=False)
     parser.add_argument('--imagenet_pretrained', default=True)
+    parser.add_argument('--class_difficulty', default='easy')
     parser.add_argument('--eval_type', default='rgb') 
     args = parser.parse_args()
     eprint(args)
@@ -148,7 +149,7 @@ def evaluate_actions(args):
     #  class_indices = [10, 11, 12, 13, 14, 15]
     #  class_indices = [227]
     #  class_indices = range(41, 100)
-    class_indices = range(101, 200)
+    class_indices = range(327, 400)
     for action_index in class_indices:
     #  for action_index in range(len(kinetics_classes)):
         eprint("[{}] Loading Data".format(action_index))

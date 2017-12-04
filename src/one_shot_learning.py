@@ -28,7 +28,7 @@ def main():
     parser.add_argument('--model', default="MANN", help='LSTM, MANN, MANN2 or NTM')
     parser.add_argument('--read_head_num', default=4, type=int)
     parser.add_argument('--batch_size', default=16, type=int)
-    parser.add_argument('--num_epoches', default=5000, type=int)
+    parser.add_argument('--num_epoches', default=1000, type=int)
     parser.add_argument('--model_save_freq', default=500, type=int)
     parser.add_argument('--validation_freq', default=25, type=int)
     parser.add_argument('--learning_rate', default=1e-3, type=int)
@@ -130,6 +130,7 @@ def train(args):
                 eprint()
                 for accu in accuracy:
                     eprint2('%.4f' % accu, end='\t')
+                eprint()
                 for tot in total:
                     eprint2('%f' % tot, end='\t')
 
@@ -140,7 +141,7 @@ def train(args):
 
             # Save model
 
-            if b % args.model_save_freq == 0 and b > 0 and args.model_saver:
+            if args.model_saver and b % args.model_save_freq == 0 and b > 0:
                 if args.debug:
                     eprint("saving to: {}".format(args.save_dir + '/' + args.model + '/model.tfmodel'))
                 
@@ -173,7 +174,7 @@ def train(args):
     if args.serialize:
         dir_name = args.save_dir + '/' + exp_name
         mkdir(dir_name)
-        rand_val = np.random.randint(0, 100)
+        rand_val = str(np.random.randint(0, 100))
         serialize_plot(loss_list, dir_name, "loss" + rand_val)
         serialize_plot(accuracy_list, dir_name, "accuracy" + rand_val)
         serialize_plot(args, dir_name, "arguments" + rand_val)
