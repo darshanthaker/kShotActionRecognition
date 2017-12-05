@@ -22,8 +22,8 @@
 # http://www.tacc.utexas.edu/user-services/user-guides/maverick-user-guide
 #-----------------------------------------------------------------------------
 #
-#SBATCH -J rnn300                           # Job name
-#SBATCH -o job_outputs/memory/rnn300-%j.out                     # Name of stdout output file (%j expands to jobId)
+#SBATCH -J classes25                           # Job name
+#SBATCH -o job_outputs/classes/classes25-%j.out                     # Name of stdout output file (%j expands to jobId)
 #SBATCH -p gpu                                      # Queue name
 #SBATCH -N 1                                        # Total number of nodes requested (20 cores/node)
 #SBATCH -n 1                                        # Total number of mpi tasks requested
@@ -35,4 +35,4 @@
 module load cuda/8.0 cudnn/5.1
 module load tensorflow-gpu
 # TODO: REMEMBER TO CHANGE JOB NAME
-python3 one_shot_learning.py --dataset_type=kinetics_dynamic --controller_type=alex --batch_size=16 --image_width=128  --image_height=128 --seq_length=35 --summary_writer=True --model_saver=False --debug=True --memory_size=128 --memory_vector_dim=40 --n_classes=5 --class_difficulty=easy --use_pretrained=True --num_epoches=1000 --rnn_size=300
+python3 one_shot_learning.py --dataset_type=kinetics_dynamic --controller_type=alex --batch_size=16 --image_width=128  --image_height=128 --seq_length=100 --summary_writer=True --model_saver=False --debug=True --memory_size=128 --memory_vector_dim=40 --n_classes=25 --class_difficulty=easy --use_pretrained=False --num_epoches=1000 --rnn_size=200
