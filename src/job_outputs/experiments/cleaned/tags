@@ -1,0 +1,16 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+chunk	/Users/kapilkrishnakumar/dev/maverick/FinalProj/kShotActionRecognition/src/job_outputs/experiments/cleaned/plot.py	/^def chunk(x, step):$/;"	f	language:Python
+labels	/Users/kapilkrishnakumar/dev/maverick/FinalProj/kShotActionRecognition/src/job_outputs/experiments/cleaned/plot.py	/^labels = {'class15seq50': 'Classes: 15, Sequence Length: 50',$/;"	v	language:Python
+main	/Users/kapilkrishnakumar/dev/maverick/FinalProj/kShotActionRecognition/src/job_outputs/experiments/cleaned/plot.py	/^def main():$/;"	f	language:Python
+matplotlib	/Users/kapilkrishnakumar/dev/maverick/FinalProj/kShotActionRecognition/src/job_outputs/experiments/cleaned/plot.py	/^import matplotlib.pyplot as plt$/;"	i	language:Python
+np	/Users/kapilkrishnakumar/dev/maverick/FinalProj/kShotActionRecognition/src/job_outputs/experiments/cleaned/plot.py	/^import numpy as np$/;"	i	language:Python
+pickle	/Users/kapilkrishnakumar/dev/maverick/FinalProj/kShotActionRecognition/src/job_outputs/experiments/cleaned/plot.py	/^import pickle$/;"	i	language:Python
+plot_all_accs	/Users/kapilkrishnakumar/dev/maverick/FinalProj/kShotActionRecognition/src/job_outputs/experiments/cleaned/plot.py	/^def plot_all_accs(folders, kshot):$/;"	f	language:Python
+plot_all_epoch_loss	/Users/kapilkrishnakumar/dev/maverick/FinalProj/kShotActionRecognition/src/job_outputs/experiments/cleaned/plot.py	/^def plot_all_epoch_loss(folders):$/;"	f	language:Python
+plot_all_epoch_valid	/Users/kapilkrishnakumar/dev/maverick/FinalProj/kShotActionRecognition/src/job_outputs/experiments/cleaned/plot.py	/^def plot_all_epoch_valid(folders):$/;"	f	language:Python
+plot_all_loss	/Users/kapilkrishnakumar/dev/maverick/FinalProj/kShotActionRecognition/src/job_outputs/experiments/cleaned/plot.py	/^def plot_all_loss(folders):$/;"	f	language:Python
+plot_checkpoint_accs	/Users/kapilkrishnakumar/dev/maverick/FinalProj/kShotActionRecognition/src/job_outputs/experiments/cleaned/plot.py	/^def plot_checkpoint_accs(folders, kshot):$/;"	f	language:Python
+plot_epoch_accs	/Users/kapilkrishnakumar/dev/maverick/FinalProj/kShotActionRecognition/src/job_outputs/experiments/cleaned/plot.py	/^def plot_epoch_accs(folders):$/;"	f	language:Python
+plt	/Users/kapilkrishnakumar/dev/maverick/FinalProj/kShotActionRecognition/src/job_outputs/experiments/cleaned/plot.py	/^import matplotlib.pyplot as plt$/;"	i	language:Python
+set_trace	/Users/kapilkrishnakumar/dev/maverick/FinalProj/kShotActionRecognition/src/job_outputs/experiments/cleaned/plot.py	/^from pdb import set_trace$/;"	i	language:Python
+SMOOTHING	/Users/kapilkrishnakumar/dev/maverick/FinalProj/kShotActionRecognition/src/job_outputs/experiments/cleaned/plot.py	/^SMOOTHING = 5$/;"	v	language:Python

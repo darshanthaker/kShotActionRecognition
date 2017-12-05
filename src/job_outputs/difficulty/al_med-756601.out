@@ -1,0 +1,3222 @@
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcublas.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcudnn.so.5 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcufft.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcurand.so.8.0 locally
+/home/03858/kk28695/.local/lib/python3.5/site-packages/skvideo/__init__.py:356: UserWarning: avconv/avprobe not found in path: 
+  warnings.warn("avconv/avprobe not found in path: " + str(path), UserWarning)
+12:17:15 : Args:  Namespace(augment=True, batch_size=16, batches_validation=5, class_difficulty='medium', controller_type='alex', data_dir='../../images_background', dataset_type='kinetics_dynamic', debug=True, image_height=128, image_width=128, label_type='one_hot', learning_rate=0.001, memory_size=128, memory_vector_dim=40, mode='train', model='MANN', model_save_freq=500, model_saver=False, n_classes=25, n_test_classes=423, n_train_classes=1200, num_epoches=1000, optimizer='adam', read_head_num=4, restore_training=False, rnn_num_layers=1, rnn_size=200, sample_nframes=64, save_dir='job_outputs/experiments', seq_length=100, serialize=True, shift_range=1, summary_writer=True, tensorboard_dir='./summary/one_shot_learning', test_batch_num=100, tf_debug_flag=False, use_pretrained=False, use_subset_classes=True, validation_freq=25, write_head_num=1)
+12:17:15 : controller:alex_dataset:kinetics_dynamic_nclasses:25_seqlength:100_pretrained:False_classdifficulty:medium
+12:17:15 : Loading in Model
+12:17:15 : Creating Placeholders
+12:17:15 : Creating Cells
+12:17:17 : WARNING: Using non-pretrained Alexnet
+12:17:17 : Looping through seq
+12:17:17 : Seq: [0] Passing data into the cell
+12:17:18 : Seq: [1] Passing data into the cell
+12:17:18 : Seq: [2] Passing data into the cell
+12:17:19 : Seq: [3] Passing data into the cell
+12:17:19 : Seq: [4] Passing data into the cell
+12:17:19 : Seq: [5] Passing data into the cell
+12:17:20 : Seq: [6] Passing data into the cell
+12:17:20 : Seq: [7] Passing data into the cell
+12:17:21 : Seq: [8] Passing data into the cell
+12:17:21 : Seq: [9] Passing data into the cell
+12:17:22 : Seq: [10] Passing data into the cell
+12:17:22 : Seq: [11] Passing data into the cell
+12:17:23 : Seq: [12] Passing data into the cell
+12:17:23 : Seq: [13] Passing data into the cell
+12:17:23 : Seq: [14] Passing data into the cell
+12:17:24 : Seq: [15] Passing data into the cell
+12:17:24 : Seq: [16] Passing data into the cell
+12:17:25 : Seq: [17] Passing data into the cell
+12:17:25 : Seq: [18] Passing data into the cell
+12:17:26 : Seq: [19] Passing data into the cell
+12:17:26 : Seq: [20] Passing data into the cell
+12:17:27 : Seq: [21] Passing data into the cell
+12:17:27 : Seq: [22] Passing data into the cell
+12:17:27 : Seq: [23] Passing data into the cell
+12:17:28 : Seq: [24] Passing data into the cell
+12:17:28 : Seq: [25] Passing data into the cell
+12:17:29 : Seq: [26] Passing data into the cell
+12:17:29 : Seq: [27] Passing data into the cell
+12:17:30 : Seq: [28] Passing data into the cell
+12:17:30 : Seq: [29] Passing data into the cell
+12:17:31 : Seq: [30] Passing data into the cell
+12:17:31 : Seq: [31] Passing data into the cell
+12:17:32 : Seq: [32] Passing data into the cell
+12:17:32 : Seq: [33] Passing data into the cell
+12:17:32 : Seq: [34] Passing data into the cell
+12:17:33 : Seq: [35] Passing data into the cell
+12:17:33 : Seq: [36] Passing data into the cell
+12:17:34 : Seq: [37] Passing data into the cell
+12:17:34 : Seq: [38] Passing data into the cell
+12:17:35 : Seq: [39] Passing data into the cell
+12:17:35 : Seq: [40] Passing data into the cell
+12:17:35 : Seq: [41] Passing data into the cell
+12:17:36 : Seq: [42] Passing data into the cell
+12:17:36 : Seq: [43] Passing data into the cell
+12:17:37 : Seq: [44] Passing data into the cell
+12:17:37 : Seq: [45] Passing data into the cell
+12:17:38 : Seq: [46] Passing data into the cell
+12:17:38 : Seq: [47] Passing data into the cell
+12:17:39 : Seq: [48] Passing data into the cell
+12:17:39 : Seq: [49] Passing data into the cell
+12:17:39 : Seq: [50] Passing data into the cell
+12:17:40 : Seq: [51] Passing data into the cell
+12:17:40 : Seq: [52] Passing data into the cell
+12:17:41 : Seq: [53] Passing data into the cell
+12:17:41 : Seq: [54] Passing data into the cell
+12:17:42 : Seq: [55] Passing data into the cell
+12:17:42 : Seq: [56] Passing data into the cell
+12:17:43 : Seq: [57] Passing data into the cell
+12:17:43 : Seq: [58] Passing data into the cell
+12:17:43 : Seq: [59] Passing data into the cell
+12:17:44 : Seq: [60] Passing data into the cell
+12:17:44 : Seq: [61] Passing data into the cell
+12:17:45 : Seq: [62] Passing data into the cell
+12:17:45 : Seq: [63] Passing data into the cell
+12:17:46 : Seq: [64] Passing data into the cell
+12:17:46 : Seq: [65] Passing data into the cell
+12:17:46 : Seq: [66] Passing data into the cell
+12:17:47 : Seq: [67] Passing data into the cell
+12:17:47 : Seq: [68] Passing data into the cell
+12:17:48 : Seq: [69] Passing data into the cell
+12:17:48 : Seq: [70] Passing data into the cell
+12:17:49 : Seq: [71] Passing data into the cell
+12:17:49 : Seq: [72] Passing data into the cell
+12:17:50 : Seq: [73] Passing data into the cell
+12:17:50 : Seq: [74] Passing data into the cell
+12:17:51 : Seq: [75] Passing data into the cell
+12:17:51 : Seq: [76] Passing data into the cell
+12:17:51 : Seq: [77] Passing data into the cell
+12:17:52 : Seq: [78] Passing data into the cell
+12:17:52 : Seq: [79] Passing data into the cell
+12:17:53 : Seq: [80] Passing data into the cell
+12:17:53 : Seq: [81] Passing data into the cell
+12:17:54 : Seq: [82] Passing data into the cell
+12:17:54 : Seq: [83] Passing data into the cell
+12:17:54 : Seq: [84] Passing data into the cell
+12:17:55 : Seq: [85] Passing data into the cell
+12:17:55 : Seq: [86] Passing data into the cell
+12:17:56 : Seq: [87] Passing data into the cell
+12:17:56 : Seq: [88] Passing data into the cell
+12:17:57 : Seq: [89] Passing data into the cell
+12:17:57 : Seq: [90] Passing data into the cell
+12:17:58 : Seq: [91] Passing data into the cell
+12:17:58 : Seq: [92] Passing data into the cell
+12:17:59 : Seq: [93] Passing data into the cell
+12:17:59 : Seq: [94] Passing data into the cell
+12:18:00 : Seq: [95] Passing data into the cell
+12:18:00 : Seq: [96] Passing data into the cell
+12:18:00 : Seq: [97] Passing data into the cell
+12:18:01 : Seq: [98] Passing data into the cell
+12:18:01 : Seq: [99] Passing data into the cell
+12:18:02 : Defining Loss
+12:18:02 : Total number of variables used  5001333
+12:18:02 : Defining optimizer
+12:20:43 : Finished Definining Model
+12:20:43 : Loading Data
+12:20:48 : Starting Session
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:885] Found device 0 with properties: 
+name: Tesla K40m
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:08:00.0
+Total memory: 11.17GiB
+Free memory: 11.10GiB
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:906] DMA: 0 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:916] 0:   Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K40m, pci bus id: 0000:08:00.0)
+12:20:48 : Started Session
+I tensorflow/compiler/xla/service/platform_util.cc:58] platform CUDA present with 1 visible devices
+I tensorflow/compiler/xla/service/platform_util.cc:58] platform Host present with 20 visible devices
+I tensorflow/compiler/xla/service/service.cc:180] XLA service executing computations on platform Host. Devices:
+I tensorflow/compiler/xla/service/service.cc:187]   StreamExecutor device (0): <undefined>, <undefined>
+I tensorflow/compiler/xla/service/platform_util.cc:58] platform CUDA present with 1 visible devices
+I tensorflow/compiler/xla/service/platform_util.cc:58] platform Host present with 20 visible devices
+I tensorflow/compiler/xla/service/service.cc:180] XLA service executing computations on platform CUDA. Devices:
+I tensorflow/compiler/xla/service/service.cc:187]   StreamExecutor device (0): Tesla K40m, Compute Capability 3.5
+12:22:00 : Finished Initialization
+12:26:02 : Train Writer Finished
+12:26:02 : Namespace(augment=True, batch_size=16, batches_validation=5, class_difficulty='medium', controller_type='alex', data_dir='../../images_background', dataset_type='kinetics_dynamic', debug=True, image_height=128, image_width=128, label_type='one_hot', learning_rate=0.001, memory_size=128, memory_vector_dim=40, mode='train', model='MANN', model_save_freq=500, model_saver=False, n_classes=25, n_test_classes=423, n_train_classes=1200, num_epoches=1000, optimizer='adam', output_dim=25, read_head_num=4, restore_training=False, rnn_num_layers=1, rnn_size=200, sample_nframes=64, save_dir='job_outputs/experiments', seq_length=100, serialize=True, shift_range=1, summary_writer=True, tensorboard_dir='./summary/one_shot_learning', test_batch_num=100, tf_debug_flag=False, use_pretrained=False, use_subset_classes=True, validation_freq=25, write_head_num=1)
+12:26:02 : 1st	2nd	3rd	4th	5th	6th	7th	8th	9th	10th	batch	loss
+12:26:50 :	0.0419	0.0376	0.0405	0.0389	0.0383	0.0426	0.0417	
+12:26:50 :	1955	1781	1507	1132	757	446	240	0	319.0119
+12:26:50 : [0] Fetch Batch
+12:27:00 : [0] Run Sess
+12:27:18 : [0] Learning Loss: 319.823
+12:27:18 : [1] Fetch Batch
+12:27:27 : [1] Run Sess
+12:27:32 : [1] Learning Loss: 322.523
+12:27:32 : [2] Fetch Batch
+12:27:40 : [2] Run Sess
+12:27:45 : [2] Learning Loss: 320.881
+12:27:45 : [3] Fetch Batch
+12:27:51 : [3] Run Sess
+12:27:56 : [3] Learning Loss: 318.182
+12:27:56 : [4] Fetch Batch
+12:28:01 : [4] Run Sess
+12:28:06 : [4] Learning Loss: 319.462
+12:28:06 : [5] Fetch Batch
+12:28:12 : [5] Run Sess
+12:28:17 : [5] Learning Loss: 319.056
+12:28:17 : [6] Fetch Batch
+12:28:21 : [6] Run Sess
+12:28:27 : [6] Learning Loss: 316.744
+12:28:27 : [7] Fetch Batch
+12:28:31 : [7] Run Sess
+12:28:36 : [7] Learning Loss: 317.681
+12:28:36 : [8] Fetch Batch
+12:28:39 : [8] Run Sess
+12:28:44 : [8] Learning Loss: 318.146
+12:28:44 : [9] Fetch Batch
+12:28:48 : [9] Run Sess
+12:28:53 : [9] Learning Loss: 315.841
+12:28:53 : [10] Fetch Batch
+12:28:56 : [10] Run Sess
+12:29:01 : [10] Learning Loss: 315.735
+12:29:01 : [11] Fetch Batch
+12:29:04 : [11] Run Sess
+12:29:09 : [11] Learning Loss: 317.585
+12:29:09 : [12] Fetch Batch
+12:29:12 : [12] Run Sess
+12:29:18 : [12] Learning Loss: 318.940
+12:29:18 : [13] Fetch Batch
+12:29:21 : [13] Run Sess
+12:29:26 : [13] Learning Loss: 316.075
+12:29:26 : [14] Fetch Batch
+12:29:29 : [14] Run Sess
+12:29:34 : [14] Learning Loss: 317.582
+12:29:34 : [15] Fetch Batch
+12:29:37 : [15] Run Sess
+12:29:42 : [15] Learning Loss: 316.118
+12:29:42 : [16] Fetch Batch
+12:29:45 : [16] Run Sess
+12:29:51 : [16] Learning Loss: 317.214
+12:29:51 : [17] Fetch Batch
+12:29:54 : [17] Run Sess
+12:29:59 : [17] Learning Loss: 315.814
+12:29:59 : [18] Fetch Batch
+12:30:02 : [18] Run Sess
+12:30:07 : [18] Learning Loss: 314.563
+12:30:07 : [19] Fetch Batch
+12:30:10 : [19] Run Sess
+12:30:15 : [19] Learning Loss: 315.775
+12:30:15 : [20] Fetch Batch
+12:30:18 : [20] Run Sess
+12:30:23 : [20] Learning Loss: 314.936
+12:30:23 : [21] Fetch Batch
+12:30:26 : [21] Run Sess
+12:30:31 : [21] Learning Loss: 314.018
+12:30:31 : [22] Fetch Batch
+12:30:35 : [22] Run Sess
+12:30:40 : [22] Learning Loss: 313.777
+12:30:40 : [23] Fetch Batch
+12:30:44 : [23] Run Sess
+12:30:49 : [23] Learning Loss: 314.386
+12:30:49 : [24] Fetch Batch
+12:30:52 : [24] Run Sess
+12:30:57 : [24] Learning Loss: 312.996
+12:31:30 :	0.0995	0.0932	0.0850	0.0741	0.0631	0.0622	0.0641	
+12:31:30 :	1969	1814	1529	1133	729	418	234	25	314.3246
+12:31:30 : [25] Fetch Batch
+12:31:34 : [25] Run Sess
+12:31:39 : [25] Learning Loss: 314.656
+12:31:39 : [26] Fetch Batch
+12:31:42 : [26] Run Sess
+12:31:47 : [26] Learning Loss: 314.127
+12:31:47 : [27] Fetch Batch
+12:31:50 : [27] Run Sess
+12:31:55 : [27] Learning Loss: 314.919
+12:31:55 : [28] Fetch Batch
+12:31:58 : [28] Run Sess
+12:32:03 : [28] Learning Loss: 312.299
+12:32:03 : [29] Fetch Batch
+12:32:06 : [29] Run Sess
+12:32:11 : [29] Learning Loss: 313.456
+12:32:11 : [30] Fetch Batch
+12:32:14 : [30] Run Sess
+12:32:19 : [30] Learning Loss: 313.090
+12:32:19 : [31] Fetch Batch
+12:32:22 : [31] Run Sess
+12:32:28 : [31] Learning Loss: 313.942
+12:32:28 : [32] Fetch Batch
+12:32:31 : [32] Run Sess
+12:32:36 : [32] Learning Loss: 313.708
+12:32:36 : [33] Fetch Batch
+12:32:39 : [33] Run Sess
+12:32:44 : [33] Learning Loss: 312.655
+12:32:44 : [34] Fetch Batch
+12:32:47 : [34] Run Sess
+12:32:52 : [34] Learning Loss: 311.904
+12:32:52 : [35] Fetch Batch
+12:32:55 : [35] Run Sess
+12:33:00 : [35] Learning Loss: 311.728
+12:33:00 : [36] Fetch Batch
+12:33:03 : [36] Run Sess
+12:33:08 : [36] Learning Loss: 311.759
+12:33:08 : [37] Fetch Batch
+12:33:11 : [37] Run Sess
+12:33:16 : [37] Learning Loss: 312.116
+12:33:16 : [38] Fetch Batch
+12:33:19 : [38] Run Sess
+12:33:24 : [38] Learning Loss: 311.533
+12:33:24 : [39] Fetch Batch
+12:33:28 : [39] Run Sess
+12:33:33 : [39] Learning Loss: 311.005
+12:33:33 : [40] Fetch Batch
+12:33:36 : [40] Run Sess
+12:33:41 : [40] Learning Loss: 311.051
+12:33:41 : [41] Fetch Batch
+12:33:44 : [41] Run Sess
+12:33:49 : [41] Learning Loss: 308.255
+12:33:49 : [42] Fetch Batch
+12:33:52 : [42] Run Sess
+12:33:57 : [42] Learning Loss: 309.831
+12:33:57 : [43] Fetch Batch
+12:34:00 : [43] Run Sess
+12:34:05 : [43] Learning Loss: 308.765
+12:34:05 : [44] Fetch Batch
+12:34:08 : [44] Run Sess
+12:34:13 : [44] Learning Loss: 308.978
+12:34:13 : [45] Fetch Batch
+12:34:16 : [45] Run Sess
+12:34:21 : [45] Learning Loss: 309.353
+12:34:21 : [46] Fetch Batch
+12:34:24 : [46] Run Sess
+12:34:29 : [46] Learning Loss: 308.786
+12:34:29 : [47] Fetch Batch
+12:34:32 : [47] Run Sess
+12:34:37 : [47] Learning Loss: 308.317
+12:34:37 : [48] Fetch Batch
+12:34:40 : [48] Run Sess
+12:34:45 : [48] Learning Loss: 308.487
+12:34:45 : [49] Fetch Batch
+12:34:48 : [49] Run Sess
+12:34:53 : [49] Learning Loss: 308.908
+12:35:26 :	0.2094	0.2422	0.2245	0.1879	0.1921	0.2009	0.2027	
+12:35:26 :	1963	1804	1532	1128	734	438	222	50	307.7989
+12:35:26 : [50] Fetch Batch
+12:35:29 : [50] Run Sess
+12:35:35 : [50] Learning Loss: 307.316
+12:35:35 : [51] Fetch Batch
+12:35:37 : [51] Run Sess
+12:35:42 : [51] Learning Loss: 307.316
+12:35:42 : [52] Fetch Batch
+12:35:46 : [52] Run Sess
+12:35:51 : [52] Learning Loss: 306.991
+12:35:51 : [53] Fetch Batch
+12:35:54 : [53] Run Sess
+12:35:59 : [53] Learning Loss: 305.527
+12:35:59 : [54] Fetch Batch
+12:36:02 : [54] Run Sess
+12:36:07 : [54] Learning Loss: 305.872
+12:36:07 : [55] Fetch Batch
+12:36:10 : [55] Run Sess
+12:36:15 : [55] Learning Loss: 305.350
+12:36:15 : [56] Fetch Batch
+12:36:18 : [56] Run Sess
+12:36:23 : [56] Learning Loss: 304.797
+12:36:23 : [57] Fetch Batch
+12:36:26 : [57] Run Sess
+12:36:31 : [57] Learning Loss: 304.252
+12:36:31 : [58] Fetch Batch
+12:36:36 : [58] Run Sess
+12:36:41 : [58] Learning Loss: 304.131
+12:36:41 : [59] Fetch Batch
+12:36:44 : [59] Run Sess
+12:36:49 : [59] Learning Loss: 302.569
+12:36:49 : [60] Fetch Batch
+12:36:52 : [60] Run Sess
+12:36:57 : [60] Learning Loss: 303.308
+12:36:57 : [61] Fetch Batch
+12:37:00 : [61] Run Sess
+12:37:05 : [61] Learning Loss: 301.132
+12:37:05 : [62] Fetch Batch
+12:37:08 : [62] Run Sess
+12:37:13 : [62] Learning Loss: 299.851
+12:37:13 : [63] Fetch Batch
+12:37:16 : [63] Run Sess
+12:37:21 : [63] Learning Loss: 300.247
+12:37:21 : [64] Fetch Batch
+12:37:24 : [64] Run Sess
+12:37:29 : [64] Learning Loss: 298.925
+12:37:29 : [65] Fetch Batch
+12:37:32 : [65] Run Sess
+12:37:37 : [65] Learning Loss: 300.707
+12:37:37 : [66] Fetch Batch
+12:37:40 : [66] Run Sess
+12:37:45 : [66] Learning Loss: 298.362
+12:37:45 : [67] Fetch Batch
+12:37:48 : [67] Run Sess
+12:37:53 : [67] Learning Loss: 296.380
+12:37:53 : [68] Fetch Batch
+12:37:56 : [68] Run Sess
+12:38:01 : [68] Learning Loss: 299.353
+12:38:01 : [69] Fetch Batch
+12:38:03 : [69] Run Sess
+12:38:09 : [69] Learning Loss: 294.933
+12:38:09 : [70] Fetch Batch
+12:38:11 : [70] Run Sess
+12:38:17 : [70] Learning Loss: 296.565
+12:38:17 : [71] Fetch Batch
+12:38:19 : [71] Run Sess
+12:38:24 : [71] Learning Loss: 296.552
+12:38:24 : [72] Fetch Batch
+12:38:27 : [72] Run Sess
+12:38:32 : [72] Learning Loss: 296.581
+12:38:32 : [73] Fetch Batch
+12:38:35 : [73] Run Sess
+12:38:40 : [73] Learning Loss: 294.702
+12:38:40 : [74] Fetch Batch
+12:38:43 : [74] Run Sess
+12:38:48 : [74] Learning Loss: 294.349
+12:39:20 :	0.2111	0.3059	0.3150	0.3366	0.3407	0.3779	0.3544	
+12:39:20 :	1971	1821	1511	1114	722	434	237	75	293.3987
+12:39:20 : [75] Fetch Batch
+12:39:23 : [75] Run Sess
+12:39:28 : [75] Learning Loss: 292.750
+12:39:28 : [76] Fetch Batch
+12:39:31 : [76] Run Sess
+12:39:36 : [76] Learning Loss: 291.066
+12:39:36 : [77] Fetch Batch
+12:39:39 : [77] Run Sess
+12:39:44 : [77] Learning Loss: 290.474
+12:39:44 : [78] Fetch Batch
+12:39:47 : [78] Run Sess
+12:39:52 : [78] Learning Loss: 292.039
+12:39:52 : [79] Fetch Batch
+12:39:55 : [79] Run Sess
+12:40:00 : [79] Learning Loss: 289.965
+12:40:00 : [80] Fetch Batch
+12:40:03 : [80] Run Sess
+12:40:08 : [80] Learning Loss: 290.053
+12:40:08 : [81] Fetch Batch
+12:40:11 : [81] Run Sess
+12:40:16 : [81] Learning Loss: 287.950
+12:40:16 : [82] Fetch Batch
+12:40:19 : [82] Run Sess
+12:40:24 : [82] Learning Loss: 284.328
+12:40:24 : [83] Fetch Batch
+12:40:27 : [83] Run Sess
+12:40:32 : [83] Learning Loss: 287.488
+12:40:32 : [84] Fetch Batch
+12:40:35 : [84] Run Sess
+12:40:40 : [84] Learning Loss: 284.594
+12:40:40 : [85] Fetch Batch
+12:40:43 : [85] Run Sess
+12:40:48 : [85] Learning Loss: 281.913
+12:40:48 : [86] Fetch Batch
+12:40:53 : [86] Run Sess
+12:40:58 : [86] Learning Loss: 280.682
+12:40:58 : [87] Fetch Batch
+12:41:01 : [87] Run Sess
+12:41:06 : [87] Learning Loss: 280.538
+12:41:06 : [88] Fetch Batch
+12:41:09 : [88] Run Sess
+12:41:14 : [88] Learning Loss: 276.023
+12:41:14 : [89] Fetch Batch
+12:41:17 : [89] Run Sess
+12:41:22 : [89] Learning Loss: 276.207
+12:41:22 : [90] Fetch Batch
+12:41:25 : [90] Run Sess
+12:41:30 : [90] Learning Loss: 278.728
+12:41:30 : [91] Fetch Batch
+12:41:33 : [91] Run Sess
+12:41:39 : [91] Learning Loss: 270.923
+12:41:39 : [92] Fetch Batch
+12:41:41 : [92] Run Sess
+12:41:47 : [92] Learning Loss: 272.779
+12:41:47 : [93] Fetch Batch
+12:41:50 : [93] Run Sess
+12:41:55 : [93] Learning Loss: 267.896
+12:41:55 : [94] Fetch Batch
+12:41:58 : [94] Run Sess
+12:42:03 : [94] Learning Loss: 266.893
+12:42:03 : [95] Fetch Batch
+12:42:06 : [95] Run Sess
+12:42:11 : [95] Learning Loss: 268.652
+12:42:11 : [96] Fetch Batch
+12:42:14 : [96] Run Sess
+12:42:19 : [96] Learning Loss: 262.888
+12:42:19 : [97] Fetch Batch
+12:42:22 : [97] Run Sess
+12:42:27 : [97] Learning Loss: 257.734
+12:42:27 : [98] Fetch Batch
+12:42:30 : [98] Run Sess
+12:42:35 : [98] Learning Loss: 257.163
+12:42:35 : [99] Fetch Batch
+12:42:38 : [99] Run Sess
+12:42:43 : [99] Learning Loss: 255.987
+12:43:15 :	0.2910	0.3659	0.3641	0.3477	0.3293	0.3499	0.4323	
+12:43:15 :	1952	1801	1530	1139	750	423	229	100	250.9620
+12:43:15 : [100] Fetch Batch
+12:43:18 : [100] Run Sess
+12:43:23 : [100] Learning Loss: 252.021
+12:43:23 : [101] Fetch Batch
+12:43:26 : [101] Run Sess
+12:43:31 : [101] Learning Loss: 244.877
+12:43:31 : [102] Fetch Batch
+12:43:34 : [102] Run Sess
+12:43:39 : [102] Learning Loss: 241.711
+12:43:39 : [103] Fetch Batch
+12:43:42 : [103] Run Sess
+12:43:47 : [103] Learning Loss: 240.529
+12:43:47 : [104] Fetch Batch
+12:43:50 : [104] Run Sess
+12:43:55 : [104] Learning Loss: 237.418
+12:43:55 : [105] Fetch Batch
+12:43:59 : [105] Run Sess
+12:44:04 : [105] Learning Loss: 234.605
+12:44:04 : [106] Fetch Batch
+12:44:07 : [106] Run Sess
+12:44:12 : [106] Learning Loss: 234.329
+12:44:12 : [107] Fetch Batch
+12:44:14 : [107] Run Sess
+12:44:20 : [107] Learning Loss: 230.649
+12:44:20 : [108] Fetch Batch
+12:44:22 : [108] Run Sess
+12:44:27 : [108] Learning Loss: 227.728
+12:44:27 : [109] Fetch Batch
+12:44:30 : [109] Run Sess
+12:44:35 : [109] Learning Loss: 223.231
+12:44:35 : [110] Fetch Batch
+12:44:38 : [110] Run Sess
+12:44:43 : [110] Learning Loss: 226.400
+12:44:43 : [111] Fetch Batch
+12:44:46 : [111] Run Sess
+12:44:51 : [111] Learning Loss: 220.650
+12:44:51 : [112] Fetch Batch
+12:44:54 : [112] Run Sess
+12:44:59 : [112] Learning Loss: 216.231
+12:44:59 : [113] Fetch Batch
+12:45:02 : [113] Run Sess
+12:45:07 : [113] Learning Loss: 214.661
+12:45:07 : [114] Fetch Batch
+12:45:10 : [114] Run Sess
+12:45:15 : [114] Learning Loss: 210.532
+12:45:15 : [115] Fetch Batch
+12:45:18 : [115] Run Sess
+12:45:23 : [115] Learning Loss: 209.123
+12:45:23 : [116] Fetch Batch
+12:45:26 : [116] Run Sess
+12:45:31 : [116] Learning Loss: 210.579
+12:45:31 : [117] Fetch Batch
+12:45:34 : [117] Run Sess
+12:45:39 : [117] Learning Loss: 200.714
+12:45:39 : [118] Fetch Batch
+12:45:42 : [118] Run Sess
+12:45:47 : [118] Learning Loss: 197.208
+12:45:47 : [119] Fetch Batch
+12:45:50 : [119] Run Sess
+12:45:55 : [119] Learning Loss: 200.625
+12:45:55 : [120] Fetch Batch
+12:45:58 : [120] Run Sess
+12:46:03 : [120] Learning Loss: 194.725
+12:46:03 : [121] Fetch Batch
+12:46:07 : [121] Run Sess
+12:46:12 : [121] Learning Loss: 196.290
+12:46:12 : [122] Fetch Batch
+12:46:14 : [122] Run Sess
+12:46:20 : [122] Learning Loss: 191.582
+12:46:20 : [123] Fetch Batch
+12:46:22 : [123] Run Sess
+12:46:28 : [123] Learning Loss: 184.680
+12:46:28 : [124] Fetch Batch
+12:46:31 : [124] Run Sess
+12:46:36 : [124] Learning Loss: 182.091
+12:47:08 :	0.4563	0.5085	0.4820	0.4770	0.5149	0.4635	0.4667	
+12:47:08 :	1957	1815	1529	1151	736	425	225	125	181.3565
+12:47:08 : [125] Fetch Batch
+12:47:10 : [125] Run Sess
+12:47:15 : [125] Learning Loss: 177.847
+12:47:15 : [126] Fetch Batch
+12:47:18 : [126] Run Sess
+12:47:23 : [126] Learning Loss: 179.470
+12:47:23 : [127] Fetch Batch
+12:47:26 : [127] Run Sess
+12:47:31 : [127] Learning Loss: 179.188
+12:47:31 : [128] Fetch Batch
+12:47:35 : [128] Run Sess
+12:47:40 : [128] Learning Loss: 168.071
+12:47:40 : [129] Fetch Batch
+12:47:43 : [129] Run Sess
+12:47:48 : [129] Learning Loss: 169.991
+12:47:48 : [130] Fetch Batch
+12:47:51 : [130] Run Sess
+12:47:56 : [130] Learning Loss: 170.736
+12:47:56 : [131] Fetch Batch
+12:48:00 : [131] Run Sess
+12:48:05 : [131] Learning Loss: 161.803
+12:48:05 : [132] Fetch Batch
+12:48:08 : [132] Run Sess
+12:48:13 : [132] Learning Loss: 161.670
+12:48:13 : [133] Fetch Batch
+12:48:15 : [133] Run Sess
+12:48:21 : [133] Learning Loss: 158.091
+12:48:21 : [134] Fetch Batch
+12:48:23 : [134] Run Sess
+12:48:29 : [134] Learning Loss: 152.211
+12:48:29 : [135] Fetch Batch
+12:48:32 : [135] Run Sess
+12:48:37 : [135] Learning Loss: 150.635
+12:48:37 : [136] Fetch Batch
+12:48:40 : [136] Run Sess
+12:48:45 : [136] Learning Loss: 148.763
+12:48:45 : [137] Fetch Batch
+12:48:48 : [137] Run Sess
+12:48:53 : [137] Learning Loss: 143.685
+12:48:53 : [138] Fetch Batch
+12:48:56 : [138] Run Sess
+12:49:01 : [138] Learning Loss: 143.940
+12:49:01 : [139] Fetch Batch
+12:49:04 : [139] Run Sess
+12:49:09 : [139] Learning Loss: 141.413
+12:49:09 : [140] Fetch Batch
+12:49:12 : [140] Run Sess
+12:49:17 : [140] Learning Loss: 138.638
+12:49:17 : [141] Fetch Batch
+12:49:20 : [141] Run Sess
+12:49:25 : [141] Learning Loss: 132.872
+12:49:25 : [142] Fetch Batch
+12:49:28 : [142] Run Sess
+12:49:33 : [142] Learning Loss: 131.755
+12:49:33 : [143] Fetch Batch
+12:49:37 : [143] Run Sess
+12:49:42 : [143] Learning Loss: 130.441
+12:49:42 : [144] Fetch Batch
+12:49:44 : [144] Run Sess
+12:49:50 : [144] Learning Loss: 128.193
+12:49:50 : [145] Fetch Batch
+12:49:52 : [145] Run Sess
+12:49:58 : [145] Learning Loss: 125.687
+12:49:58 : [146] Fetch Batch
+12:50:00 : [146] Run Sess
+12:50:06 : [146] Learning Loss: 119.965
+12:50:06 : [147] Fetch Batch
+12:50:09 : [147] Run Sess
+12:50:14 : [147] Learning Loss: 119.971
+12:50:14 : [148] Fetch Batch
+12:50:17 : [148] Run Sess
+12:50:22 : [148] Learning Loss: 117.559
+12:50:22 : [149] Fetch Batch
+12:50:26 : [149] Run Sess
+12:50:31 : [149] Learning Loss: 118.504
+12:51:04 :	0.7208	0.7793	0.7585	0.7626	0.7473	0.7780	0.6978	
+12:51:04 :	1970	1808	1536	1133	736	437	225	150	112.5583
+12:51:04 : [150] Fetch Batch
+12:51:07 : [150] Run Sess
+12:51:12 : [150] Learning Loss: 113.479
+12:51:12 : [151] Fetch Batch
+12:51:15 : [151] Run Sess
+12:51:20 : [151] Learning Loss: 108.338
+12:51:20 : [152] Fetch Batch
+12:51:23 : [152] Run Sess
+12:51:28 : [152] Learning Loss: 109.162
+12:51:28 : [153] Fetch Batch
+12:51:31 : [153] Run Sess
+12:51:36 : [153] Learning Loss: 102.711
+12:51:36 : [154] Fetch Batch
+12:51:39 : [154] Run Sess
+12:51:44 : [154] Learning Loss: 104.660
+12:51:44 : [155] Fetch Batch
+12:51:47 : [155] Run Sess
+12:51:52 : [155] Learning Loss: 98.067
+12:51:52 : [156] Fetch Batch
+12:51:55 : [156] Run Sess
+12:52:00 : [156] Learning Loss: 97.590
+12:52:00 : [157] Fetch Batch
+12:52:03 : [157] Run Sess
+12:52:08 : [157] Learning Loss: 93.776
+12:52:08 : [158] Fetch Batch
+12:52:12 : [158] Run Sess
+12:52:17 : [158] Learning Loss: 92.062
+12:52:17 : [159] Fetch Batch
+12:52:20 : [159] Run Sess
+12:52:25 : [159] Learning Loss: 90.055
+12:52:25 : [160] Fetch Batch
+12:52:27 : [160] Run Sess
+12:52:33 : [160] Learning Loss: 90.064
+12:52:33 : [161] Fetch Batch
+12:52:35 : [161] Run Sess
+12:52:40 : [161] Learning Loss: 81.262
+12:52:40 : [162] Fetch Batch
+12:52:43 : [162] Run Sess
+12:52:48 : [162] Learning Loss: 82.389
+12:52:48 : [163] Fetch Batch
+12:52:51 : [163] Run Sess
+12:52:56 : [163] Learning Loss: 77.896
+12:52:56 : [164] Fetch Batch
+12:53:00 : [164] Run Sess
+12:53:05 : [164] Learning Loss: 76.341
+12:53:05 : [165] Fetch Batch
+12:53:07 : [165] Run Sess
+12:53:13 : [165] Learning Loss: 76.457
+12:53:13 : [166] Fetch Batch
+12:53:15 : [166] Run Sess
+12:53:21 : [166] Learning Loss: 74.975
+12:53:21 : [167] Fetch Batch
+12:53:23 : [167] Run Sess
+12:53:28 : [167] Learning Loss: 70.183
+12:53:28 : [168] Fetch Batch
+12:53:31 : [168] Run Sess
+12:53:36 : [168] Learning Loss: 67.376
+12:53:36 : [169] Fetch Batch
+12:53:39 : [169] Run Sess
+12:53:44 : [169] Learning Loss: 66.200
+12:53:44 : [170] Fetch Batch
+12:53:47 : [170] Run Sess
+12:53:52 : [170] Learning Loss: 63.516
+12:53:52 : [171] Fetch Batch
+12:53:55 : [171] Run Sess
+12:54:00 : [171] Learning Loss: 61.311
+12:54:00 : [172] Fetch Batch
+12:54:03 : [172] Run Sess
+12:54:08 : [172] Learning Loss: 60.002
+12:54:08 : [173] Fetch Batch
+12:54:11 : [173] Run Sess
+12:54:16 : [173] Learning Loss: 57.099
+12:54:16 : [174] Fetch Batch
+12:54:20 : [174] Run Sess
+12:54:25 : [174] Learning Loss: 54.053
+12:54:58 :	0.9133	0.9680	0.9563	0.9506	0.9481	0.9437	0.9387	
+12:54:58 :	1973	1812	1532	1134	752	444	212	175	53.1364
+12:54:58 : [175] Fetch Batch
+12:55:01 : [175] Run Sess
+12:55:06 : [175] Learning Loss: 53.755
+12:55:06 : [176] Fetch Batch
+12:55:09 : [176] Run Sess
+12:55:15 : [176] Learning Loss: 53.687
+12:55:15 : [177] Fetch Batch
+12:55:17 : [177] Run Sess
+12:55:23 : [177] Learning Loss: 49.244
+12:55:23 : [178] Fetch Batch
+12:55:26 : [178] Run Sess
+12:55:31 : [178] Learning Loss: 46.856
+12:55:31 : [179] Fetch Batch
+12:55:34 : [179] Run Sess
+12:55:39 : [179] Learning Loss: 43.617
+12:55:39 : [180] Fetch Batch
+12:55:43 : [180] Run Sess
+12:55:48 : [180] Learning Loss: 44.185
+12:55:48 : [181] Fetch Batch
+12:55:51 : [181] Run Sess
+12:55:56 : [181] Learning Loss: 42.530
+12:55:56 : [182] Fetch Batch
+12:55:59 : [182] Run Sess
+12:56:04 : [182] Learning Loss: 39.690
+12:56:04 : [183] Fetch Batch
+12:56:07 : [183] Run Sess
+12:56:12 : [183] Learning Loss: 38.510
+12:56:12 : [184] Fetch Batch
+12:56:15 : [184] Run Sess
+12:56:20 : [184] Learning Loss: 35.789
+12:56:20 : [185] Fetch Batch
+12:56:23 : [185] Run Sess
+12:56:29 : [185] Learning Loss: 34.287
+12:56:29 : [186] Fetch Batch
+12:56:31 : [186] Run Sess
+12:56:36 : [186] Learning Loss: 33.190
+12:56:36 : [187] Fetch Batch
+12:56:40 : [187] Run Sess
+12:56:45 : [187] Learning Loss: 33.389
+12:56:45 : [188] Fetch Batch
+12:56:48 : [188] Run Sess
+12:56:53 : [188] Learning Loss: 31.240
+12:56:53 : [189] Fetch Batch
+12:56:55 : [189] Run Sess
+12:57:01 : [189] Learning Loss: 28.861
+12:57:01 : [190] Fetch Batch
+12:57:04 : [190] Run Sess
+12:57:09 : [190] Learning Loss: 28.621
+12:57:09 : [191] Fetch Batch
+12:57:12 : [191] Run Sess
+12:57:17 : [191] Learning Loss: 25.751
+12:57:17 : [192] Fetch Batch
+12:57:20 : [192] Run Sess
+12:57:25 : [192] Learning Loss: 26.048
+12:57:25 : [193] Fetch Batch
+12:57:28 : [193] Run Sess
+12:57:33 : [193] Learning Loss: 25.203
+12:57:33 : [194] Fetch Batch
+12:57:36 : [194] Run Sess
+12:57:41 : [194] Learning Loss: 21.918
+12:57:41 : [195] Fetch Batch
+12:57:44 : [195] Run Sess
+12:57:49 : [195] Learning Loss: 22.421
+12:57:49 : [196] Fetch Batch
+12:57:52 : [196] Run Sess
+12:57:57 : [196] Learning Loss: 22.664
+12:57:57 : [197] Fetch Batch
+12:58:00 : [197] Run Sess
+12:58:05 : [197] Learning Loss: 20.757
+12:58:05 : [198] Fetch Batch
+12:58:08 : [198] Run Sess
+12:58:13 : [198] Learning Loss: 20.309
+12:58:13 : [199] Fetch Batch
+12:58:16 : [199] Run Sess
+12:58:21 : [199] Learning Loss: 19.763
+12:58:55 :	0.9497	0.9972	0.9974	0.9920	0.9973	0.9952	0.9957	
+12:58:55 :	1967	1818	1534	1129	736	421	230	200	18.3473
+12:58:55 : [200] Fetch Batch
+12:58:58 : [200] Run Sess
+12:59:03 : [200] Learning Loss: 18.152
+12:59:03 : [201] Fetch Batch
+12:59:06 : [201] Run Sess
+12:59:11 : [201] Learning Loss: 17.746
+12:59:11 : [202] Fetch Batch
+12:59:14 : [202] Run Sess
+12:59:19 : [202] Learning Loss: 17.290
+12:59:19 : [203] Fetch Batch
+12:59:22 : [203] Run Sess
+12:59:27 : [203] Learning Loss: 16.319
+12:59:27 : [204] Fetch Batch
+12:59:31 : [204] Run Sess
+12:59:36 : [204] Learning Loss: 16.483
+12:59:36 : [205] Fetch Batch
+12:59:39 : [205] Run Sess
+12:59:44 : [205] Learning Loss: 15.203
+12:59:44 : [206] Fetch Batch
+12:59:47 : [206] Run Sess
+12:59:52 : [206] Learning Loss: 14.431
+12:59:52 : [207] Fetch Batch
+12:59:55 : [207] Run Sess
+13:00:00 : [207] Learning Loss: 13.227
+13:00:00 : [208] Fetch Batch
+13:15:11 : [208] Run Sess
+13:15:17 : [208] Learning Loss: 13.110
+13:15:17 : [209] Fetch Batch
+13:15:23 : [209] Run Sess
+13:15:28 : [209] Learning Loss: 12.821
+13:15:28 : [210] Fetch Batch
+13:15:31 : [210] Run Sess
+13:15:36 : [210] Learning Loss: 11.890
+13:15:36 : [211] Fetch Batch
+13:15:39 : [211] Run Sess
+13:15:44 : [211] Learning Loss: 11.753
+13:15:44 : [212] Fetch Batch
+13:15:47 : [212] Run Sess
+13:15:52 : [212] Learning Loss: 12.126
+13:15:52 : [213] Fetch Batch
+13:15:55 : [213] Run Sess
+13:16:00 : [213] Learning Loss: 10.944
+13:16:00 : [214] Fetch Batch
+13:16:03 : [214] Run Sess
+13:16:08 : [214] Learning Loss: 10.581
+13:16:08 : [215] Fetch Batch
+13:16:11 : [215] Run Sess
+13:16:16 : [215] Learning Loss: 10.221
+13:16:16 : [216] Fetch Batch
+13:16:19 : [216] Run Sess
+13:16:24 : [216] Learning Loss: 9.232
+13:16:24 : [217] Fetch Batch
+13:16:27 : [217] Run Sess
+13:16:32 : [217] Learning Loss: 9.849
+13:16:32 : [218] Fetch Batch
+13:16:35 : [218] Run Sess
+13:16:40 : [218] Learning Loss: 9.364
+13:16:40 : [219] Fetch Batch
+13:16:43 : [219] Run Sess
+13:16:48 : [219] Learning Loss: 9.868
+13:16:48 : [220] Fetch Batch
+13:16:51 : [220] Run Sess
+13:16:57 : [220] Learning Loss: 8.863
+13:16:57 : [221] Fetch Batch
+13:16:59 : [221] Run Sess
+13:17:04 : [221] Learning Loss: 8.674
+13:17:04 : [222] Fetch Batch
+13:17:07 : [222] Run Sess
+13:17:12 : [222] Learning Loss: 8.255
+13:17:12 : [223] Fetch Batch
+13:17:16 : [223] Run Sess
+13:17:21 : [223] Learning Loss: 8.490
+13:17:21 : [224] Fetch Batch
+13:17:24 : [224] Run Sess
+13:17:29 : [224] Learning Loss: 7.894
+13:18:01 :	0.9604	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+13:18:01 :	1968	1827	1519	1127	725	427	227	225	7.4479
+13:18:01 : [225] Fetch Batch
+13:18:05 : [225] Run Sess
+13:18:10 : [225] Learning Loss: 7.934
+13:18:10 : [226] Fetch Batch
+13:18:13 : [226] Run Sess
+13:18:18 : [226] Learning Loss: 7.289
+13:18:18 : [227] Fetch Batch
+13:18:21 : [227] Run Sess
+13:18:26 : [227] Learning Loss: 7.038
+13:18:26 : [228] Fetch Batch
+13:18:29 : [228] Run Sess
+13:18:34 : [228] Learning Loss: 7.061
+13:18:34 : [229] Fetch Batch
+13:18:37 : [229] Run Sess
+13:18:42 : [229] Learning Loss: 6.789
+13:18:42 : [230] Fetch Batch
+13:18:45 : [230] Run Sess
+13:18:50 : [230] Learning Loss: 6.610
+13:18:50 : [231] Fetch Batch
+13:18:53 : [231] Run Sess
+13:18:59 : [231] Learning Loss: 6.444
+13:18:59 : [232] Fetch Batch
+13:19:02 : [232] Run Sess
+13:19:07 : [232] Learning Loss: 6.076
+13:19:07 : [233] Fetch Batch
+13:19:10 : [233] Run Sess
+13:19:15 : [233] Learning Loss: 6.152
+13:19:15 : [234] Fetch Batch
+13:19:18 : [234] Run Sess
+13:19:23 : [234] Learning Loss: 5.715
+13:19:23 : [235] Fetch Batch
+13:19:26 : [235] Run Sess
+13:19:31 : [235] Learning Loss: 5.694
+13:19:31 : [236] Fetch Batch
+13:19:34 : [236] Run Sess
+13:19:39 : [236] Learning Loss: 5.580
+13:19:39 : [237] Fetch Batch
+13:19:42 : [237] Run Sess
+13:19:47 : [237] Learning Loss: 5.785
+13:19:47 : [238] Fetch Batch
+13:19:50 : [238] Run Sess
+13:19:55 : [238] Learning Loss: 5.393
+13:19:55 : [239] Fetch Batch
+13:19:58 : [239] Run Sess
+13:20:03 : [239] Learning Loss: 5.089
+13:20:03 : [240] Fetch Batch
+13:20:07 : [240] Run Sess
+13:20:12 : [240] Learning Loss: 5.338
+13:20:12 : [241] Fetch Batch
+13:20:16 : [241] Run Sess
+13:20:21 : [241] Learning Loss: 5.026
+13:20:21 : [242] Fetch Batch
+13:20:25 : [242] Run Sess
+13:20:30 : [242] Learning Loss: 5.075
+13:20:30 : [243] Fetch Batch
+13:20:33 : [243] Run Sess
+13:20:38 : [243] Learning Loss: 4.635
+13:20:38 : [244] Fetch Batch
+13:20:41 : [244] Run Sess
+13:20:46 : [244] Learning Loss: 4.710
+13:20:46 : [245] Fetch Batch
+13:20:49 : [245] Run Sess
+13:20:54 : [245] Learning Loss: 4.718
+13:20:54 : [246] Fetch Batch
+13:20:57 : [246] Run Sess
+13:21:02 : [246] Learning Loss: 4.644
+13:21:02 : [247] Fetch Batch
+13:21:05 : [247] Run Sess
+13:21:11 : [247] Learning Loss: 4.357
+13:21:11 : [248] Fetch Batch
+13:21:13 : [248] Run Sess
+13:21:19 : [248] Learning Loss: 4.345
+13:21:19 : [249] Fetch Batch
+13:21:22 : [249] Run Sess
+13:21:27 : [249] Learning Loss: 4.129
+13:22:00 :	0.9604	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+13:22:00 :	1971	1806	1510	1113	730	430	242	250	4.1462
+13:22:00 : [250] Fetch Batch
+13:22:03 : [250] Run Sess
+13:22:08 : [250] Learning Loss: 4.259
+13:22:08 : [251] Fetch Batch
+13:22:11 : [251] Run Sess
+13:22:16 : [251] Learning Loss: 4.187
+13:22:16 : [252] Fetch Batch
+13:22:21 : [252] Run Sess
+13:22:26 : [252] Learning Loss: 4.052
+13:22:26 : [253] Fetch Batch
+13:22:29 : [253] Run Sess
+13:22:34 : [253] Learning Loss: 3.954
+13:22:34 : [254] Fetch Batch
+13:22:37 : [254] Run Sess
+13:22:42 : [254] Learning Loss: 3.893
+13:22:42 : [255] Fetch Batch
+13:22:45 : [255] Run Sess
+13:22:50 : [255] Learning Loss: 3.941
+13:22:50 : [256] Fetch Batch
+13:22:53 : [256] Run Sess
+13:22:58 : [256] Learning Loss: 3.734
+13:22:58 : [257] Fetch Batch
+13:23:01 : [257] Run Sess
+13:23:06 : [257] Learning Loss: 3.703
+13:23:06 : [258] Fetch Batch
+13:23:09 : [258] Run Sess
+13:23:14 : [258] Learning Loss: 3.867
+13:23:14 : [259] Fetch Batch
+13:23:18 : [259] Run Sess
+13:23:23 : [259] Learning Loss: 3.513
+13:23:23 : [260] Fetch Batch
+13:23:26 : [260] Run Sess
+13:23:31 : [260] Learning Loss: 3.438
+13:23:31 : [261] Fetch Batch
+13:23:34 : [261] Run Sess
+13:23:39 : [261] Learning Loss: 3.438
+13:23:39 : [262] Fetch Batch
+13:23:42 : [262] Run Sess
+13:23:47 : [262] Learning Loss: 3.456
+13:23:47 : [263] Fetch Batch
+13:23:51 : [263] Run Sess
+13:23:56 : [263] Learning Loss: 3.189
+13:23:56 : [264] Fetch Batch
+13:23:59 : [264] Run Sess
+13:24:04 : [264] Learning Loss: 3.396
+13:24:04 : [265] Fetch Batch
+13:24:07 : [265] Run Sess
+13:24:12 : [265] Learning Loss: 3.267
+13:24:12 : [266] Fetch Batch
+13:24:16 : [266] Run Sess
+13:24:21 : [266] Learning Loss: 3.178
+13:24:21 : [267] Fetch Batch
+13:24:24 : [267] Run Sess
+13:24:29 : [267] Learning Loss: 3.071
+13:24:29 : [268] Fetch Batch
+13:24:32 : [268] Run Sess
+13:24:37 : [268] Learning Loss: 3.126
+13:24:37 : [269] Fetch Batch
+13:24:40 : [269] Run Sess
+13:24:45 : [269] Learning Loss: 3.188
+13:24:45 : [270] Fetch Batch
+13:24:48 : [270] Run Sess
+13:24:53 : [270] Learning Loss: 2.810
+13:24:53 : [271] Fetch Batch
+13:24:56 : [271] Run Sess
+13:25:01 : [271] Learning Loss: 2.959
+13:25:01 : [272] Fetch Batch
+13:25:04 : [272] Run Sess
+13:25:09 : [272] Learning Loss: 2.956
+13:25:09 : [273] Fetch Batch
+13:25:12 : [273] Run Sess
+13:25:17 : [273] Learning Loss: 2.869
+13:25:17 : [274] Fetch Batch
+13:25:20 : [274] Run Sess
+13:25:25 : [274] Learning Loss: 2.826
+13:25:59 :	0.9603	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+13:25:59 :	1963	1791	1513	1134	745	437	222	275	2.7827
+13:25:59 : [275] Fetch Batch
+13:26:02 : [275] Run Sess
+13:26:07 : [275] Learning Loss: 2.891
+13:26:07 : [276] Fetch Batch
+13:26:10 : [276] Run Sess
+13:26:15 : [276] Learning Loss: 2.759
+13:26:15 : [277] Fetch Batch
+13:26:18 : [277] Run Sess
+13:26:23 : [277] Learning Loss: 2.737
+13:26:23 : [278] Fetch Batch
+13:26:26 : [278] Run Sess
+13:26:31 : [278] Learning Loss: 2.707
+13:26:31 : [279] Fetch Batch
+13:26:35 : [279] Run Sess
+13:26:40 : [279] Learning Loss: 2.658
+13:26:40 : [280] Fetch Batch
+13:26:43 : [280] Run Sess
+13:26:48 : [280] Learning Loss: 2.605
+13:26:48 : [281] Fetch Batch
+13:26:51 : [281] Run Sess
+13:26:56 : [281] Learning Loss: 2.586
+13:26:56 : [282] Fetch Batch
+13:26:59 : [282] Run Sess
+13:27:05 : [282] Learning Loss: 2.545
+13:27:05 : [283] Fetch Batch
+13:27:08 : [283] Run Sess
+13:27:13 : [283] Learning Loss: 2.522
+13:27:13 : [284] Fetch Batch
+13:27:16 : [284] Run Sess
+13:27:21 : [284] Learning Loss: 2.494
+13:27:21 : [285] Fetch Batch
+13:27:24 : [285] Run Sess
+13:27:29 : [285] Learning Loss: 2.465
+13:27:29 : [286] Fetch Batch
+13:27:32 : [286] Run Sess
+13:27:37 : [286] Learning Loss: 2.371
+13:27:37 : [287] Fetch Batch
+13:27:40 : [287] Run Sess
+13:27:45 : [287] Learning Loss: 2.416
+13:27:45 : [288] Fetch Batch
+13:27:48 : [288] Run Sess
+13:27:53 : [288] Learning Loss: 2.305
+13:27:53 : [289] Fetch Batch
+13:27:56 : [289] Run Sess
+13:28:01 : [289] Learning Loss: 2.286
+13:28:01 : [290] Fetch Batch
+13:28:04 : [290] Run Sess
+13:28:10 : [290] Learning Loss: 2.242
+13:28:10 : [291] Fetch Batch
+13:28:12 : [291] Run Sess
+13:28:17 : [291] Learning Loss: 2.323
+13:28:17 : [292] Fetch Batch
+13:28:20 : [292] Run Sess
+13:28:25 : [292] Learning Loss: 2.217
+13:28:25 : [293] Fetch Batch
+13:28:28 : [293] Run Sess
+13:28:33 : [293] Learning Loss: 2.212
+13:28:33 : [294] Fetch Batch
+13:28:37 : [294] Run Sess
+13:28:42 : [294] Learning Loss: 2.136
+13:28:42 : [295] Fetch Batch
+13:28:46 : [295] Run Sess
+13:28:51 : [295] Learning Loss: 2.258
+13:28:51 : [296] Fetch Batch
+13:28:54 : [296] Run Sess
+13:28:59 : [296] Learning Loss: 2.118
+13:28:59 : [297] Fetch Batch
+13:29:02 : [297] Run Sess
+13:29:07 : [297] Learning Loss: 2.232
+13:29:07 : [298] Fetch Batch
+13:29:10 : [298] Run Sess
+13:29:15 : [298] Learning Loss: 2.141
+13:29:15 : [299] Fetch Batch
+13:29:18 : [299] Run Sess
+13:29:23 : [299] Learning Loss: 2.238
+13:29:56 :	0.9598	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+13:29:56 :	1963	1833	1545	1141	721	414	211	300	2.0354
+13:29:56 : [300] Fetch Batch
+13:29:59 : [300] Run Sess
+13:30:04 : [300] Learning Loss: 1.920
+13:30:04 : [301] Fetch Batch
+13:30:07 : [301] Run Sess
+13:30:12 : [301] Learning Loss: 2.112
+13:30:12 : [302] Fetch Batch
+13:30:16 : [302] Run Sess
+13:30:21 : [302] Learning Loss: 2.105
+13:30:21 : [303] Fetch Batch
+13:30:24 : [303] Run Sess
+13:30:29 : [303] Learning Loss: 1.948
+13:30:29 : [304] Fetch Batch
+13:30:32 : [304] Run Sess
+13:30:37 : [304] Learning Loss: 2.044
+13:30:37 : [305] Fetch Batch
+13:30:41 : [305] Run Sess
+13:30:46 : [305] Learning Loss: 1.997
+13:30:46 : [306] Fetch Batch
+13:30:49 : [306] Run Sess
+13:30:54 : [306] Learning Loss: 1.877
+13:30:54 : [307] Fetch Batch
+13:30:57 : [307] Run Sess
+13:31:02 : [307] Learning Loss: 1.938
+13:31:02 : [308] Fetch Batch
+13:31:05 : [308] Run Sess
+13:31:10 : [308] Learning Loss: 1.979
+13:31:10 : [309] Fetch Batch
+13:31:13 : [309] Run Sess
+13:31:18 : [309] Learning Loss: 1.876
+13:31:18 : [310] Fetch Batch
+13:31:21 : [310] Run Sess
+13:31:26 : [310] Learning Loss: 1.841
+13:31:26 : [311] Fetch Batch
+13:31:29 : [311] Run Sess
+13:31:34 : [311] Learning Loss: 1.995
+13:31:34 : [312] Fetch Batch
+13:31:37 : [312] Run Sess
+13:31:42 : [312] Learning Loss: 1.729
+13:31:42 : [313] Fetch Batch
+13:31:46 : [313] Run Sess
+13:31:51 : [313] Learning Loss: 1.664
+13:31:51 : [314] Fetch Batch
+13:31:54 : [314] Run Sess
+13:31:59 : [314] Learning Loss: 1.775
+13:31:59 : [315] Fetch Batch
+13:32:02 : [315] Run Sess
+13:32:07 : [315] Learning Loss: 1.741
+13:32:07 : [316] Fetch Batch
+13:32:10 : [316] Run Sess
+13:32:15 : [316] Learning Loss: 1.737
+13:32:15 : [317] Fetch Batch
+13:32:18 : [317] Run Sess
+13:32:23 : [317] Learning Loss: 1.763
+13:32:23 : [318] Fetch Batch
+13:32:26 : [318] Run Sess
+13:32:31 : [318] Learning Loss: 1.685
+13:32:31 : [319] Fetch Batch
+13:32:34 : [319] Run Sess
+13:32:39 : [319] Learning Loss: 1.668
+13:32:39 : [320] Fetch Batch
+13:32:42 : [320] Run Sess
+13:32:47 : [320] Learning Loss: 1.701
+13:32:47 : [321] Fetch Batch
+13:32:50 : [321] Run Sess
+13:32:55 : [321] Learning Loss: 1.696
+13:32:55 : [322] Fetch Batch
+13:32:58 : [322] Run Sess
+13:33:04 : [322] Learning Loss: 1.633
+13:33:04 : [323] Fetch Batch
+13:33:07 : [323] Run Sess
+13:33:12 : [323] Learning Loss: 1.628
+13:33:12 : [324] Fetch Batch
+13:33:15 : [324] Run Sess
+13:33:20 : [324] Learning Loss: 1.660
+13:33:53 :	0.9612	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+13:33:53 :	1958	1812	1526	1123	741	430	224	325	1.5704
+13:33:53 : [325] Fetch Batch
+13:33:56 : [325] Run Sess
+13:34:01 : [325] Learning Loss: 1.557
+13:34:01 : [326] Fetch Batch
+13:34:04 : [326] Run Sess
+13:34:09 : [326] Learning Loss: 1.463
+13:34:09 : [327] Fetch Batch
+13:34:12 : [327] Run Sess
+13:34:17 : [327] Learning Loss: 1.495
+13:34:17 : [328] Fetch Batch
+13:34:22 : [328] Run Sess
+13:34:27 : [328] Learning Loss: 1.474
+13:34:27 : [329] Fetch Batch
+13:34:30 : [329] Run Sess
+13:34:35 : [329] Learning Loss: 1.530
+13:34:35 : [330] Fetch Batch
+13:34:38 : [330] Run Sess
+13:34:43 : [330] Learning Loss: 1.467
+13:34:43 : [331] Fetch Batch
+13:34:46 : [331] Run Sess
+13:34:51 : [331] Learning Loss: 1.488
+13:34:51 : [332] Fetch Batch
+13:34:55 : [332] Run Sess
+13:35:00 : [332] Learning Loss: 1.452
+13:35:00 : [333] Fetch Batch
+13:35:03 : [333] Run Sess
+13:35:08 : [333] Learning Loss: 1.518
+13:35:08 : [334] Fetch Batch
+13:35:11 : [334] Run Sess
+13:35:16 : [334] Learning Loss: 1.496
+13:35:16 : [335] Fetch Batch
+13:35:19 : [335] Run Sess
+13:35:24 : [335] Learning Loss: 1.457
+13:35:24 : [336] Fetch Batch
+13:35:27 : [336] Run Sess
+13:35:32 : [336] Learning Loss: 1.480
+13:35:32 : [337] Fetch Batch
+13:35:35 : [337] Run Sess
+13:35:41 : [337] Learning Loss: 1.460
+13:35:41 : [338] Fetch Batch
+13:35:43 : [338] Run Sess
+13:35:48 : [338] Learning Loss: 1.444
+13:35:48 : [339] Fetch Batch
+13:35:52 : [339] Run Sess
+13:35:57 : [339] Learning Loss: 1.307
+13:35:57 : [340] Fetch Batch
+13:36:00 : [340] Run Sess
+13:36:05 : [340] Learning Loss: 1.410
+13:36:05 : [341] Fetch Batch
+13:36:08 : [341] Run Sess
+13:36:13 : [341] Learning Loss: 1.434
+13:36:13 : [342] Fetch Batch
+13:36:16 : [342] Run Sess
+13:36:21 : [342] Learning Loss: 1.385
+13:36:21 : [343] Fetch Batch
+13:36:24 : [343] Run Sess
+13:36:29 : [343] Learning Loss: 1.430
+13:36:29 : [344] Fetch Batch
+13:36:32 : [344] Run Sess
+13:36:37 : [344] Learning Loss: 1.330
+13:36:37 : [345] Fetch Batch
+13:36:40 : [345] Run Sess
+13:36:45 : [345] Learning Loss: 1.300
+13:36:45 : [346] Fetch Batch
+13:36:49 : [346] Run Sess
+13:36:54 : [346] Learning Loss: 1.331
+13:36:54 : [347] Fetch Batch
+13:36:56 : [347] Run Sess
+13:37:02 : [347] Learning Loss: 1.340
+13:37:02 : [348] Fetch Batch
+13:37:04 : [348] Run Sess
+13:37:10 : [348] Learning Loss: 1.359
+13:37:10 : [349] Fetch Batch
+13:37:12 : [349] Run Sess
+13:37:18 : [349] Learning Loss: 1.292
+13:37:50 :	0.9607	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+13:37:50 :	1957	1799	1511	1142	737	438	243	350	1.2714
+13:37:50 : [350] Fetch Batch
+13:37:54 : [350] Run Sess
+13:37:59 : [350] Learning Loss: 1.296
+13:37:59 : [351] Fetch Batch
+13:38:02 : [351] Run Sess
+13:38:07 : [351] Learning Loss: 1.294
+13:38:07 : [352] Fetch Batch
+13:38:11 : [352] Run Sess
+13:38:16 : [352] Learning Loss: 1.260
+13:38:16 : [353] Fetch Batch
+13:38:19 : [353] Run Sess
+13:38:24 : [353] Learning Loss: 1.231
+13:38:24 : [354] Fetch Batch
+13:38:26 : [354] Run Sess
+13:38:32 : [354] Learning Loss: 1.273
+13:38:32 : [355] Fetch Batch
+13:38:34 : [355] Run Sess
+13:38:40 : [355] Learning Loss: 1.189
+13:38:40 : [356] Fetch Batch
+13:38:43 : [356] Run Sess
+13:38:48 : [356] Learning Loss: 1.243
+13:38:48 : [357] Fetch Batch
+13:38:51 : [357] Run Sess
+13:38:56 : [357] Learning Loss: 1.266
+13:38:56 : [358] Fetch Batch
+13:38:59 : [358] Run Sess
+13:39:04 : [358] Learning Loss: 1.216
+13:39:04 : [359] Fetch Batch
+13:39:07 : [359] Run Sess
+13:39:12 : [359] Learning Loss: 1.212
+13:39:12 : [360] Fetch Batch
+13:39:15 : [360] Run Sess
+13:39:20 : [360] Learning Loss: 1.116
+13:39:20 : [361] Fetch Batch
+13:39:24 : [361] Run Sess
+13:39:29 : [361] Learning Loss: 1.156
+13:39:29 : [362] Fetch Batch
+13:39:32 : [362] Run Sess
+13:39:37 : [362] Learning Loss: 1.158
+13:39:37 : [363] Fetch Batch
+13:39:41 : [363] Run Sess
+13:39:46 : [363] Learning Loss: 1.184
+13:39:46 : [364] Fetch Batch
+13:39:50 : [364] Run Sess
+13:39:55 : [364] Learning Loss: 1.182
+13:39:55 : [365] Fetch Batch
+13:39:58 : [365] Run Sess
+13:40:04 : [365] Learning Loss: 1.149
+13:40:04 : [366] Fetch Batch
+13:40:07 : [366] Run Sess
+13:40:12 : [366] Learning Loss: 1.135
+13:40:12 : [367] Fetch Batch
+13:40:15 : [367] Run Sess
+13:40:20 : [367] Learning Loss: 1.115
+13:40:20 : [368] Fetch Batch
+13:40:23 : [368] Run Sess
+13:40:28 : [368] Learning Loss: 1.105
+13:40:28 : [369] Fetch Batch
+13:40:31 : [369] Run Sess
+13:40:36 : [369] Learning Loss: 1.097
+13:40:36 : [370] Fetch Batch
+13:40:39 : [370] Run Sess
+13:40:44 : [370] Learning Loss: 1.033
+13:40:44 : [371] Fetch Batch
+13:40:47 : [371] Run Sess
+13:40:52 : [371] Learning Loss: 1.141
+13:40:52 : [372] Fetch Batch
+13:40:55 : [372] Run Sess
+13:41:00 : [372] Learning Loss: 1.088
+13:41:00 : [373] Fetch Batch
+13:41:03 : [373] Run Sess
+13:41:08 : [373] Learning Loss: 1.090
+13:41:08 : [374] Fetch Batch
+13:41:12 : [374] Run Sess
+13:41:17 : [374] Learning Loss: 1.075
+13:41:52 :	0.9593	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+13:41:52 :	1964	1804	1514	1103	742	441	234	375	1.0687
+13:41:52 : [375] Fetch Batch
+13:41:55 : [375] Run Sess
+13:42:00 : [375] Learning Loss: 1.056
+13:42:00 : [376] Fetch Batch
+13:42:03 : [376] Run Sess
+13:42:08 : [376] Learning Loss: 1.036
+13:42:08 : [377] Fetch Batch
+13:42:11 : [377] Run Sess
+13:42:16 : [377] Learning Loss: 1.069
+13:42:16 : [378] Fetch Batch
+13:42:19 : [378] Run Sess
+13:42:24 : [378] Learning Loss: 1.026
+13:42:24 : [379] Fetch Batch
+13:42:27 : [379] Run Sess
+13:42:32 : [379] Learning Loss: 1.099
+13:42:32 : [380] Fetch Batch
+13:42:35 : [380] Run Sess
+13:42:40 : [380] Learning Loss: 1.048
+13:42:40 : [381] Fetch Batch
+13:42:43 : [381] Run Sess
+13:42:49 : [381] Learning Loss: 1.002
+13:42:49 : [382] Fetch Batch
+13:42:51 : [382] Run Sess
+13:42:56 : [382] Learning Loss: 1.012
+13:42:56 : [383] Fetch Batch
+13:42:59 : [383] Run Sess
+13:43:04 : [383] Learning Loss: 1.041
+13:43:04 : [384] Fetch Batch
+13:43:07 : [384] Run Sess
+13:43:12 : [384] Learning Loss: 1.026
+13:43:12 : [385] Fetch Batch
+13:43:15 : [385] Run Sess
+13:43:20 : [385] Learning Loss: 1.028
+13:43:20 : [386] Fetch Batch
+13:43:24 : [386] Run Sess
+13:43:29 : [386] Learning Loss: 1.007
+13:43:29 : [387] Fetch Batch
+13:43:32 : [387] Run Sess
+13:43:37 : [387] Learning Loss: 0.990
+13:43:37 : [388] Fetch Batch
+13:43:40 : [388] Run Sess
+13:43:45 : [388] Learning Loss: 0.976
+13:43:45 : [389] Fetch Batch
+13:43:48 : [389] Run Sess
+13:43:53 : [389] Learning Loss: 0.993
+13:43:53 : [390] Fetch Batch
+13:43:56 : [390] Run Sess
+13:44:02 : [390] Learning Loss: 0.907
+13:44:02 : [391] Fetch Batch
+13:44:05 : [391] Run Sess
+13:44:10 : [391] Learning Loss: 1.007
+13:44:10 : [392] Fetch Batch
+13:44:13 : [392] Run Sess
+13:44:18 : [392] Learning Loss: 0.948
+13:44:18 : [393] Fetch Batch
+13:44:21 : [393] Run Sess
+13:44:26 : [393] Learning Loss: 0.964
+13:44:26 : [394] Fetch Batch
+13:44:29 : [394] Run Sess
+13:44:34 : [394] Learning Loss: 0.877
+13:44:34 : [395] Fetch Batch
+13:44:37 : [395] Run Sess
+13:44:42 : [395] Learning Loss: 0.933
+13:44:42 : [396] Fetch Batch
+13:44:45 : [396] Run Sess
+13:44:50 : [396] Learning Loss: 0.893
+13:44:50 : [397] Fetch Batch
+13:44:54 : [397] Run Sess
+13:44:59 : [397] Learning Loss: 0.873
+13:44:59 : [398] Fetch Batch
+13:45:02 : [398] Run Sess
+13:45:07 : [398] Learning Loss: 0.954
+13:45:07 : [399] Fetch Batch
+13:45:10 : [399] Run Sess
+13:45:15 : [399] Learning Loss: 0.892
+13:45:49 :	0.9601	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+13:45:49 :	1955	1808	1530	1156	758	431	217	400	0.9176
+13:45:49 : [400] Fetch Batch
+13:45:52 : [400] Run Sess
+13:45:57 : [400] Learning Loss: 0.921
+13:45:57 : [401] Fetch Batch
+13:46:00 : [401] Run Sess
+13:46:05 : [401] Learning Loss: 0.897
+13:46:05 : [402] Fetch Batch
+13:46:08 : [402] Run Sess
+13:46:13 : [402] Learning Loss: 0.899
+13:46:13 : [403] Fetch Batch
+13:46:17 : [403] Run Sess
+13:46:22 : [403] Learning Loss: 0.904
+13:46:22 : [404] Fetch Batch
+13:46:25 : [404] Run Sess
+13:46:30 : [404] Learning Loss: 0.850
+13:46:30 : [405] Fetch Batch
+13:46:33 : [405] Run Sess
+13:46:38 : [405] Learning Loss: 0.877
+13:46:38 : [406] Fetch Batch
+13:46:41 : [406] Run Sess
+13:46:46 : [406] Learning Loss: 0.897
+13:46:46 : [407] Fetch Batch
+13:46:49 : [407] Run Sess
+13:46:54 : [407] Learning Loss: 0.857
+13:46:54 : [408] Fetch Batch
+13:46:57 : [408] Run Sess
+13:47:02 : [408] Learning Loss: 0.905
+13:47:02 : [409] Fetch Batch
+13:47:05 : [409] Run Sess
+13:47:10 : [409] Learning Loss: 0.872
+13:47:10 : [410] Fetch Batch
+13:47:14 : [410] Run Sess
+13:47:19 : [410] Learning Loss: 0.886
+13:47:19 : [411] Fetch Batch
+13:47:22 : [411] Run Sess
+13:47:27 : [411] Learning Loss: 0.852
+13:47:27 : [412] Fetch Batch
+13:47:30 : [412] Run Sess
+13:47:35 : [412] Learning Loss: 0.803
+13:47:35 : [413] Fetch Batch
+13:47:38 : [413] Run Sess
+13:47:44 : [413] Learning Loss: 0.790
+13:47:44 : [414] Fetch Batch
+13:47:46 : [414] Run Sess
+13:47:52 : [414] Learning Loss: 0.855
+13:47:52 : [415] Fetch Batch
+13:47:55 : [415] Run Sess
+13:48:00 : [415] Learning Loss: 0.847
+13:48:00 : [416] Fetch Batch
+13:48:03 : [416] Run Sess
+13:48:08 : [416] Learning Loss: 0.812
+13:48:08 : [417] Fetch Batch
+13:48:11 : [417] Run Sess
+13:48:16 : [417] Learning Loss: 0.847
+13:48:16 : [418] Fetch Batch
+13:48:19 : [418] Run Sess
+13:48:24 : [418] Learning Loss: 0.834
+13:48:24 : [419] Fetch Batch
+13:48:27 : [419] Run Sess
+13:48:32 : [419] Learning Loss: 0.817
+13:48:32 : [420] Fetch Batch
+13:48:35 : [420] Run Sess
+13:48:41 : [420] Learning Loss: 0.830
+13:48:41 : [421] Fetch Batch
+13:48:44 : [421] Run Sess
+13:48:49 : [421] Learning Loss: 0.808
+13:48:49 : [422] Fetch Batch
+13:48:52 : [422] Run Sess
+13:48:57 : [422] Learning Loss: 0.783
+13:48:57 : [423] Fetch Batch
+13:49:00 : [423] Run Sess
+13:49:05 : [423] Learning Loss: 0.772
+13:49:05 : [424] Fetch Batch
+13:49:08 : [424] Run Sess
+13:49:13 : [424] Learning Loss: 0.787
+13:49:46 :	0.9612	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+13:49:46 :	1958	1808	1509	1132	743	432	234	425	0.7833
+13:49:46 : [425] Fetch Batch
+13:49:48 : [425] Run Sess
+13:49:54 : [425] Learning Loss: 0.764
+13:49:54 : [426] Fetch Batch
+13:49:56 : [426] Run Sess
+13:50:02 : [426] Learning Loss: 0.801
+13:50:02 : [427] Fetch Batch
+13:50:05 : [427] Run Sess
+13:50:10 : [427] Learning Loss: 0.776
+13:50:10 : [428] Fetch Batch
+13:50:13 : [428] Run Sess
+13:50:18 : [428] Learning Loss: 0.753
+13:50:18 : [429] Fetch Batch
+13:50:21 : [429] Run Sess
+13:50:26 : [429] Learning Loss: 0.793
+13:50:26 : [430] Fetch Batch
+13:50:32 : [430] Run Sess
+13:50:37 : [430] Learning Loss: 0.785
+13:50:37 : [431] Fetch Batch
+13:50:40 : [431] Run Sess
+13:50:45 : [431] Learning Loss: 0.799
+13:50:45 : [432] Fetch Batch
+13:50:48 : [432] Run Sess
+13:50:54 : [432] Learning Loss: 0.772
+13:50:54 : [433] Fetch Batch
+13:50:57 : [433] Run Sess
+13:51:02 : [433] Learning Loss: 0.730
+13:51:02 : [434] Fetch Batch
+13:51:05 : [434] Run Sess
+13:51:10 : [434] Learning Loss: 0.746
+13:51:10 : [435] Fetch Batch
+13:51:13 : [435] Run Sess
+13:51:18 : [435] Learning Loss: 0.758
+13:51:18 : [436] Fetch Batch
+13:51:21 : [436] Run Sess
+13:51:27 : [436] Learning Loss: 0.737
+13:51:27 : [437] Fetch Batch
+13:51:30 : [437] Run Sess
+13:51:35 : [437] Learning Loss: 0.725
+13:51:35 : [438] Fetch Batch
+13:51:38 : [438] Run Sess
+13:51:43 : [438] Learning Loss: 0.731
+13:51:43 : [439] Fetch Batch
+13:51:46 : [439] Run Sess
+13:51:51 : [439] Learning Loss: 0.788
+13:51:51 : [440] Fetch Batch
+13:51:54 : [440] Run Sess
+13:52:00 : [440] Learning Loss: 0.731
+13:52:00 : [441] Fetch Batch
+13:52:02 : [441] Run Sess
+13:52:08 : [441] Learning Loss: 0.713
+13:52:08 : [442] Fetch Batch
+13:52:11 : [442] Run Sess
+13:52:16 : [442] Learning Loss: 0.744
+13:52:16 : [443] Fetch Batch
+13:52:19 : [443] Run Sess
+13:52:25 : [443] Learning Loss: 0.753
+13:52:25 : [444] Fetch Batch
+13:52:28 : [444] Run Sess
+13:52:33 : [444] Learning Loss: 0.707
+13:52:33 : [445] Fetch Batch
+13:52:36 : [445] Run Sess
+13:52:41 : [445] Learning Loss: 0.677
+13:52:41 : [446] Fetch Batch
+13:52:44 : [446] Run Sess
+13:52:49 : [446] Learning Loss: 0.676
+13:52:49 : [447] Fetch Batch
+13:52:53 : [447] Run Sess
+13:52:58 : [447] Learning Loss: 0.690
+13:52:58 : [448] Fetch Batch
+13:53:01 : [448] Run Sess
+13:53:06 : [448] Learning Loss: 0.683
+13:53:06 : [449] Fetch Batch
+13:53:09 : [449] Run Sess
+13:53:14 : [449] Learning Loss: 0.701
+13:53:47 :	0.9613	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+13:53:47 :	1962	1827	1556	1132	728	411	214	450	0.6756
+13:53:47 : [450] Fetch Batch
+13:53:50 : [450] Run Sess
+13:53:55 : [450] Learning Loss: 0.692
+13:53:55 : [451] Fetch Batch
+13:53:59 : [451] Run Sess
+13:54:04 : [451] Learning Loss: 0.706
+13:54:04 : [452] Fetch Batch
+13:54:07 : [452] Run Sess
+13:54:12 : [452] Learning Loss: 0.664
+13:54:12 : [453] Fetch Batch
+13:54:15 : [453] Run Sess
+13:54:20 : [453] Learning Loss: 0.697
+13:54:20 : [454] Fetch Batch
+13:54:23 : [454] Run Sess
+13:54:29 : [454] Learning Loss: 0.653
+13:54:29 : [455] Fetch Batch
+13:54:32 : [455] Run Sess
+13:54:37 : [455] Learning Loss: 0.660
+13:54:37 : [456] Fetch Batch
+13:54:39 : [456] Run Sess
+13:54:45 : [456] Learning Loss: 0.647
+13:54:45 : [457] Fetch Batch
+13:54:48 : [457] Run Sess
+13:54:53 : [457] Learning Loss: 0.673
+13:54:53 : [458] Fetch Batch
+13:54:57 : [458] Run Sess
+13:55:02 : [458] Learning Loss: 0.642
+13:55:02 : [459] Fetch Batch
+13:55:05 : [459] Run Sess
+13:55:10 : [459] Learning Loss: 0.618
+13:55:10 : [460] Fetch Batch
+13:55:14 : [460] Run Sess
+13:55:19 : [460] Learning Loss: 0.624
+13:55:19 : [461] Fetch Batch
+13:55:22 : [461] Run Sess
+13:55:27 : [461] Learning Loss: 0.657
+13:55:27 : [462] Fetch Batch
+13:55:31 : [462] Run Sess
+13:55:36 : [462] Learning Loss: 0.645
+13:55:36 : [463] Fetch Batch
+13:55:39 : [463] Run Sess
+13:55:44 : [463] Learning Loss: 0.673
+13:55:44 : [464] Fetch Batch
+13:55:47 : [464] Run Sess
+13:55:52 : [464] Learning Loss: 0.615
+13:55:52 : [465] Fetch Batch
+13:55:55 : [465] Run Sess
+13:56:00 : [465] Learning Loss: 0.632
+13:56:00 : [466] Fetch Batch
+13:56:04 : [466] Run Sess
+13:56:09 : [466] Learning Loss: 0.606
+13:56:09 : [467] Fetch Batch
+13:56:12 : [467] Run Sess
+13:56:17 : [467] Learning Loss: 0.594
+13:56:17 : [468] Fetch Batch
+13:56:20 : [468] Run Sess
+13:56:25 : [468] Learning Loss: 0.661
+13:56:25 : [469] Fetch Batch
+13:56:28 : [469] Run Sess
+13:56:33 : [469] Learning Loss: 0.607
+13:56:33 : [470] Fetch Batch
+13:56:36 : [470] Run Sess
+13:56:41 : [470] Learning Loss: 0.616
+13:56:41 : [471] Fetch Batch
+13:56:44 : [471] Run Sess
+13:56:50 : [471] Learning Loss: 0.623
+13:56:50 : [472] Fetch Batch
+13:56:55 : [472] Run Sess
+13:57:00 : [472] Learning Loss: 0.601
+13:57:00 : [473] Fetch Batch
+13:57:05 : [473] Run Sess
+13:57:10 : [473] Learning Loss: 0.633
+13:57:10 : [474] Fetch Batch
+13:57:13 : [474] Run Sess
+13:57:18 : [474] Learning Loss: 0.598
+13:57:51 :	0.9619	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+13:57:51 :	1970	1805	1527	1122	732	434	234	475	0.6076
+13:57:51 : [475] Fetch Batch
+13:57:54 : [475] Run Sess
+13:57:59 : [475] Learning Loss: 0.604
+13:57:59 : [476] Fetch Batch
+13:58:02 : [476] Run Sess
+13:58:07 : [476] Learning Loss: 0.574
+13:58:07 : [477] Fetch Batch
+13:58:10 : [477] Run Sess
+13:58:15 : [477] Learning Loss: 0.605
+13:58:15 : [478] Fetch Batch
+13:58:18 : [478] Run Sess
+13:58:23 : [478] Learning Loss: 0.608
+13:58:23 : [479] Fetch Batch
+13:58:27 : [479] Run Sess
+13:58:32 : [479] Learning Loss: 0.571
+13:58:32 : [480] Fetch Batch
+13:58:35 : [480] Run Sess
+13:58:40 : [480] Learning Loss: 0.600
+13:58:40 : [481] Fetch Batch
+13:58:43 : [481] Run Sess
+13:58:48 : [481] Learning Loss: 0.610
+13:58:48 : [482] Fetch Batch
+13:58:51 : [482] Run Sess
+13:58:57 : [482] Learning Loss: 0.586
+13:58:57 : [483] Fetch Batch
+13:59:00 : [483] Run Sess
+13:59:05 : [483] Learning Loss: 0.586
+13:59:05 : [484] Fetch Batch
+13:59:08 : [484] Run Sess
+13:59:13 : [484] Learning Loss: 0.583
+13:59:13 : [485] Fetch Batch
+13:59:16 : [485] Run Sess
+13:59:21 : [485] Learning Loss: 0.582
+13:59:21 : [486] Fetch Batch
+13:59:24 : [486] Run Sess
+13:59:29 : [486] Learning Loss: 0.554
+13:59:29 : [487] Fetch Batch
+13:59:32 : [487] Run Sess
+13:59:37 : [487] Learning Loss: 0.569
+13:59:37 : [488] Fetch Batch
+13:59:41 : [488] Run Sess
+13:59:46 : [488] Learning Loss: 0.562
+13:59:46 : [489] Fetch Batch
+13:59:49 : [489] Run Sess
+13:59:54 : [489] Learning Loss: 0.617
+13:59:54 : [490] Fetch Batch
+13:59:57 : [490] Run Sess
+14:00:02 : [490] Learning Loss: 0.555
+14:00:02 : [491] Fetch Batch
+14:00:05 : [491] Run Sess
+14:00:10 : [491] Learning Loss: 0.555
+14:00:10 : [492] Fetch Batch
+14:00:13 : [492] Run Sess
+14:00:18 : [492] Learning Loss: 0.536
+14:00:18 : [493] Fetch Batch
+14:00:22 : [493] Run Sess
+14:00:27 : [493] Learning Loss: 0.591
+14:00:27 : [494] Fetch Batch
+14:00:30 : [494] Run Sess
+14:00:35 : [494] Learning Loss: 0.538
+14:00:35 : [495] Fetch Batch
+14:00:38 : [495] Run Sess
+14:00:43 : [495] Learning Loss: 0.556
+14:00:43 : [496] Fetch Batch
+14:00:46 : [496] Run Sess
+14:00:51 : [496] Learning Loss: 0.538
+14:00:51 : [497] Fetch Batch
+14:00:54 : [497] Run Sess
+14:00:59 : [497] Learning Loss: 0.538
+14:00:59 : [498] Fetch Batch
+14:01:02 : [498] Run Sess
+14:01:07 : [498] Learning Loss: 0.525
+14:01:07 : [499] Fetch Batch
+14:01:10 : [499] Run Sess
+14:01:15 : [499] Learning Loss: 0.531
+14:01:48 :	0.9618	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+14:01:48 :	1961	1815	1523	1133	755	432	208	500	0.5381
+14:01:48 : [500] Fetch Batch
+14:01:51 : [500] Run Sess
+14:01:56 : [500] Learning Loss: 0.539
+14:01:56 : [501] Fetch Batch
+14:01:59 : [501] Run Sess
+14:02:04 : [501] Learning Loss: 0.549
+14:02:04 : [502] Fetch Batch
+14:02:07 : [502] Run Sess
+14:02:12 : [502] Learning Loss: 0.560
+14:02:12 : [503] Fetch Batch
+14:02:16 : [503] Run Sess
+14:02:21 : [503] Learning Loss: 0.536
+14:02:21 : [504] Fetch Batch
+14:02:24 : [504] Run Sess
+14:02:29 : [504] Learning Loss: 0.526
+14:02:29 : [505] Fetch Batch
+14:02:31 : [505] Run Sess
+14:02:37 : [505] Learning Loss: 0.540
+14:02:37 : [506] Fetch Batch
+14:02:40 : [506] Run Sess
+14:02:45 : [506] Learning Loss: 0.526
+14:02:45 : [507] Fetch Batch
+14:02:48 : [507] Run Sess
+14:02:53 : [507] Learning Loss: 0.539
+14:02:53 : [508] Fetch Batch
+14:02:56 : [508] Run Sess
+14:03:01 : [508] Learning Loss: 0.543
+14:03:01 : [509] Fetch Batch
+14:03:04 : [509] Run Sess
+14:03:09 : [509] Learning Loss: 0.499
+14:03:09 : [510] Fetch Batch
+14:03:13 : [510] Run Sess
+14:03:18 : [510] Learning Loss: 0.510
+14:03:18 : [511] Fetch Batch
+14:03:21 : [511] Run Sess
+14:03:27 : [511] Learning Loss: 0.528
+14:03:27 : [512] Fetch Batch
+14:03:29 : [512] Run Sess
+14:03:35 : [512] Learning Loss: 0.553
+14:03:35 : [513] Fetch Batch
+14:03:38 : [513] Run Sess
+14:03:43 : [513] Learning Loss: 0.541
+14:03:43 : [514] Fetch Batch
+14:03:46 : [514] Run Sess
+14:03:51 : [514] Learning Loss: 0.482
+14:03:51 : [515] Fetch Batch
+14:03:54 : [515] Run Sess
+14:03:59 : [515] Learning Loss: 0.508
+14:03:59 : [516] Fetch Batch
+14:04:03 : [516] Run Sess
+14:04:08 : [516] Learning Loss: 0.502
+14:04:08 : [517] Fetch Batch
+14:04:11 : [517] Run Sess
+14:04:16 : [517] Learning Loss: 0.524
+14:04:16 : [518] Fetch Batch
+14:04:19 : [518] Run Sess
+14:04:24 : [518] Learning Loss: 0.488
+14:04:24 : [519] Fetch Batch
+14:04:27 : [519] Run Sess
+14:04:32 : [519] Learning Loss: 0.542
+14:04:32 : [520] Fetch Batch
+14:04:35 : [520] Run Sess
+14:04:40 : [520] Learning Loss: 0.479
+14:04:40 : [521] Fetch Batch
+14:04:42 : [521] Run Sess
+14:04:48 : [521] Learning Loss: 0.510
+14:04:48 : [522] Fetch Batch
+14:04:51 : [522] Run Sess
+14:04:56 : [522] Learning Loss: 0.518
+14:04:56 : [523] Fetch Batch
+14:04:59 : [523] Run Sess
+14:05:04 : [523] Learning Loss: 0.470
+14:05:04 : [524] Fetch Batch
+14:05:07 : [524] Run Sess
+14:05:12 : [524] Learning Loss: 0.480
+14:05:45 :	0.9606	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+14:05:45 :	1955	1796	1514	1119	762	435	232	525	0.4831
+14:05:45 : [525] Fetch Batch
+14:05:47 : [525] Run Sess
+14:05:52 : [525] Learning Loss: 0.459
+14:05:52 : [526] Fetch Batch
+14:05:55 : [526] Run Sess
+14:06:00 : [526] Learning Loss: 0.479
+14:06:00 : [527] Fetch Batch
+14:06:04 : [527] Run Sess
+14:06:09 : [527] Learning Loss: 0.481
+14:06:09 : [528] Fetch Batch
+14:06:12 : [528] Run Sess
+14:06:17 : [528] Learning Loss: 0.461
+14:06:17 : [529] Fetch Batch
+14:06:20 : [529] Run Sess
+14:06:25 : [529] Learning Loss: 0.453
+14:06:25 : [530] Fetch Batch
+14:06:28 : [530] Run Sess
+14:06:33 : [530] Learning Loss: 0.471
+14:06:33 : [531] Fetch Batch
+14:06:36 : [531] Run Sess
+14:06:41 : [531] Learning Loss: 0.454
+14:06:41 : [532] Fetch Batch
+14:06:44 : [532] Run Sess
+14:06:49 : [532] Learning Loss: 0.486
+14:06:49 : [533] Fetch Batch
+14:06:52 : [533] Run Sess
+14:06:57 : [533] Learning Loss: 0.469
+14:06:57 : [534] Fetch Batch
+14:07:00 : [534] Run Sess
+14:07:05 : [534] Learning Loss: 0.481
+14:07:05 : [535] Fetch Batch
+14:07:08 : [535] Run Sess
+14:07:13 : [535] Learning Loss: 0.479
+14:07:13 : [536] Fetch Batch
+14:07:16 : [536] Run Sess
+14:07:21 : [536] Learning Loss: 0.452
+14:07:21 : [537] Fetch Batch
+14:07:24 : [537] Run Sess
+14:07:29 : [537] Learning Loss: 0.457
+14:07:29 : [538] Fetch Batch
+14:07:33 : [538] Run Sess
+14:07:38 : [538] Learning Loss: 0.440
+14:07:38 : [539] Fetch Batch
+14:07:41 : [539] Run Sess
+14:07:46 : [539] Learning Loss: 0.455
+14:07:46 : [540] Fetch Batch
+14:07:50 : [540] Run Sess
+14:07:55 : [540] Learning Loss: 0.479
+14:07:55 : [541] Fetch Batch
+14:07:58 : [541] Run Sess
+14:08:03 : [541] Learning Loss: 0.476
+14:08:03 : [542] Fetch Batch
+14:08:06 : [542] Run Sess
+14:08:11 : [542] Learning Loss: 0.454
+14:08:11 : [543] Fetch Batch
+14:08:14 : [543] Run Sess
+14:08:19 : [543] Learning Loss: 0.434
+14:08:19 : [544] Fetch Batch
+14:08:22 : [544] Run Sess
+14:08:27 : [544] Learning Loss: 0.435
+14:08:27 : [545] Fetch Batch
+14:08:30 : [545] Run Sess
+14:08:35 : [545] Learning Loss: 0.449
+14:08:35 : [546] Fetch Batch
+14:08:39 : [546] Run Sess
+14:08:44 : [546] Learning Loss: 0.454
+14:08:44 : [547] Fetch Batch
+14:08:47 : [547] Run Sess
+14:08:52 : [547] Learning Loss: 0.437
+14:08:52 : [548] Fetch Batch
+14:08:55 : [548] Run Sess
+14:09:00 : [548] Learning Loss: 0.445
+14:09:00 : [549] Fetch Batch
+14:09:03 : [549] Run Sess
+14:09:08 : [549] Learning Loss: 0.439
+14:09:41 :	0.9618	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+14:09:41 :	1961	1806	1549	1133	743	416	223	550	0.4411
+14:09:41 : [550] Fetch Batch
+14:09:43 : [550] Run Sess
+14:09:49 : [550] Learning Loss: 0.463
+14:09:49 : [551] Fetch Batch
+14:09:52 : [551] Run Sess
+14:09:57 : [551] Learning Loss: 0.458
+14:09:57 : [552] Fetch Batch
+14:10:00 : [552] Run Sess
+14:10:05 : [552] Learning Loss: 0.431
+14:10:05 : [553] Fetch Batch
+14:10:09 : [553] Run Sess
+14:10:14 : [553] Learning Loss: 0.427
+14:10:14 : [554] Fetch Batch
+14:10:17 : [554] Run Sess
+14:10:22 : [554] Learning Loss: 0.442
+14:10:22 : [555] Fetch Batch
+14:10:26 : [555] Run Sess
+14:10:31 : [555] Learning Loss: 0.415
+14:10:31 : [556] Fetch Batch
+14:10:35 : [556] Run Sess
+14:10:40 : [556] Learning Loss: 0.393
+14:10:40 : [557] Fetch Batch
+14:10:43 : [557] Run Sess
+14:10:48 : [557] Learning Loss: 0.431
+14:10:48 : [558] Fetch Batch
+14:10:50 : [558] Run Sess
+14:10:56 : [558] Learning Loss: 0.431
+14:10:56 : [559] Fetch Batch
+14:10:59 : [559] Run Sess
+14:11:04 : [559] Learning Loss: 0.412
+14:11:04 : [560] Fetch Batch
+14:11:07 : [560] Run Sess
+14:11:12 : [560] Learning Loss: 0.423
+14:11:12 : [561] Fetch Batch
+14:11:15 : [561] Run Sess
+14:11:20 : [561] Learning Loss: 0.407
+14:11:20 : [562] Fetch Batch
+14:11:24 : [562] Run Sess
+14:11:29 : [562] Learning Loss: 0.426
+14:11:29 : [563] Fetch Batch
+14:11:33 : [563] Run Sess
+14:11:38 : [563] Learning Loss: 0.434
+14:11:38 : [564] Fetch Batch
+14:11:41 : [564] Run Sess
+14:11:46 : [564] Learning Loss: 0.400
+14:11:46 : [565] Fetch Batch
+14:11:49 : [565] Run Sess
+14:11:54 : [565] Learning Loss: 0.411
+14:11:54 : [566] Fetch Batch
+14:11:57 : [566] Run Sess
+14:12:02 : [566] Learning Loss: 0.418
+14:12:02 : [567] Fetch Batch
+14:12:05 : [567] Run Sess
+14:12:10 : [567] Learning Loss: 0.441
+14:12:10 : [568] Fetch Batch
+14:12:12 : [568] Run Sess
+14:12:18 : [568] Learning Loss: 0.409
+14:12:18 : [569] Fetch Batch
+14:12:21 : [569] Run Sess
+14:12:26 : [569] Learning Loss: 0.391
+14:12:26 : [570] Fetch Batch
+14:12:30 : [570] Run Sess
+14:12:35 : [570] Learning Loss: 0.424
+14:12:35 : [571] Fetch Batch
+14:12:38 : [571] Run Sess
+14:12:44 : [571] Learning Loss: 0.406
+14:12:44 : [572] Fetch Batch
+14:12:47 : [572] Run Sess
+14:12:52 : [572] Learning Loss: 0.403
+14:12:52 : [573] Fetch Batch
+14:12:55 : [573] Run Sess
+14:13:00 : [573] Learning Loss: 0.389
+14:13:00 : [574] Fetch Batch
+14:13:03 : [574] Run Sess
+14:13:08 : [574] Learning Loss: 0.404
+14:13:43 :	0.9601	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+14:13:43 :	1956	1834	1512	1135	735	432	226	575	0.4070
+14:13:43 : [575] Fetch Batch
+14:13:46 : [575] Run Sess
+14:13:51 : [575] Learning Loss: 0.423
+14:13:51 : [576] Fetch Batch
+14:13:55 : [576] Run Sess
+14:14:00 : [576] Learning Loss: 0.400
+14:14:00 : [577] Fetch Batch
+14:14:03 : [577] Run Sess
+14:14:08 : [577] Learning Loss: 0.385
+14:14:08 : [578] Fetch Batch
+14:14:11 : [578] Run Sess
+14:14:16 : [578] Learning Loss: 0.431
+14:14:16 : [579] Fetch Batch
+14:14:19 : [579] Run Sess
+14:14:24 : [579] Learning Loss: 0.402
+14:14:24 : [580] Fetch Batch
+14:14:26 : [580] Run Sess
+14:14:32 : [580] Learning Loss: 0.375
+14:14:32 : [581] Fetch Batch
+14:14:35 : [581] Run Sess
+14:14:40 : [581] Learning Loss: 0.393
+14:14:40 : [582] Fetch Batch
+14:14:43 : [582] Run Sess
+14:14:49 : [582] Learning Loss: 0.396
+14:14:49 : [583] Fetch Batch
+14:14:52 : [583] Run Sess
+14:14:57 : [583] Learning Loss: 0.377
+14:14:57 : [584] Fetch Batch
+14:15:00 : [584] Run Sess
+14:15:05 : [584] Learning Loss: 0.390
+14:15:05 : [585] Fetch Batch
+14:15:08 : [585] Run Sess
+14:15:14 : [585] Learning Loss: 0.393
+14:15:14 : [586] Fetch Batch
+14:15:16 : [586] Run Sess
+14:15:21 : [586] Learning Loss: 0.398
+14:15:21 : [587] Fetch Batch
+14:15:24 : [587] Run Sess
+14:15:29 : [587] Learning Loss: 0.373
+14:15:29 : [588] Fetch Batch
+14:15:33 : [588] Run Sess
+14:15:38 : [588] Learning Loss: 0.373
+14:15:38 : [589] Fetch Batch
+14:15:41 : [589] Run Sess
+14:15:46 : [589] Learning Loss: 0.392
+14:15:46 : [590] Fetch Batch
+14:15:49 : [590] Run Sess
+14:15:54 : [590] Learning Loss: 0.363
+14:15:54 : [591] Fetch Batch
+14:15:57 : [591] Run Sess
+14:16:02 : [591] Learning Loss: 0.353
+14:16:02 : [592] Fetch Batch
+14:16:05 : [592] Run Sess
+14:16:10 : [592] Learning Loss: 0.393
+14:16:10 : [593] Fetch Batch
+14:16:13 : [593] Run Sess
+14:16:18 : [593] Learning Loss: 0.385
+14:16:18 : [594] Fetch Batch
+14:16:21 : [594] Run Sess
+14:16:26 : [594] Learning Loss: 0.382
+14:16:26 : [595] Fetch Batch
+14:16:30 : [595] Run Sess
+14:16:35 : [595] Learning Loss: 0.388
+14:16:35 : [596] Fetch Batch
+14:16:38 : [596] Run Sess
+14:16:43 : [596] Learning Loss: 0.370
+14:16:43 : [597] Fetch Batch
+14:16:46 : [597] Run Sess
+14:16:51 : [597] Learning Loss: 0.384
+14:16:51 : [598] Fetch Batch
+14:16:55 : [598] Run Sess
+14:17:00 : [598] Learning Loss: 0.375
+14:17:00 : [599] Fetch Batch
+14:17:03 : [599] Run Sess
+14:17:08 : [599] Learning Loss: 0.351
+14:17:40 :	0.9619	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+14:17:40 :	1967	1809	1528	1150	752	424	219	600	0.3650
+14:17:40 : [600] Fetch Batch
+14:17:43 : [600] Run Sess
+14:17:48 : [600] Learning Loss: 0.372
+14:17:48 : [601] Fetch Batch
+14:17:51 : [601] Run Sess
+14:17:56 : [601] Learning Loss: 0.364
+14:17:56 : [602] Fetch Batch
+14:17:59 : [602] Run Sess
+14:18:04 : [602] Learning Loss: 0.352
+14:18:04 : [603] Fetch Batch
+14:18:07 : [603] Run Sess
+14:18:12 : [603] Learning Loss: 0.372
+14:18:12 : [604] Fetch Batch
+14:18:15 : [604] Run Sess
+14:18:20 : [604] Learning Loss: 0.348
+14:18:20 : [605] Fetch Batch
+14:18:24 : [605] Run Sess
+14:18:29 : [605] Learning Loss: 0.348
+14:18:29 : [606] Fetch Batch
+14:18:32 : [606] Run Sess
+14:18:37 : [606] Learning Loss: 0.356
+14:18:37 : [607] Fetch Batch
+14:18:40 : [607] Run Sess
+14:18:45 : [607] Learning Loss: 0.349
+14:18:45 : [608] Fetch Batch
+14:18:48 : [608] Run Sess
+14:18:53 : [608] Learning Loss: 0.343
+14:18:53 : [609] Fetch Batch
+14:18:56 : [609] Run Sess
+14:19:01 : [609] Learning Loss: 0.352
+14:19:01 : [610] Fetch Batch
+14:19:04 : [610] Run Sess
+14:19:09 : [610] Learning Loss: 0.348
+14:19:09 : [611] Fetch Batch
+14:19:12 : [611] Run Sess
+14:19:17 : [611] Learning Loss: 0.345
+14:19:17 : [612] Fetch Batch
+14:19:20 : [612] Run Sess
+14:19:25 : [612] Learning Loss: 0.343
+14:19:25 : [613] Fetch Batch
+14:19:28 : [613] Run Sess
+14:19:33 : [613] Learning Loss: 0.357
+14:19:33 : [614] Fetch Batch
+14:19:36 : [614] Run Sess
+14:19:41 : [614] Learning Loss: 0.347
+14:19:41 : [615] Fetch Batch
+14:19:44 : [615] Run Sess
+14:19:49 : [615] Learning Loss: 0.354
+14:19:49 : [616] Fetch Batch
+14:19:52 : [616] Run Sess
+14:19:57 : [616] Learning Loss: 0.333
+14:19:57 : [617] Fetch Batch
+14:20:00 : [617] Run Sess
+14:20:05 : [617] Learning Loss: 0.356
+14:20:05 : [618] Fetch Batch
+14:20:08 : [618] Run Sess
+14:20:14 : [618] Learning Loss: 0.323
+14:20:14 : [619] Fetch Batch
+14:20:16 : [619] Run Sess
+14:20:22 : [619] Learning Loss: 0.362
+14:20:22 : [620] Fetch Batch
+14:20:25 : [620] Run Sess
+14:20:30 : [620] Learning Loss: 0.345
+14:20:30 : [621] Fetch Batch
+14:20:33 : [621] Run Sess
+14:20:38 : [621] Learning Loss: 0.333
+14:20:38 : [622] Fetch Batch
+14:20:41 : [622] Run Sess
+14:20:46 : [622] Learning Loss: 0.336
+14:20:46 : [623] Fetch Batch
+14:20:49 : [623] Run Sess
+14:20:54 : [623] Learning Loss: 0.325
+14:20:54 : [624] Fetch Batch
+14:20:57 : [624] Run Sess
+14:21:02 : [624] Learning Loss: 0.345
+14:21:35 :	0.9607	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+14:21:35 :	1961	1805	1510	1113	750	443	241	625	0.3314
+14:21:35 : [625] Fetch Batch
+14:21:38 : [625] Run Sess
+14:21:43 : [625] Learning Loss: 0.359
+14:21:43 : [626] Fetch Batch
+14:21:46 : [626] Run Sess
+14:21:51 : [626] Learning Loss: 0.331
+14:21:51 : [627] Fetch Batch
+14:21:54 : [627] Run Sess
+14:21:59 : [627] Learning Loss: 0.332
+14:21:59 : [628] Fetch Batch
+14:22:01 : [628] Run Sess
+14:22:07 : [628] Learning Loss: 0.331
+14:22:07 : [629] Fetch Batch
+14:22:10 : [629] Run Sess
+14:22:15 : [629] Learning Loss: 0.342
+14:22:15 : [630] Fetch Batch
+14:22:17 : [630] Run Sess
+14:22:23 : [630] Learning Loss: 0.319
+14:22:23 : [631] Fetch Batch
+14:22:25 : [631] Run Sess
+14:22:30 : [631] Learning Loss: 0.329
+14:22:30 : [632] Fetch Batch
+14:22:33 : [632] Run Sess
+14:22:38 : [632] Learning Loss: 0.326
+14:22:38 : [633] Fetch Batch
+14:22:41 : [633] Run Sess
+14:22:46 : [633] Learning Loss: 0.334
+14:22:46 : [634] Fetch Batch
+14:22:49 : [634] Run Sess
+14:22:54 : [634] Learning Loss: 0.339
+14:22:54 : [635] Fetch Batch
+14:22:57 : [635] Run Sess
+14:23:02 : [635] Learning Loss: 0.333
+14:23:02 : [636] Fetch Batch
+14:23:05 : [636] Run Sess
+14:23:10 : [636] Learning Loss: 0.335
+14:23:10 : [637] Fetch Batch
+14:23:13 : [637] Run Sess
+14:23:18 : [637] Learning Loss: 0.333
+14:23:18 : [638] Fetch Batch
+14:23:21 : [638] Run Sess
+14:23:26 : [638] Learning Loss: 0.322
+14:23:26 : [639] Fetch Batch
+14:23:29 : [639] Run Sess
+14:23:34 : [639] Learning Loss: 0.326
+14:23:34 : [640] Fetch Batch
+14:23:37 : [640] Run Sess
+14:23:42 : [640] Learning Loss: 0.318
+14:23:42 : [641] Fetch Batch
+14:23:45 : [641] Run Sess
+14:23:51 : [641] Learning Loss: 0.323
+14:23:51 : [642] Fetch Batch
+14:23:53 : [642] Run Sess
+14:23:58 : [642] Learning Loss: 0.309
+14:23:58 : [643] Fetch Batch
+14:24:01 : [643] Run Sess
+14:24:07 : [643] Learning Loss: 0.329
+14:24:07 : [644] Fetch Batch
+14:24:10 : [644] Run Sess
+14:24:15 : [644] Learning Loss: 0.329
+14:24:15 : [645] Fetch Batch
+14:24:17 : [645] Run Sess
+14:24:23 : [645] Learning Loss: 0.315
+14:24:23 : [646] Fetch Batch
+14:24:26 : [646] Run Sess
+14:24:31 : [646] Learning Loss: 0.306
+14:24:31 : [647] Fetch Batch
+14:24:33 : [647] Run Sess
+14:24:39 : [647] Learning Loss: 0.307
+14:24:39 : [648] Fetch Batch
+14:24:42 : [648] Run Sess
+14:24:47 : [648] Learning Loss: 0.299
+14:24:47 : [649] Fetch Batch
+14:24:50 : [649] Run Sess
+14:24:55 : [649] Learning Loss: 0.327
+14:25:27 :	0.9602	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+14:25:27 :	1958	1812	1519	1133	741	442	233	650	0.3130
+14:25:27 : [650] Fetch Batch
+14:25:30 : [650] Run Sess
+14:25:35 : [650] Learning Loss: 0.301
+14:25:35 : [651] Fetch Batch
+14:25:38 : [651] Run Sess
+14:25:43 : [651] Learning Loss: 0.318
+14:25:43 : [652] Fetch Batch
+14:25:46 : [652] Run Sess
+14:25:51 : [652] Learning Loss: 0.309
+14:25:51 : [653] Fetch Batch
+14:25:54 : [653] Run Sess
+14:26:00 : [653] Learning Loss: 0.302
+14:26:00 : [654] Fetch Batch
+14:26:03 : [654] Run Sess
+14:26:08 : [654] Learning Loss: 0.306
+14:26:08 : [655] Fetch Batch
+14:26:11 : [655] Run Sess
+14:26:16 : [655] Learning Loss: 0.312
+14:26:16 : [656] Fetch Batch
+14:26:20 : [656] Run Sess
+14:26:26 : [656] Learning Loss: 0.308
+14:26:26 : [657] Fetch Batch
+14:26:29 : [657] Run Sess
+14:26:34 : [657] Learning Loss: 0.291
+14:26:34 : [658] Fetch Batch
+14:26:37 : [658] Run Sess
+14:26:42 : [658] Learning Loss: 0.306
+14:26:42 : [659] Fetch Batch
+14:26:45 : [659] Run Sess
+14:26:50 : [659] Learning Loss: 0.277
+14:26:50 : [660] Fetch Batch
+14:26:53 : [660] Run Sess
+14:26:58 : [660] Learning Loss: 0.287
+14:26:58 : [661] Fetch Batch
+14:27:01 : [661] Run Sess
+14:27:06 : [661] Learning Loss: 0.292
+14:27:06 : [662] Fetch Batch
+14:27:09 : [662] Run Sess
+14:27:14 : [662] Learning Loss: 0.317
+14:27:14 : [663] Fetch Batch
+14:27:17 : [663] Run Sess
+14:27:22 : [663] Learning Loss: 0.287
+14:27:22 : [664] Fetch Batch
+14:27:25 : [664] Run Sess
+14:27:30 : [664] Learning Loss: 0.289
+14:27:30 : [665] Fetch Batch
+14:27:33 : [665] Run Sess
+14:27:38 : [665] Learning Loss: 0.298
+14:27:38 : [666] Fetch Batch
+14:27:41 : [666] Run Sess
+14:27:47 : [666] Learning Loss: 0.289
+14:27:47 : [667] Fetch Batch
+14:27:50 : [667] Run Sess
+14:27:55 : [667] Learning Loss: 0.290
+14:27:55 : [668] Fetch Batch
+14:27:58 : [668] Run Sess
+14:28:03 : [668] Learning Loss: 0.308
+14:28:03 : [669] Fetch Batch
+14:28:05 : [669] Run Sess
+14:28:11 : [669] Learning Loss: 0.302
+14:28:11 : [670] Fetch Batch
+14:28:14 : [670] Run Sess
+14:28:19 : [670] Learning Loss: 0.292
+14:28:19 : [671] Fetch Batch
+14:28:22 : [671] Run Sess
+14:28:27 : [671] Learning Loss: 0.281
+14:28:27 : [672] Fetch Batch
+14:28:30 : [672] Run Sess
+14:28:35 : [672] Learning Loss: 0.290
+14:28:35 : [673] Fetch Batch
+14:28:38 : [673] Run Sess
+14:28:43 : [673] Learning Loss: 0.303
+14:28:43 : [674] Fetch Batch
+14:28:46 : [674] Run Sess
+14:28:51 : [674] Learning Loss: 0.298
+14:29:24 :	0.9604	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+14:29:24 :	1971	1829	1526	1147	742	415	213	675	0.2870
+14:29:24 : [675] Fetch Batch
+14:29:27 : [675] Run Sess
+14:29:32 : [675] Learning Loss: 0.286
+14:29:32 : [676] Fetch Batch
+14:29:35 : [676] Run Sess
+14:29:40 : [676] Learning Loss: 0.294
+14:29:40 : [677] Fetch Batch
+14:29:43 : [677] Run Sess
+14:29:48 : [677] Learning Loss: 0.283
+14:29:48 : [678] Fetch Batch
+14:29:51 : [678] Run Sess
+14:29:56 : [678] Learning Loss: 0.297
+14:29:56 : [679] Fetch Batch
+14:29:59 : [679] Run Sess
+14:30:04 : [679] Learning Loss: 0.288
+14:30:04 : [680] Fetch Batch
+14:30:07 : [680] Run Sess
+14:30:12 : [680] Learning Loss: 0.290
+14:30:12 : [681] Fetch Batch
+14:30:15 : [681] Run Sess
+14:30:20 : [681] Learning Loss: 0.282
+14:30:20 : [682] Fetch Batch
+14:30:23 : [682] Run Sess
+14:30:28 : [682] Learning Loss: 0.276
+14:30:28 : [683] Fetch Batch
+14:30:31 : [683] Run Sess
+14:30:36 : [683] Learning Loss: 0.284
+14:30:36 : [684] Fetch Batch
+14:30:39 : [684] Run Sess
+14:30:44 : [684] Learning Loss: 0.290
+14:30:44 : [685] Fetch Batch
+14:30:47 : [685] Run Sess
+14:30:52 : [685] Learning Loss: 0.295
+14:30:52 : [686] Fetch Batch
+14:30:55 : [686] Run Sess
+14:31:01 : [686] Learning Loss: 0.279
+14:31:01 : [687] Fetch Batch
+14:31:04 : [687] Run Sess
+14:31:09 : [687] Learning Loss: 0.295
+14:31:09 : [688] Fetch Batch
+14:31:12 : [688] Run Sess
+14:31:17 : [688] Learning Loss: 0.287
+14:31:17 : [689] Fetch Batch
+14:31:20 : [689] Run Sess
+14:31:25 : [689] Learning Loss: 0.286
+14:31:25 : [690] Fetch Batch
+14:31:28 : [690] Run Sess
+14:31:33 : [690] Learning Loss: 0.303
+14:31:33 : [691] Fetch Batch
+14:31:36 : [691] Run Sess
+14:31:41 : [691] Learning Loss: 0.273
+14:31:41 : [692] Fetch Batch
+14:31:45 : [692] Run Sess
+14:31:50 : [692] Learning Loss: 0.268
+14:31:50 : [693] Fetch Batch
+14:31:53 : [693] Run Sess
+14:31:58 : [693] Learning Loss: 0.274
+14:31:58 : [694] Fetch Batch
+14:32:01 : [694] Run Sess
+14:32:06 : [694] Learning Loss: 0.277
+14:32:06 : [695] Fetch Batch
+14:32:09 : [695] Run Sess
+14:32:14 : [695] Learning Loss: 0.262
+14:32:14 : [696] Fetch Batch
+14:32:17 : [696] Run Sess
+14:32:22 : [696] Learning Loss: 0.285
+14:32:22 : [697] Fetch Batch
+14:32:25 : [697] Run Sess
+14:32:30 : [697] Learning Loss: 0.273
+14:32:30 : [698] Fetch Batch
+14:32:33 : [698] Run Sess
+14:32:38 : [698] Learning Loss: 0.269
+14:32:38 : [699] Fetch Batch
+14:32:41 : [699] Run Sess
+14:32:46 : [699] Learning Loss: 0.269
+14:33:19 :	0.9618	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+14:33:19 :	1962	1812	1497	1107	758	437	231	700	0.2705
+14:33:19 : [700] Fetch Batch
+14:33:22 : [700] Run Sess
+14:33:27 : [700] Learning Loss: 0.260
+14:33:27 : [701] Fetch Batch
+14:33:31 : [701] Run Sess
+14:33:36 : [701] Learning Loss: 0.265
+14:33:36 : [702] Fetch Batch
+14:33:39 : [702] Run Sess
+14:33:44 : [702] Learning Loss: 0.272
+14:33:44 : [703] Fetch Batch
+14:33:47 : [703] Run Sess
+14:33:52 : [703] Learning Loss: 0.279
+14:33:52 : [704] Fetch Batch
+14:33:55 : [704] Run Sess
+14:34:00 : [704] Learning Loss: 0.265
+14:34:00 : [705] Fetch Batch
+14:34:03 : [705] Run Sess
+14:34:08 : [705] Learning Loss: 0.247
+14:34:08 : [706] Fetch Batch
+14:34:11 : [706] Run Sess
+14:34:16 : [706] Learning Loss: 0.294
+14:34:16 : [707] Fetch Batch
+14:34:19 : [707] Run Sess
+14:34:24 : [707] Learning Loss: 0.278
+14:34:24 : [708] Fetch Batch
+14:34:27 : [708] Run Sess
+14:34:32 : [708] Learning Loss: 0.261
+14:34:32 : [709] Fetch Batch
+14:34:35 : [709] Run Sess
+14:34:40 : [709] Learning Loss: 0.269
+14:34:40 : [710] Fetch Batch
+14:34:43 : [710] Run Sess
+14:34:48 : [710] Learning Loss: 0.264
+14:34:48 : [711] Fetch Batch
+14:34:52 : [711] Run Sess
+14:34:57 : [711] Learning Loss: 0.276
+14:34:57 : [712] Fetch Batch
+14:35:00 : [712] Run Sess
+14:35:05 : [712] Learning Loss: 0.248
+14:35:05 : [713] Fetch Batch
+14:35:08 : [713] Run Sess
+14:35:13 : [713] Learning Loss: 0.255
+14:35:13 : [714] Fetch Batch
+14:35:16 : [714] Run Sess
+14:35:21 : [714] Learning Loss: 0.259
+14:35:21 : [715] Fetch Batch
+14:35:24 : [715] Run Sess
+14:35:29 : [715] Learning Loss: 0.258
+14:35:29 : [716] Fetch Batch
+14:35:32 : [716] Run Sess
+14:35:37 : [716] Learning Loss: 0.255
+14:35:37 : [717] Fetch Batch
+14:35:40 : [717] Run Sess
+14:35:45 : [717] Learning Loss: 0.266
+14:35:45 : [718] Fetch Batch
+14:35:49 : [718] Run Sess
+14:35:54 : [718] Learning Loss: 0.250
+14:35:54 : [719] Fetch Batch
+14:35:57 : [719] Run Sess
+14:36:02 : [719] Learning Loss: 0.252
+14:36:02 : [720] Fetch Batch
+14:36:05 : [720] Run Sess
+14:36:10 : [720] Learning Loss: 0.252
+14:36:10 : [721] Fetch Batch
+14:36:13 : [721] Run Sess
+14:36:19 : [721] Learning Loss: 0.253
+14:36:19 : [722] Fetch Batch
+14:36:22 : [722] Run Sess
+14:36:27 : [722] Learning Loss: 0.244
+14:36:27 : [723] Fetch Batch
+14:36:30 : [723] Run Sess
+14:36:35 : [723] Learning Loss: 0.241
+14:36:35 : [724] Fetch Batch
+14:36:38 : [724] Run Sess
+14:36:43 : [724] Learning Loss: 0.241
+14:37:16 :	0.9602	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+14:37:16 :	1962	1799	1519	1134	759	462	216	725	0.2524
+14:37:16 : [725] Fetch Batch
+14:37:19 : [725] Run Sess
+14:37:24 : [725] Learning Loss: 0.253
+14:37:24 : [726] Fetch Batch
+14:37:27 : [726] Run Sess
+14:37:32 : [726] Learning Loss: 0.261
+14:37:32 : [727] Fetch Batch
+14:37:35 : [727] Run Sess
+14:37:40 : [727] Learning Loss: 0.262
+14:37:40 : [728] Fetch Batch
+14:37:43 : [728] Run Sess
+14:37:48 : [728] Learning Loss: 0.249
+14:37:48 : [729] Fetch Batch
+14:37:51 : [729] Run Sess
+14:37:56 : [729] Learning Loss: 0.255
+14:37:56 : [730] Fetch Batch
+14:37:59 : [730] Run Sess
+14:38:04 : [730] Learning Loss: 0.234
+14:38:04 : [731] Fetch Batch
+14:38:07 : [731] Run Sess
+14:38:12 : [731] Learning Loss: 0.235
+14:38:12 : [732] Fetch Batch
+14:38:16 : [732] Run Sess
+14:38:22 : [732] Learning Loss: 0.245
+14:38:22 : [733] Fetch Batch
+14:38:24 : [733] Run Sess
+14:38:29 : [733] Learning Loss: 0.253
+14:38:29 : [734] Fetch Batch
+14:38:34 : [734] Run Sess
+14:38:39 : [734] Learning Loss: 0.244
+14:38:39 : [735] Fetch Batch
+14:38:43 : [735] Run Sess
+14:38:48 : [735] Learning Loss: 0.255
+14:38:48 : [736] Fetch Batch
+14:38:52 : [736] Run Sess
+14:38:57 : [736] Learning Loss: 0.230
+14:38:57 : [737] Fetch Batch
+14:39:00 : [737] Run Sess
+14:39:05 : [737] Learning Loss: 0.263
+14:39:05 : [738] Fetch Batch
+14:39:08 : [738] Run Sess
+14:39:14 : [738] Learning Loss: 0.240
+14:39:14 : [739] Fetch Batch
+14:39:18 : [739] Run Sess
+14:39:23 : [739] Learning Loss: 0.248
+14:39:23 : [740] Fetch Batch
+14:39:26 : [740] Run Sess
+14:39:31 : [740] Learning Loss: 0.250
+14:39:31 : [741] Fetch Batch
+14:39:34 : [741] Run Sess
+14:39:39 : [741] Learning Loss: 0.239
+14:39:39 : [742] Fetch Batch
+14:39:42 : [742] Run Sess
+14:39:47 : [742] Learning Loss: 0.237
+14:39:47 : [743] Fetch Batch
+14:39:50 : [743] Run Sess
+14:39:55 : [743] Learning Loss: 0.234
+14:39:55 : [744] Fetch Batch
+14:39:59 : [744] Run Sess
+14:40:04 : [744] Learning Loss: 0.237
+14:40:04 : [745] Fetch Batch
+14:40:07 : [745] Run Sess
+14:40:12 : [745] Learning Loss: 0.238
+14:40:12 : [746] Fetch Batch
+14:40:15 : [746] Run Sess
+14:40:21 : [746] Learning Loss: 0.243
+14:40:21 : [747] Fetch Batch
+14:40:24 : [747] Run Sess
+14:40:29 : [747] Learning Loss: 0.231
+14:40:29 : [748] Fetch Batch
+14:40:32 : [748] Run Sess
+14:40:37 : [748] Learning Loss: 0.228
+14:40:37 : [749] Fetch Batch
+14:40:40 : [749] Run Sess
+14:40:45 : [749] Learning Loss: 0.231
+14:41:18 :	0.9613	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+14:41:18 :	1962	1814	1504	1124	758	443	224	750	0.2433
+14:41:18 : [750] Fetch Batch
+14:41:21 : [750] Run Sess
+14:41:26 : [750] Learning Loss: 0.233
+14:41:26 : [751] Fetch Batch
+14:41:30 : [751] Run Sess
+14:41:35 : [751] Learning Loss: 0.233
+14:41:35 : [752] Fetch Batch
+14:41:38 : [752] Run Sess
+14:41:43 : [752] Learning Loss: 0.233
+14:41:43 : [753] Fetch Batch
+14:41:46 : [753] Run Sess
+14:41:51 : [753] Learning Loss: 0.249
+14:41:51 : [754] Fetch Batch
+14:41:54 : [754] Run Sess
+14:41:59 : [754] Learning Loss: 0.231
+14:41:59 : [755] Fetch Batch
+14:42:02 : [755] Run Sess
+14:42:07 : [755] Learning Loss: 0.232
+14:42:07 : [756] Fetch Batch
+14:42:10 : [756] Run Sess
+14:42:15 : [756] Learning Loss: 0.227
+14:42:15 : [757] Fetch Batch
+14:42:18 : [757] Run Sess
+14:42:23 : [757] Learning Loss: 0.238
+14:42:23 : [758] Fetch Batch
+14:42:26 : [758] Run Sess
+14:42:31 : [758] Learning Loss: 0.230
+14:42:31 : [759] Fetch Batch
+14:42:34 : [759] Run Sess
+14:42:39 : [759] Learning Loss: 0.226
+14:42:39 : [760] Fetch Batch
+14:42:42 : [760] Run Sess
+14:42:47 : [760] Learning Loss: 0.228
+14:42:47 : [761] Fetch Batch
+14:42:50 : [761] Run Sess
+14:42:55 : [761] Learning Loss: 0.232
+14:42:55 : [762] Fetch Batch
+14:42:58 : [762] Run Sess
+14:43:03 : [762] Learning Loss: 0.216
+14:43:03 : [763] Fetch Batch
+14:43:07 : [763] Run Sess
+14:43:12 : [763] Learning Loss: 0.222
+14:43:12 : [764] Fetch Batch
+14:43:15 : [764] Run Sess
+14:43:20 : [764] Learning Loss: 0.224
+14:43:20 : [765] Fetch Batch
+14:43:23 : [765] Run Sess
+14:43:28 : [765] Learning Loss: 0.228
+14:43:28 : [766] Fetch Batch
+14:43:31 : [766] Run Sess
+14:43:36 : [766] Learning Loss: 0.228
+14:43:36 : [767] Fetch Batch
+14:43:40 : [767] Run Sess
+14:43:45 : [767] Learning Loss: 0.222
+14:43:45 : [768] Fetch Batch
+14:43:48 : [768] Run Sess
+14:43:53 : [768] Learning Loss: 0.208
+14:43:53 : [769] Fetch Batch
+14:43:56 : [769] Run Sess
+14:44:01 : [769] Learning Loss: 0.220
+14:44:01 : [770] Fetch Batch
+14:44:04 : [770] Run Sess
+14:44:10 : [770] Learning Loss: 0.235
+14:44:10 : [771] Fetch Batch
+14:44:12 : [771] Run Sess
+14:44:18 : [771] Learning Loss: 0.218
+14:44:18 : [772] Fetch Batch
+14:44:20 : [772] Run Sess
+14:44:25 : [772] Learning Loss: 0.225
+14:44:25 : [773] Fetch Batch
+14:44:28 : [773] Run Sess
+14:44:33 : [773] Learning Loss: 0.214
+14:44:33 : [774] Fetch Batch
+14:44:36 : [774] Run Sess
+14:44:41 : [774] Learning Loss: 0.223
+14:45:14 :	0.9604	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+14:45:14 :	1972	1835	1530	1128	748	429	217	775	0.2173
+14:45:14 : [775] Fetch Batch
+14:45:17 : [775] Run Sess
+14:45:22 : [775] Learning Loss: 0.217
+14:45:22 : [776] Fetch Batch
+14:45:25 : [776] Run Sess
+14:45:30 : [776] Learning Loss: 0.230
+14:45:30 : [777] Fetch Batch
+14:45:33 : [777] Run Sess
+14:45:39 : [777] Learning Loss: 0.215
+14:45:39 : [778] Fetch Batch
+14:45:42 : [778] Run Sess
+14:45:47 : [778] Learning Loss: 0.219
+14:45:47 : [779] Fetch Batch
+14:45:50 : [779] Run Sess
+14:45:55 : [779] Learning Loss: 0.214
+14:45:55 : [780] Fetch Batch
+14:45:58 : [780] Run Sess
+14:46:03 : [780] Learning Loss: 0.211
+14:46:03 : [781] Fetch Batch
+14:46:06 : [781] Run Sess
+14:46:11 : [781] Learning Loss: 0.210
+14:46:11 : [782] Fetch Batch
+14:46:14 : [782] Run Sess
+14:46:19 : [782] Learning Loss: 0.212
+14:46:19 : [783] Fetch Batch
+14:46:22 : [783] Run Sess
+14:46:27 : [783] Learning Loss: 0.220
+14:46:28 : [784] Fetch Batch
+14:46:30 : [784] Run Sess
+14:46:35 : [784] Learning Loss: 0.214
+14:46:35 : [785] Fetch Batch
+14:46:38 : [785] Run Sess
+14:46:44 : [785] Learning Loss: 0.214
+14:46:44 : [786] Fetch Batch
+14:46:48 : [786] Run Sess
+14:46:53 : [786] Learning Loss: 0.217
+14:46:53 : [787] Fetch Batch
+14:46:56 : [787] Run Sess
+14:47:01 : [787] Learning Loss: 0.203
+14:47:01 : [788] Fetch Batch
+14:47:04 : [788] Run Sess
+14:47:09 : [788] Learning Loss: 0.230
+14:47:09 : [789] Fetch Batch
+14:47:11 : [789] Run Sess
+14:47:17 : [789] Learning Loss: 0.213
+14:47:17 : [790] Fetch Batch
+14:47:19 : [790] Run Sess
+14:47:25 : [790] Learning Loss: 0.210
+14:47:25 : [791] Fetch Batch
+14:47:28 : [791] Run Sess
+14:47:33 : [791] Learning Loss: 0.210
+14:47:33 : [792] Fetch Batch
+14:47:36 : [792] Run Sess
+14:47:41 : [792] Learning Loss: 0.208
+14:47:41 : [793] Fetch Batch
+14:47:44 : [793] Run Sess
+14:47:49 : [793] Learning Loss: 0.205
+14:47:49 : [794] Fetch Batch
+14:47:52 : [794] Run Sess
+14:47:57 : [794] Learning Loss: 0.198
+14:47:57 : [795] Fetch Batch
+14:48:00 : [795] Run Sess
+14:48:05 : [795] Learning Loss: 0.206
+14:48:05 : [796] Fetch Batch
+14:48:08 : [796] Run Sess
+14:48:14 : [796] Learning Loss: 0.203
+14:48:14 : [797] Fetch Batch
+14:48:17 : [797] Run Sess
+14:48:22 : [797] Learning Loss: 0.214
+14:48:22 : [798] Fetch Batch
+14:48:25 : [798] Run Sess
+14:48:30 : [798] Learning Loss: 0.213
+14:48:30 : [799] Fetch Batch
+14:48:33 : [799] Run Sess
+14:48:38 : [799] Learning Loss: 0.205
+14:49:11 :	0.9612	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+14:49:11 :	1961	1800	1503	1131	746	437	237	800	0.2047
+14:49:11 : [800] Fetch Batch
+14:49:14 : [800] Run Sess
+14:49:19 : [800] Learning Loss: 0.207
+14:49:19 : [801] Fetch Batch
+14:49:22 : [801] Run Sess
+14:49:27 : [801] Learning Loss: 0.194
+14:49:27 : [802] Fetch Batch
+14:49:30 : [802] Run Sess
+14:49:35 : [802] Learning Loss: 0.208
+14:49:35 : [803] Fetch Batch
+14:49:38 : [803] Run Sess
+14:49:43 : [803] Learning Loss: 0.208
+14:49:43 : [804] Fetch Batch
+14:49:46 : [804] Run Sess
+14:49:51 : [804] Learning Loss: 0.200
+14:49:51 : [805] Fetch Batch
+14:49:54 : [805] Run Sess
+14:49:59 : [805] Learning Loss: 0.206
+14:49:59 : [806] Fetch Batch
+14:50:02 : [806] Run Sess
+14:50:07 : [806] Learning Loss: 0.213
+14:50:07 : [807] Fetch Batch
+14:50:10 : [807] Run Sess
+14:50:15 : [807] Learning Loss: 0.209
+14:50:15 : [808] Fetch Batch
+14:50:18 : [808] Run Sess
+14:50:23 : [808] Learning Loss: 0.213
+14:50:23 : [809] Fetch Batch
+14:50:26 : [809] Run Sess
+14:50:31 : [809] Learning Loss: 0.212
+14:50:31 : [810] Fetch Batch
+14:50:35 : [810] Run Sess
+14:50:40 : [810] Learning Loss: 0.201
+14:50:40 : [811] Fetch Batch
+14:50:43 : [811] Run Sess
+14:50:48 : [811] Learning Loss: 0.213
+14:50:48 : [812] Fetch Batch
+14:50:51 : [812] Run Sess
+14:50:56 : [812] Learning Loss: 0.193
+14:50:56 : [813] Fetch Batch
+14:51:00 : [813] Run Sess
+14:51:05 : [813] Learning Loss: 0.212
+14:51:05 : [814] Fetch Batch
+14:51:08 : [814] Run Sess
+14:51:14 : [814] Learning Loss: 0.198
+14:51:14 : [815] Fetch Batch
+14:51:16 : [815] Run Sess
+14:51:21 : [815] Learning Loss: 0.211
+14:51:21 : [816] Fetch Batch
+14:51:24 : [816] Run Sess
+14:51:30 : [816] Learning Loss: 0.196
+14:51:30 : [817] Fetch Batch
+14:51:32 : [817] Run Sess
+14:51:38 : [817] Learning Loss: 0.205
+14:51:38 : [818] Fetch Batch
+14:51:40 : [818] Run Sess
+14:51:45 : [818] Learning Loss: 0.206
+14:51:45 : [819] Fetch Batch
+14:51:48 : [819] Run Sess
+14:51:53 : [819] Learning Loss: 0.190
+14:51:53 : [820] Fetch Batch
+14:51:56 : [820] Run Sess
+14:52:01 : [820] Learning Loss: 0.196
+14:52:01 : [821] Fetch Batch
+14:52:04 : [821] Run Sess
+14:52:09 : [821] Learning Loss: 0.199
+14:52:09 : [822] Fetch Batch
+14:52:12 : [822] Run Sess
+14:52:17 : [822] Learning Loss: 0.194
+14:52:17 : [823] Fetch Batch
+14:52:20 : [823] Run Sess
+14:52:25 : [823] Learning Loss: 0.187
+14:52:25 : [824] Fetch Batch
+14:52:28 : [824] Run Sess
+14:52:33 : [824] Learning Loss: 0.202
+14:53:06 :	0.9607	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+14:53:06 :	1959	1789	1522	1119	759	453	223	825	0.1921
+14:53:06 : [825] Fetch Batch
+14:53:08 : [825] Run Sess
+14:53:14 : [825] Learning Loss: 0.184
+14:53:14 : [826] Fetch Batch
+14:53:16 : [826] Run Sess
+14:53:22 : [826] Learning Loss: 0.190
+14:53:22 : [827] Fetch Batch
+14:53:24 : [827] Run Sess
+14:53:29 : [827] Learning Loss: 0.194
+14:53:29 : [828] Fetch Batch
+14:53:32 : [828] Run Sess
+14:53:38 : [828] Learning Loss: 0.190
+14:53:38 : [829] Fetch Batch
+14:53:40 : [829] Run Sess
+14:53:46 : [829] Learning Loss: 0.196
+14:53:46 : [830] Fetch Batch
+14:53:48 : [830] Run Sess
+14:53:54 : [830] Learning Loss: 0.197
+14:53:54 : [831] Fetch Batch
+14:53:57 : [831] Run Sess
+14:54:02 : [831] Learning Loss: 0.206
+14:54:02 : [832] Fetch Batch
+14:54:05 : [832] Run Sess
+14:54:10 : [832] Learning Loss: 0.205
+14:54:10 : [833] Fetch Batch
+14:54:12 : [833] Run Sess
+14:54:18 : [833] Learning Loss: 0.181
+14:54:18 : [834] Fetch Batch
+14:54:20 : [834] Run Sess
+14:54:26 : [834] Learning Loss: 0.207
+14:54:26 : [835] Fetch Batch
+14:54:28 : [835] Run Sess
+14:54:34 : [835] Learning Loss: 0.190
+14:54:34 : [836] Fetch Batch
+14:54:37 : [836] Run Sess
+14:54:42 : [836] Learning Loss: 0.196
+14:54:42 : [837] Fetch Batch
+14:54:44 : [837] Run Sess
+14:54:50 : [837] Learning Loss: 0.193
+14:54:50 : [838] Fetch Batch
+14:54:52 : [838] Run Sess
+14:54:58 : [838] Learning Loss: 0.194
+14:54:58 : [839] Fetch Batch
+14:55:02 : [839] Run Sess
+14:55:07 : [839] Learning Loss: 0.187
+14:55:07 : [840] Fetch Batch
+14:55:10 : [840] Run Sess
+14:55:15 : [840] Learning Loss: 0.193
+14:55:15 : [841] Fetch Batch
+14:55:18 : [841] Run Sess
+14:55:23 : [841] Learning Loss: 0.186
+14:55:23 : [842] Fetch Batch
+14:55:26 : [842] Run Sess
+14:55:31 : [842] Learning Loss: 0.177
+14:55:31 : [843] Fetch Batch
+14:55:34 : [843] Run Sess
+14:55:39 : [843] Learning Loss: 0.186
+14:55:39 : [844] Fetch Batch
+14:55:42 : [844] Run Sess
+14:55:47 : [844] Learning Loss: 0.177
+14:55:47 : [845] Fetch Batch
+14:55:50 : [845] Run Sess
+14:55:55 : [845] Learning Loss: 0.179
+14:55:55 : [846] Fetch Batch
+14:55:58 : [846] Run Sess
+14:56:03 : [846] Learning Loss: 0.182
+14:56:03 : [847] Fetch Batch
+14:56:06 : [847] Run Sess
+14:56:11 : [847] Learning Loss: 0.195
+14:56:11 : [848] Fetch Batch
+14:56:14 : [848] Run Sess
+14:56:19 : [848] Learning Loss: 0.184
+14:56:19 : [849] Fetch Batch
+14:56:22 : [849] Run Sess
+14:56:27 : [849] Learning Loss: 0.178
+14:57:00 :	0.9611	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+14:57:00 :	1956	1810	1517	1121	767	454	217	850	0.1854
+14:57:00 : [850] Fetch Batch
+14:57:03 : [850] Run Sess
+14:57:08 : [850] Learning Loss: 0.177
+14:57:08 : [851] Fetch Batch
+14:57:11 : [851] Run Sess
+14:57:16 : [851] Learning Loss: 0.186
+14:57:16 : [852] Fetch Batch
+14:57:19 : [852] Run Sess
+14:57:24 : [852] Learning Loss: 0.193
+14:57:24 : [853] Fetch Batch
+14:57:27 : [853] Run Sess
+14:57:32 : [853] Learning Loss: 0.184
+14:57:32 : [854] Fetch Batch
+14:57:35 : [854] Run Sess
+14:57:40 : [854] Learning Loss: 0.193
+14:57:40 : [855] Fetch Batch
+14:57:43 : [855] Run Sess
+14:57:48 : [855] Learning Loss: 0.175
+14:57:48 : [856] Fetch Batch
+14:57:51 : [856] Run Sess
+14:57:56 : [856] Learning Loss: 0.181
+14:57:56 : [857] Fetch Batch
+14:57:59 : [857] Run Sess
+14:58:04 : [857] Learning Loss: 0.178
+14:58:04 : [858] Fetch Batch
+14:58:07 : [858] Run Sess
+14:58:12 : [858] Learning Loss: 0.178
+14:58:12 : [859] Fetch Batch
+14:58:15 : [859] Run Sess
+14:58:20 : [859] Learning Loss: 0.179
+14:58:20 : [860] Fetch Batch
+14:58:23 : [860] Run Sess
+14:58:28 : [860] Learning Loss: 0.182
+14:58:28 : [861] Fetch Batch
+14:58:31 : [861] Run Sess
+14:58:36 : [861] Learning Loss: 0.185
+14:58:36 : [862] Fetch Batch
+14:58:39 : [862] Run Sess
+14:58:44 : [862] Learning Loss: 0.188
+14:58:44 : [863] Fetch Batch
+14:58:48 : [863] Run Sess
+14:58:53 : [863] Learning Loss: 0.177
+14:58:53 : [864] Fetch Batch
+14:58:56 : [864] Run Sess
+14:59:01 : [864] Learning Loss: 0.196
+14:59:01 : [865] Fetch Batch
+14:59:05 : [865] Run Sess
+14:59:10 : [865] Learning Loss: 0.191
+14:59:10 : [866] Fetch Batch
+14:59:13 : [866] Run Sess
+14:59:18 : [866] Learning Loss: 0.172
+14:59:18 : [867] Fetch Batch
+14:59:22 : [867] Run Sess
+14:59:27 : [867] Learning Loss: 0.182
+14:59:27 : [868] Fetch Batch
+14:59:30 : [868] Run Sess
+14:59:35 : [868] Learning Loss: 0.176
+14:59:35 : [869] Fetch Batch
+14:59:38 : [869] Run Sess
+14:59:43 : [869] Learning Loss: 0.172
+14:59:43 : [870] Fetch Batch
+14:59:46 : [870] Run Sess
+14:59:51 : [870] Learning Loss: 0.169
+14:59:51 : [871] Fetch Batch
+14:59:55 : [871] Run Sess
+15:00:00 : [871] Learning Loss: 0.167
+15:00:00 : [872] Fetch Batch
+15:00:03 : [872] Run Sess
+15:00:09 : [872] Learning Loss: 0.178
+15:00:09 : [873] Fetch Batch
+15:00:11 : [873] Run Sess
+15:00:16 : [873] Learning Loss: 0.169
+15:00:16 : [874] Fetch Batch
+15:00:19 : [874] Run Sess
+15:00:24 : [874] Learning Loss: 0.172
+15:00:57 :	0.9604	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+15:00:57 :	1968	1820	1525	1133	764	431	212	875	0.1746
+15:00:57 : [875] Fetch Batch
+15:01:00 : [875] Run Sess
+15:01:05 : [875] Learning Loss: 0.180
+15:01:05 : [876] Fetch Batch
+15:01:08 : [876] Run Sess
+15:01:13 : [876] Learning Loss: 0.172
+15:01:13 : [877] Fetch Batch
+15:01:16 : [877] Run Sess
+15:01:21 : [877] Learning Loss: 0.166
+15:01:21 : [878] Fetch Batch
+15:01:24 : [878] Run Sess
+15:01:29 : [878] Learning Loss: 0.172
+15:01:29 : [879] Fetch Batch
+15:01:32 : [879] Run Sess
+15:01:37 : [879] Learning Loss: 0.190
+15:01:37 : [880] Fetch Batch
+15:01:40 : [880] Run Sess
+15:01:45 : [880] Learning Loss: 0.178
+15:01:45 : [881] Fetch Batch
+15:01:48 : [881] Run Sess
+15:01:53 : [881] Learning Loss: 0.172
+15:01:53 : [882] Fetch Batch
+15:01:56 : [882] Run Sess
+15:02:01 : [882] Learning Loss: 0.167
+15:02:01 : [883] Fetch Batch
+15:02:04 : [883] Run Sess
+15:02:09 : [883] Learning Loss: 0.173
+15:02:09 : [884] Fetch Batch
+15:02:12 : [884] Run Sess
+15:02:17 : [884] Learning Loss: 0.173
+15:02:17 : [885] Fetch Batch
+15:02:20 : [885] Run Sess
+15:02:25 : [885] Learning Loss: 0.167
+15:02:25 : [886] Fetch Batch
+15:02:27 : [886] Run Sess
+15:02:32 : [886] Learning Loss: 0.168
+15:02:32 : [887] Fetch Batch
+15:02:35 : [887] Run Sess
+15:02:41 : [887] Learning Loss: 0.160
+15:02:41 : [888] Fetch Batch
+15:02:44 : [888] Run Sess
+15:02:49 : [888] Learning Loss: 0.180
+15:02:49 : [889] Fetch Batch
+15:02:52 : [889] Run Sess
+15:02:57 : [889] Learning Loss: 0.167
+15:02:57 : [890] Fetch Batch
+15:03:00 : [890] Run Sess
+15:03:05 : [890] Learning Loss: 0.162
+15:03:05 : [891] Fetch Batch
+15:03:08 : [891] Run Sess
+15:03:13 : [891] Learning Loss: 0.173
+15:03:13 : [892] Fetch Batch
+15:03:16 : [892] Run Sess
+15:03:21 : [892] Learning Loss: 0.177
+15:03:21 : [893] Fetch Batch
+15:03:24 : [893] Run Sess
+15:03:29 : [893] Learning Loss: 0.177
+15:03:29 : [894] Fetch Batch
+15:03:32 : [894] Run Sess
+15:03:37 : [894] Learning Loss: 0.167
+15:03:37 : [895] Fetch Batch
+15:03:40 : [895] Run Sess
+15:03:45 : [895] Learning Loss: 0.164
+15:03:45 : [896] Fetch Batch
+15:03:48 : [896] Run Sess
+15:03:53 : [896] Learning Loss: 0.174
+15:03:53 : [897] Fetch Batch
+15:03:56 : [897] Run Sess
+15:04:01 : [897] Learning Loss: 0.162
+15:04:01 : [898] Fetch Batch
+15:04:04 : [898] Run Sess
+15:04:09 : [898] Learning Loss: 0.163
+15:04:09 : [899] Fetch Batch
+15:04:12 : [899] Run Sess
+15:04:17 : [899] Learning Loss: 0.172
+15:04:50 :	0.9605	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+15:04:50 :	1950	1792	1504	1129	762	422	233	900	0.1676
+15:04:50 : [900] Fetch Batch
+15:04:53 : [900] Run Sess
+15:04:58 : [900] Learning Loss: 0.172
+15:04:58 : [901] Fetch Batch
+15:05:02 : [901] Run Sess
+15:05:07 : [901] Learning Loss: 0.172
+15:05:07 : [902] Fetch Batch
+15:05:10 : [902] Run Sess
+15:05:15 : [902] Learning Loss: 0.160
+15:05:15 : [903] Fetch Batch
+15:05:18 : [903] Run Sess
+15:05:23 : [903] Learning Loss: 0.152
+15:05:23 : [904] Fetch Batch
+15:05:26 : [904] Run Sess
+15:05:31 : [904] Learning Loss: 0.154
+15:05:31 : [905] Fetch Batch
+15:05:35 : [905] Run Sess
+15:05:40 : [905] Learning Loss: 0.171
+15:05:40 : [906] Fetch Batch
+15:05:43 : [906] Run Sess
+15:05:48 : [906] Learning Loss: 0.161
+15:05:48 : [907] Fetch Batch
+15:05:51 : [907] Run Sess
+15:05:56 : [907] Learning Loss: 0.163
+15:05:56 : [908] Fetch Batch
+15:06:00 : [908] Run Sess
+15:06:05 : [908] Learning Loss: 0.158
+15:06:05 : [909] Fetch Batch
+15:06:08 : [909] Run Sess
+15:06:13 : [909] Learning Loss: 0.173
+15:06:13 : [910] Fetch Batch
+15:06:16 : [910] Run Sess
+15:06:21 : [910] Learning Loss: 0.151
+15:06:21 : [911] Fetch Batch
+15:06:25 : [911] Run Sess
+15:06:31 : [911] Learning Loss: 0.164
+15:06:31 : [912] Fetch Batch
+15:06:33 : [912] Run Sess
+15:06:39 : [912] Learning Loss: 0.158
+15:06:39 : [913] Fetch Batch
+15:06:42 : [913] Run Sess
+15:06:47 : [913] Learning Loss: 0.152
+15:06:47 : [914] Fetch Batch
+15:06:50 : [914] Run Sess
+15:06:55 : [914] Learning Loss: 0.157
+15:06:55 : [915] Fetch Batch
+15:06:58 : [915] Run Sess
+15:07:03 : [915] Learning Loss: 0.166
+15:07:03 : [916] Fetch Batch
+15:07:05 : [916] Run Sess
+15:07:11 : [916] Learning Loss: 0.163
+15:07:11 : [917] Fetch Batch
+15:07:13 : [917] Run Sess
+15:07:19 : [917] Learning Loss: 0.167
+15:07:19 : [918] Fetch Batch
+15:07:21 : [918] Run Sess
+15:07:27 : [918] Learning Loss: 0.162
+15:07:27 : [919] Fetch Batch
+15:07:29 : [919] Run Sess
+15:07:34 : [919] Learning Loss: 0.159
+15:07:34 : [920] Fetch Batch
+15:07:38 : [920] Run Sess
+15:07:43 : [920] Learning Loss: 0.149
+15:07:43 : [921] Fetch Batch
+15:07:46 : [921] Run Sess
+15:07:51 : [921] Learning Loss: 0.161
+15:07:51 : [922] Fetch Batch
+15:07:54 : [922] Run Sess
+15:07:59 : [922] Learning Loss: 0.157
+15:07:59 : [923] Fetch Batch
+15:08:02 : [923] Run Sess
+15:08:07 : [923] Learning Loss: 0.157
+15:08:07 : [924] Fetch Batch
+15:08:10 : [924] Run Sess
+15:08:15 : [924] Learning Loss: 0.146
+15:08:48 :	0.9617	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+15:08:48 :	1960	1816	1531	1124	756	443	219	925	0.1563
+15:08:48 : [925] Fetch Batch
+15:08:52 : [925] Run Sess
+15:08:57 : [925] Learning Loss: 0.160
+15:08:57 : [926] Fetch Batch
+15:09:00 : [926] Run Sess
+15:09:05 : [926] Learning Loss: 0.156
+15:09:05 : [927] Fetch Batch
+15:09:08 : [927] Run Sess
+15:09:13 : [927] Learning Loss: 0.147
+15:09:13 : [928] Fetch Batch
+15:09:16 : [928] Run Sess
+15:09:21 : [928] Learning Loss: 0.155
+15:09:21 : [929] Fetch Batch
+15:09:24 : [929] Run Sess
+15:09:29 : [929] Learning Loss: 0.158
+15:09:29 : [930] Fetch Batch
+15:09:32 : [930] Run Sess
+15:09:37 : [930] Learning Loss: 0.156
+15:09:37 : [931] Fetch Batch
+15:09:40 : [931] Run Sess
+15:09:45 : [931] Learning Loss: 0.159
+15:09:45 : [932] Fetch Batch
+15:09:48 : [932] Run Sess
+15:09:53 : [932] Learning Loss: 0.157
+15:09:53 : [933] Fetch Batch
+15:09:56 : [933] Run Sess
+15:10:01 : [933] Learning Loss: 0.146
+15:10:01 : [934] Fetch Batch
+15:10:04 : [934] Run Sess
+15:10:09 : [934] Learning Loss: 0.154
+15:10:09 : [935] Fetch Batch
+15:10:12 : [935] Run Sess
+15:10:17 : [935] Learning Loss: 0.163
+15:10:17 : [936] Fetch Batch
+15:10:20 : [936] Run Sess
+15:10:26 : [936] Learning Loss: 0.150
+15:10:26 : [937] Fetch Batch
+15:10:29 : [937] Run Sess
+15:10:34 : [937] Learning Loss: 0.152
+15:10:34 : [938] Fetch Batch
+15:10:37 : [938] Run Sess
+15:10:42 : [938] Learning Loss: 0.149
+15:10:42 : [939] Fetch Batch
+15:10:45 : [939] Run Sess
+15:10:50 : [939] Learning Loss: 0.160
+15:10:50 : [940] Fetch Batch
+15:10:53 : [940] Run Sess
+15:10:59 : [940] Learning Loss: 0.145
+15:10:59 : [941] Fetch Batch
+15:11:01 : [941] Run Sess
+15:11:06 : [941] Learning Loss: 0.149
+15:11:06 : [942] Fetch Batch
+15:11:09 : [942] Run Sess
+15:11:15 : [942] Learning Loss: 0.148
+15:11:15 : [943] Fetch Batch
+15:11:17 : [943] Run Sess
+15:11:23 : [943] Learning Loss: 0.147
+15:11:23 : [944] Fetch Batch
+15:11:26 : [944] Run Sess
+15:11:31 : [944] Learning Loss: 0.153
+15:11:31 : [945] Fetch Batch
+15:11:34 : [945] Run Sess
+15:11:39 : [945] Learning Loss: 0.152
+15:11:39 : [946] Fetch Batch
+15:11:42 : [946] Run Sess
+15:11:47 : [946] Learning Loss: 0.151
+15:11:47 : [947] Fetch Batch
+15:11:51 : [947] Run Sess
+15:11:56 : [947] Learning Loss: 0.132
+15:11:56 : [948] Fetch Batch
+15:11:59 : [948] Run Sess
+15:12:04 : [948] Learning Loss: 0.148
+15:12:04 : [949] Fetch Batch
+15:12:07 : [949] Run Sess
+15:12:12 : [949] Learning Loss: 0.143
+15:12:46 :	0.9605	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+15:12:46 :	1975	1814	1524	1122	733	443	216	950	0.1464
+15:12:46 : [950] Fetch Batch
+15:12:49 : [950] Run Sess
+15:12:54 : [950] Learning Loss: 0.148
+15:12:54 : [951] Fetch Batch
+15:12:58 : [951] Run Sess
+15:13:03 : [951] Learning Loss: 0.144
+15:13:03 : [952] Fetch Batch
+15:13:06 : [952] Run Sess
+15:13:11 : [952] Learning Loss: 0.143
+15:13:11 : [953] Fetch Batch
+15:13:14 : [953] Run Sess
+15:13:19 : [953] Learning Loss: 0.150
+15:13:19 : [954] Fetch Batch
+15:13:22 : [954] Run Sess
+15:13:27 : [954] Learning Loss: 0.153
+15:13:27 : [955] Fetch Batch
+15:13:30 : [955] Run Sess
+15:13:35 : [955] Learning Loss: 0.140
+15:13:35 : [956] Fetch Batch
+15:13:38 : [956] Run Sess
+15:13:43 : [956] Learning Loss: 0.141
+15:13:43 : [957] Fetch Batch
+15:13:46 : [957] Run Sess
+15:13:51 : [957] Learning Loss: 0.149
+15:13:51 : [958] Fetch Batch
+15:13:54 : [958] Run Sess
+15:13:59 : [958] Learning Loss: 0.146
+15:13:59 : [959] Fetch Batch
+15:14:02 : [959] Run Sess
+15:14:07 : [959] Learning Loss: 0.144
+15:14:07 : [960] Fetch Batch
+15:14:10 : [960] Run Sess
+15:14:15 : [960] Learning Loss: 0.144
+15:14:15 : [961] Fetch Batch
+15:14:18 : [961] Run Sess
+15:14:23 : [961] Learning Loss: 0.144
+15:14:23 : [962] Fetch Batch
+15:14:26 : [962] Run Sess
+15:14:31 : [962] Learning Loss: 0.142
+15:14:31 : [963] Fetch Batch
+15:14:35 : [963] Run Sess
+15:14:40 : [963] Learning Loss: 0.139
+15:14:40 : [964] Fetch Batch
+15:14:43 : [964] Run Sess
+15:14:48 : [964] Learning Loss: 0.152
+15:14:48 : [965] Fetch Batch
+15:14:51 : [965] Run Sess
+15:14:57 : [965] Learning Loss: 0.150
+15:14:57 : [966] Fetch Batch
+15:15:00 : [966] Run Sess
+15:15:05 : [966] Learning Loss: 0.136
+15:15:05 : [967] Fetch Batch
+15:15:08 : [967] Run Sess
+15:15:13 : [967] Learning Loss: 0.141
+15:15:13 : [968] Fetch Batch
+15:15:17 : [968] Run Sess
+15:15:22 : [968] Learning Loss: 0.149
+15:15:22 : [969] Fetch Batch
+15:15:25 : [969] Run Sess
+15:15:30 : [969] Learning Loss: 0.143
+15:15:30 : [970] Fetch Batch
+15:15:33 : [970] Run Sess
+15:15:39 : [970] Learning Loss: 0.137
+15:15:39 : [971] Fetch Batch
+15:15:42 : [971] Run Sess
+15:15:47 : [971] Learning Loss: 0.147
+15:15:47 : [972] Fetch Batch
+15:15:50 : [972] Run Sess
+15:15:55 : [972] Learning Loss: 0.145
+15:15:55 : [973] Fetch Batch
+15:15:58 : [973] Run Sess
+15:16:03 : [973] Learning Loss: 0.141
+15:16:03 : [974] Fetch Batch
+15:16:06 : [974] Run Sess
+15:16:12 : [974] Learning Loss: 0.148
+15:16:47 :	0.9607	1.0000	1.0000	1.0000	1.0000	1.0000	1.0000	
+15:16:47 :	1960	1794	1518	1147	751	432	222	975	0.1390
+15:16:47 : [975] Fetch Batch
+15:16:50 : [975] Run Sess
+15:16:55 : [975] Learning Loss: 0.141
+15:16:55 : [976] Fetch Batch
+15:16:58 : [976] Run Sess
+15:17:03 : [976] Learning Loss: 0.133
+15:17:03 : [977] Fetch Batch
+15:17:06 : [977] Run Sess
+15:17:11 : [977] Learning Loss: 0.145
+15:17:11 : [978] Fetch Batch
+15:17:14 : [978] Run Sess
+15:17:19 : [978] Learning Loss: 0.132
+15:17:19 : [979] Fetch Batch
+15:17:22 : [979] Run Sess
+15:17:27 : [979] Learning Loss: 0.139
+15:17:27 : [980] Fetch Batch
+15:17:31 : [980] Run Sess
+15:17:36 : [980] Learning Loss: 0.141
+15:17:36 : [981] Fetch Batch
+15:17:39 : [981] Run Sess
+15:17:44 : [981] Learning Loss: 0.143
+15:17:44 : [982] Fetch Batch
+15:17:47 : [982] Run Sess
+15:17:52 : [982] Learning Loss: 0.139
+15:17:52 : [983] Fetch Batch
+15:17:55 : [983] Run Sess
+15:18:00 : [983] Learning Loss: 0.134
+15:18:00 : [984] Fetch Batch
+15:18:03 : [984] Run Sess
+15:18:09 : [984] Learning Loss: 0.129
+15:18:09 : [985] Fetch Batch
+15:18:12 : [985] Run Sess
+15:18:17 : [985] Learning Loss: 0.132
+15:18:17 : [986] Fetch Batch
+15:18:20 : [986] Run Sess
+15:18:25 : [986] Learning Loss: 0.136
+15:18:25 : [987] Fetch Batch
+15:18:28 : [987] Run Sess
+15:18:33 : [987] Learning Loss: 0.133
+15:18:33 : [988] Fetch Batch
+15:18:37 : [988] Run Sess
+15:18:42 : [988] Learning Loss: 0.135
+15:18:42 : [989] Fetch Batch
+15:18:45 : [989] Run Sess
+15:18:50 : [989] Learning Loss: 0.136
+15:18:50 : [990] Fetch Batch
+15:18:53 : [990] Run Sess
+15:18:58 : [990] Learning Loss: 0.145
+15:18:58 : [991] Fetch Batch
+15:19:01 : [991] Run Sess
+15:19:06 : [991] Learning Loss: 0.138
+15:19:06 : [992] Fetch Batch
+15:19:09 : [992] Run Sess
+15:19:14 : [992] Learning Loss: 0.125
+15:19:14 : [993] Fetch Batch
+15:19:17 : [993] Run Sess
+15:19:22 : [993] Learning Loss: 0.138
+15:19:22 : [994] Fetch Batch
+15:19:26 : [994] Run Sess
+15:19:31 : [994] Learning Loss: 0.130
+15:19:31 : [995] Fetch Batch
+15:19:34 : [995] Run Sess
+15:19:39 : [995] Learning Loss: 0.148
+15:19:39 : [996] Fetch Batch
+15:19:42 : [996] Run Sess
+15:19:47 : [996] Learning Loss: 0.132
+15:19:47 : [997] Fetch Batch
+15:19:50 : [997] Run Sess
+15:19:55 : [997] Learning Loss: 0.130
+15:19:55 : [998] Fetch Batch
+15:19:59 : [998] Run Sess
+15:20:04 : [998] Learning Loss: 0.134
+15:20:04 : [999] Fetch Batch
+15:20:07 : [999] Run Sess
+15:20:12 : [999] Learning Loss: 0.138

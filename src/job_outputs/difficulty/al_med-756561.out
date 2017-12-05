@@ -1,0 +1,131 @@
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcublas.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcudnn.so.5 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcufft.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcurand.so.8.0 locally
+/home/03858/kk28695/.local/lib/python3.5/site-packages/skvideo/__init__.py:356: UserWarning: avconv/avprobe not found in path: 
+  warnings.warn("avconv/avprobe not found in path: " + str(path), UserWarning)
+11:28:01 : Args:  Namespace(augment=True, batch_size=16, batches_validation=5, class_difficulty='medium', controller_type='alex', data_dir='../../images_background', dataset_type='kinetics_dynamic', debug=True, image_height=128, image_width=128, label_type='one_hot', learning_rate=0.001, memory_size=128, memory_vector_dim=40, mode='train', model='MANN', model_save_freq=500, model_saver=False, n_classes=25, n_test_classes=423, n_train_classes=1200, num_epoches=1000, optimizer='adam', read_head_num=4, restore_training=False, rnn_num_layers=1, rnn_size=200, sample_nframes=64, save_dir='job_outputs/experiments', seq_length=100, serialize=True, shift_range=1, summary_writer=True, tensorboard_dir='./summary/one_shot_learning', test_batch_num=100, tf_debug_flag=False, use_pretrained=False, use_subset_classes=True, validation_freq=25, write_head_num=1)
+11:28:01 : controller:alex_dataset:kinetics_dynamic_nclasses:25_seqlength:100_pretrained:False_classdifficulty:medium
+11:28:01 : Loading in Model
+11:28:01 : Creating Placeholders
+11:28:01 : Creating Cells
+11:28:03 : WARNING: Using non-pretrained Alexnet
+11:28:03 : Looping through seq
+11:28:03 : Seq: [0] Passing data into the cell
+11:28:03 : Seq: [1] Passing data into the cell
+11:28:04 : Seq: [2] Passing data into the cell
+11:28:04 : Seq: [3] Passing data into the cell
+11:28:05 : Seq: [4] Passing data into the cell
+11:28:05 : Seq: [5] Passing data into the cell
+11:28:06 : Seq: [6] Passing data into the cell
+11:28:06 : Seq: [7] Passing data into the cell
+11:28:06 : Seq: [8] Passing data into the cell
+11:28:07 : Seq: [9] Passing data into the cell
+11:28:07 : Seq: [10] Passing data into the cell
+11:28:08 : Seq: [11] Passing data into the cell
+11:28:08 : Seq: [12] Passing data into the cell
+11:28:09 : Seq: [13] Passing data into the cell
+11:28:09 : Seq: [14] Passing data into the cell
+11:28:10 : Seq: [15] Passing data into the cell
+11:28:10 : Seq: [16] Passing data into the cell
+11:28:10 : Seq: [17] Passing data into the cell
+11:28:11 : Seq: [18] Passing data into the cell
+11:28:11 : Seq: [19] Passing data into the cell
+11:28:12 : Seq: [20] Passing data into the cell
+11:28:12 : Seq: [21] Passing data into the cell
+11:28:13 : Seq: [22] Passing data into the cell
+11:28:13 : Seq: [23] Passing data into the cell
+11:28:14 : Seq: [24] Passing data into the cell
+11:28:14 : Seq: [25] Passing data into the cell
+11:28:14 : Seq: [26] Passing data into the cell
+11:28:15 : Seq: [27] Passing data into the cell
+11:28:15 : Seq: [28] Passing data into the cell
+11:28:16 : Seq: [29] Passing data into the cell
+11:28:16 : Seq: [30] Passing data into the cell
+11:28:17 : Seq: [31] Passing data into the cell
+11:28:17 : Seq: [32] Passing data into the cell
+11:28:18 : Seq: [33] Passing data into the cell
+11:28:18 : Seq: [34] Passing data into the cell
+11:28:18 : Seq: [35] Passing data into the cell
+11:28:19 : Seq: [36] Passing data into the cell
+11:28:19 : Seq: [37] Passing data into the cell
+11:28:20 : Seq: [38] Passing data into the cell
+11:28:20 : Seq: [39] Passing data into the cell
+11:28:20 : Seq: [40] Passing data into the cell
+11:28:21 : Seq: [41] Passing data into the cell
+11:28:22 : Seq: [42] Passing data into the cell
+11:28:22 : Seq: [43] Passing data into the cell
+11:28:22 : Seq: [44] Passing data into the cell
+11:28:23 : Seq: [45] Passing data into the cell
+11:28:23 : Seq: [46] Passing data into the cell
+11:28:24 : Seq: [47] Passing data into the cell
+11:28:24 : Seq: [48] Passing data into the cell
+11:28:25 : Seq: [49] Passing data into the cell
+11:28:25 : Seq: [50] Passing data into the cell
+11:28:25 : Seq: [51] Passing data into the cell
+11:28:26 : Seq: [52] Passing data into the cell
+11:28:26 : Seq: [53] Passing data into the cell
+11:28:27 : Seq: [54] Passing data into the cell
+11:28:27 : Seq: [55] Passing data into the cell
+11:28:28 : Seq: [56] Passing data into the cell
+11:28:28 : Seq: [57] Passing data into the cell
+11:28:29 : Seq: [58] Passing data into the cell
+11:28:29 : Seq: [59] Passing data into the cell
+11:28:29 : Seq: [60] Passing data into the cell
+11:28:30 : Seq: [61] Passing data into the cell
+11:28:30 : Seq: [62] Passing data into the cell
+11:28:31 : Seq: [63] Passing data into the cell
+11:28:31 : Seq: [64] Passing data into the cell
+11:28:32 : Seq: [65] Passing data into the cell
+11:28:32 : Seq: [66] Passing data into the cell
+11:28:32 : Seq: [67] Passing data into the cell
+11:28:33 : Seq: [68] Passing data into the cell
+11:28:33 : Seq: [69] Passing data into the cell
+11:28:34 : Seq: [70] Passing data into the cell
+11:28:34 : Seq: [71] Passing data into the cell
+11:28:35 : Seq: [72] Passing data into the cell
+11:28:35 : Seq: [73] Passing data into the cell
+11:28:36 : Seq: [74] Passing data into the cell
+11:28:36 : Seq: [75] Passing data into the cell
+11:28:36 : Seq: [76] Passing data into the cell
+11:28:37 : Seq: [77] Passing data into the cell
+11:28:37 : Seq: [78] Passing data into the cell
+11:28:38 : Seq: [79] Passing data into the cell
+11:28:38 : Seq: [80] Passing data into the cell
+11:28:39 : Seq: [81] Passing data into the cell
+11:28:39 : Seq: [82] Passing data into the cell
+11:28:39 : Seq: [83] Passing data into the cell
+11:28:40 : Seq: [84] Passing data into the cell
+11:28:40 : Seq: [85] Passing data into the cell
+11:28:41 : Seq: [86] Passing data into the cell
+11:28:41 : Seq: [87] Passing data into the cell
+11:28:41 : Seq: [88] Passing data into the cell
+11:28:42 : Seq: [89] Passing data into the cell
+11:28:43 : Seq: [90] Passing data into the cell
+11:28:43 : Seq: [91] Passing data into the cell
+11:28:44 : Seq: [92] Passing data into the cell
+11:28:44 : Seq: [93] Passing data into the cell
+11:28:44 : Seq: [94] Passing data into the cell
+11:28:45 : Seq: [95] Passing data into the cell
+11:28:45 : Seq: [96] Passing data into the cell
+11:28:46 : Seq: [97] Passing data into the cell
+11:28:46 : Seq: [98] Passing data into the cell
+11:28:46 : Seq: [99] Passing data into the cell
+11:28:47 : Defining Loss
+11:28:47 : Total number of variables used  5001333
+11:28:47 : Defining optimizer
+11:31:29 : Finished Definining Model
+11:31:29 : Loading Data
+11:31:33 : Starting Session
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:885] Found device 0 with properties: 
+name: Tesla K40m
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:08:00.0
+Total memory: 11.17GiB
+Free memory: 11.10GiB
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:906] DMA: 0 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:916] 0:   Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K40m, pci bus id: 0000:08:00.0)
+11:31:34 : Started Session
+slurmstepd: error: *** JOB 756561 ON c222-704 CANCELLED AT 2017-12-05T11:32:31 ***

@@ -1,0 +1,192 @@
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcublas.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcudnn.so.5 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcufft.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcurand.so.8.0 locally
+/home/03858/kk28695/.local/lib/python3.5/site-packages/skvideo/__init__.py:356: UserWarning: avconv/avprobe not found in path: 
+  warnings.warn("avconv/avprobe not found in path: " + str(path), UserWarning)
+00:36:34 : Args:  Namespace(augment=True, batch_size=16, batches_validation=5, class_difficulty='medium', controller_type='alex', data_dir='../../images_background', dataset_type='kinetics_dynamic', debug=True, image_height=128, image_width=128, label_type='one_hot', learning_rate=0.001, memory_size=128, memory_vector_dim=40, mode='train', model='MANN', model_save_freq=500, model_saver=False, n_classes=25, n_test_classes=423, n_train_classes=1200, num_epoches=1000, optimizer='adam', read_head_num=4, restore_training=False, rnn_num_layers=1, rnn_size=200, sample_nframes=64, save_dir='job_outputs/experiments', seq_length=100, serialize=True, shift_range=1, summary_writer=True, tensorboard_dir='./summary/one_shot_learning', test_batch_num=100, tf_debug_flag=False, use_pretrained=False, use_subset_classes=True, validation_freq=25, write_head_num=1)
+00:36:34 : controller:alex_dataset:kinetics_dynamic_nclasses:25_seqlength:100_pretrained:False_classdifficulty:medium
+00:36:34 : Loading in Model
+00:36:34 : Creating Placeholders
+00:36:34 : Creating Cells
+00:36:37 : WARNING: Using non-pretrained Alexnet
+00:36:37 : Looping through seq
+00:36:37 : Seq: [0] Passing data into the cell
+00:36:38 : Seq: [1] Passing data into the cell
+00:36:38 : Seq: [2] Passing data into the cell
+00:36:38 : Seq: [3] Passing data into the cell
+00:36:39 : Seq: [4] Passing data into the cell
+00:36:39 : Seq: [5] Passing data into the cell
+00:36:40 : Seq: [6] Passing data into the cell
+00:36:40 : Seq: [7] Passing data into the cell
+00:36:41 : Seq: [8] Passing data into the cell
+00:36:41 : Seq: [9] Passing data into the cell
+00:36:42 : Seq: [10] Passing data into the cell
+00:36:42 : Seq: [11] Passing data into the cell
+00:36:42 : Seq: [12] Passing data into the cell
+00:36:43 : Seq: [13] Passing data into the cell
+00:36:43 : Seq: [14] Passing data into the cell
+00:36:44 : Seq: [15] Passing data into the cell
+00:36:44 : Seq: [16] Passing data into the cell
+00:36:45 : Seq: [17] Passing data into the cell
+00:36:45 : Seq: [18] Passing data into the cell
+00:36:45 : Seq: [19] Passing data into the cell
+00:36:46 : Seq: [20] Passing data into the cell
+00:36:46 : Seq: [21] Passing data into the cell
+00:36:47 : Seq: [22] Passing data into the cell
+00:36:47 : Seq: [23] Passing data into the cell
+00:36:48 : Seq: [24] Passing data into the cell
+00:36:48 : Seq: [25] Passing data into the cell
+00:36:49 : Seq: [26] Passing data into the cell
+00:36:49 : Seq: [27] Passing data into the cell
+00:36:49 : Seq: [28] Passing data into the cell
+00:36:50 : Seq: [29] Passing data into the cell
+00:36:50 : Seq: [30] Passing data into the cell
+00:36:51 : Seq: [31] Passing data into the cell
+00:36:51 : Seq: [32] Passing data into the cell
+00:36:52 : Seq: [33] Passing data into the cell
+00:36:52 : Seq: [34] Passing data into the cell
+00:36:52 : Seq: [35] Passing data into the cell
+00:36:53 : Seq: [36] Passing data into the cell
+00:36:53 : Seq: [37] Passing data into the cell
+00:36:54 : Seq: [38] Passing data into the cell
+00:36:54 : Seq: [39] Passing data into the cell
+00:36:55 : Seq: [40] Passing data into the cell
+00:36:55 : Seq: [41] Passing data into the cell
+00:36:56 : Seq: [42] Passing data into the cell
+00:36:56 : Seq: [43] Passing data into the cell
+00:36:56 : Seq: [44] Passing data into the cell
+00:36:57 : Seq: [45] Passing data into the cell
+00:36:57 : Seq: [46] Passing data into the cell
+00:36:58 : Seq: [47] Passing data into the cell
+00:36:58 : Seq: [48] Passing data into the cell
+00:36:58 : Seq: [49] Passing data into the cell
+00:36:59 : Seq: [50] Passing data into the cell
+00:36:59 : Seq: [51] Passing data into the cell
+00:37:00 : Seq: [52] Passing data into the cell
+00:37:00 : Seq: [53] Passing data into the cell
+00:37:01 : Seq: [54] Passing data into the cell
+00:37:01 : Seq: [55] Passing data into the cell
+00:37:02 : Seq: [56] Passing data into the cell
+00:37:02 : Seq: [57] Passing data into the cell
+00:37:03 : Seq: [58] Passing data into the cell
+00:37:03 : Seq: [59] Passing data into the cell
+00:37:03 : Seq: [60] Passing data into the cell
+00:37:04 : Seq: [61] Passing data into the cell
+00:37:04 : Seq: [62] Passing data into the cell
+00:37:05 : Seq: [63] Passing data into the cell
+00:37:05 : Seq: [64] Passing data into the cell
+00:37:05 : Seq: [65] Passing data into the cell
+00:37:06 : Seq: [66] Passing data into the cell
+00:37:06 : Seq: [67] Passing data into the cell
+00:37:07 : Seq: [68] Passing data into the cell
+00:37:07 : Seq: [69] Passing data into the cell
+00:37:08 : Seq: [70] Passing data into the cell
+00:37:08 : Seq: [71] Passing data into the cell
+00:37:09 : Seq: [72] Passing data into the cell
+00:37:09 : Seq: [73] Passing data into the cell
+00:37:10 : Seq: [74] Passing data into the cell
+00:37:10 : Seq: [75] Passing data into the cell
+00:37:10 : Seq: [76] Passing data into the cell
+00:37:11 : Seq: [77] Passing data into the cell
+00:37:11 : Seq: [78] Passing data into the cell
+00:37:12 : Seq: [79] Passing data into the cell
+00:37:12 : Seq: [80] Passing data into the cell
+00:37:12 : Seq: [81] Passing data into the cell
+00:37:13 : Seq: [82] Passing data into the cell
+00:37:13 : Seq: [83] Passing data into the cell
+00:37:14 : Seq: [84] Passing data into the cell
+00:37:14 : Seq: [85] Passing data into the cell
+00:37:14 : Seq: [86] Passing data into the cell
+00:37:15 : Seq: [87] Passing data into the cell
+00:37:15 : Seq: [88] Passing data into the cell
+00:37:16 : Seq: [89] Passing data into the cell
+00:37:17 : Seq: [90] Passing data into the cell
+00:37:17 : Seq: [91] Passing data into the cell
+00:37:17 : Seq: [92] Passing data into the cell
+00:37:18 : Seq: [93] Passing data into the cell
+00:37:18 : Seq: [94] Passing data into the cell
+00:37:19 : Seq: [95] Passing data into the cell
+00:37:19 : Seq: [96] Passing data into the cell
+00:37:19 : Seq: [97] Passing data into the cell
+00:37:20 : Seq: [98] Passing data into the cell
+00:37:20 : Seq: [99] Passing data into the cell
+00:37:21 : Defining Loss
+00:37:21 : Total number of variables used  5001333
+00:37:21 : Defining optimizer
+00:39:57 : Finished Definining Model
+00:39:57 : Loading Data
+00:40:01 : Starting Session
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:885] Found device 0 with properties: 
+name: Tesla K40m
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:08:00.0
+Total memory: 11.17GiB
+Free memory: 11.10GiB
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:906] DMA: 0 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:916] 0:   Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K40m, pci bus id: 0000:08:00.0)
+00:40:02 : Started Session
+I tensorflow/compiler/xla/service/platform_util.cc:58] platform CUDA present with 1 visible devices
+I tensorflow/compiler/xla/service/platform_util.cc:58] platform Host present with 20 visible devices
+I tensorflow/compiler/xla/service/service.cc:180] XLA service executing computations on platform Host. Devices:
+I tensorflow/compiler/xla/service/service.cc:187]   StreamExecutor device (0): <undefined>, <undefined>
+I tensorflow/compiler/xla/service/platform_util.cc:58] platform CUDA present with 1 visible devices
+I tensorflow/compiler/xla/service/platform_util.cc:58] platform Host present with 20 visible devices
+I tensorflow/compiler/xla/service/service.cc:180] XLA service executing computations on platform CUDA. Devices:
+I tensorflow/compiler/xla/service/service.cc:187]   StreamExecutor device (0): Tesla K40m, Compute Capability 3.5
+00:41:10 : Finished Initialization
+00:44:58 : Train Writer Finished
+00:44:58 : Namespace(augment=True, batch_size=16, batches_validation=5, class_difficulty='medium', controller_type='alex', data_dir='../../images_background', dataset_type='kinetics_dynamic', debug=True, image_height=128, image_width=128, label_type='one_hot', learning_rate=0.001, memory_size=128, memory_vector_dim=40, mode='train', model='MANN', model_save_freq=500, model_saver=False, n_classes=25, n_test_classes=423, n_train_classes=1200, num_epoches=1000, optimizer='adam', output_dim=25, read_head_num=4, restore_training=False, rnn_num_layers=1, rnn_size=200, sample_nframes=64, save_dir='job_outputs/experiments', seq_length=100, serialize=True, shift_range=1, summary_writer=True, tensorboard_dir='./summary/one_shot_learning', test_batch_num=100, tf_debug_flag=False, use_pretrained=False, use_subset_classes=True, validation_freq=25, write_head_num=1)
+00:44:58 : 1st	2nd	3rd	4th	5th	6th	7th	8th	9th	10th	batch	loss
+00:45:44 :	0.0353	0.0332	0.0342	0.0458	0.0462	0.0448	0.0588	
+00:45:44 :	1957	1808	1490	1136	757	446	221	0	319.6583
+00:45:44 : [0] Fetch Batch
+00:45:51 : [0] Run Sess
+00:46:09 : [0] Learning Loss: 319.694
+00:46:09 : [1] Fetch Batch
+00:46:14 : [1] Run Sess
+00:46:19 : [1] Learning Loss: 321.185
+00:46:19 : [2] Fetch Batch
+00:46:23 : [2] Run Sess
+00:46:28 : [2] Learning Loss: 319.096
+00:46:28 : [3] Fetch Batch
+00:46:31 : [3] Run Sess
+00:46:37 : [3] Learning Loss: 318.073
+00:46:37 : [4] Fetch Batch
+00:46:40 : [4] Run Sess
+00:46:45 : [4] Learning Loss: 319.210
+00:46:45 : [5] Fetch Batch
+00:46:48 : [5] Run Sess
+00:46:53 : [5] Learning Loss: 317.765
+00:46:53 : [6] Fetch Batch
+00:46:56 : [6] Run Sess
+00:47:02 : [6] Learning Loss: 316.894
+00:47:02 : [7] Fetch Batch
+00:47:05 : [7] Run Sess
+00:47:11 : [7] Learning Loss: 317.205
+00:47:11 : [8] Fetch Batch
+00:47:14 : [8] Run Sess
+00:47:19 : [8] Learning Loss: 316.537
+00:47:19 : [9] Fetch Batch
+00:47:22 : [9] Run Sess
+00:47:27 : [9] Learning Loss: 317.184
+00:47:27 : [10] Fetch Batch
+00:47:30 : [10] Run Sess
+00:47:35 : [10] Learning Loss: 316.864
+00:47:35 : [11] Fetch Batch
+00:47:39 : [11] Run Sess
+00:47:44 : [11] Learning Loss: 317.069
+00:47:44 : [12] Fetch Batch
+00:47:47 : [12] Run Sess
+00:47:52 : [12] Learning Loss: 316.596
+00:47:52 : [13] Fetch Batch
+00:47:55 : [13] Run Sess
+00:48:00 : [13] Learning Loss: 318.345
+00:48:00 : [14] Fetch Batch
+00:48:03 : [14] Run Sess
+00:48:09 : [14] Learning Loss: 315.488
+00:48:09 : [15] Fetch Batch
+00:48:12 : [15] Run Sess
+slurmstepd: error: *** JOB 756233 ON c224-502 CANCELLED AT 2017-12-05T00:48:13 ***

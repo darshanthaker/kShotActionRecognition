@@ -1,0 +1,41 @@
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcublas.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcudnn.so.5 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcufft.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcurand.so.8.0 locally
+/home/03858/kk28695/.local/lib/python3.5/site-packages/skvideo/__init__.py:356: UserWarning: avconv/avprobe not found in path: 
+  warnings.warn("avconv/avprobe not found in path: " + str(path), UserWarning)
+usage: one_shot_learning.py [-h] [--mode MODE]
+                            [--restore_training RESTORE_TRAINING]
+                            [--summary_writer SUMMARY_WRITER]
+                            [--serialize SERIALIZE]
+                            [--model_saver MODEL_SAVER]
+                            [--use_subset_classes USE_SUBSET_CLASSES]
+                            [--use_pretrained USE_PRETRAINED]
+                            [--class_difficulty CLASS_DIFFICULTY]
+                            [--debug DEBUG] [--tf_debug_flag TF_DEBUG_FLAG]
+                            [--label_type LABEL_TYPE] [--n_classes N_CLASSES]
+                            [--seq_length SEQ_LENGTH] [--augment AUGMENT]
+                            [--model MODEL] [--read_head_num READ_HEAD_NUM]
+                            [--batch_size BATCH_SIZE]
+                            [--num_epoches NUM_EPOCHES]
+                            [--model_save_freq MODEL_SAVE_FREQ]
+                            [--validation_freq VALIDATION_FREQ]
+                            [--learning_rate LEARNING_RATE]
+                            [--rnn_size RNN_SIZE] [--image_width IMAGE_WIDTH]
+                            [--image_height IMAGE_HEIGHT]
+                            [--rnn_num_layers RNN_NUM_LAYERS]
+                            [--memory_size MEMORY_SIZE]
+                            [--memory_vector_dim MEMORY_VECTOR_DIM]
+                            [--shift_range SHIFT_RANGE]
+                            [--write_head_num WRITE_HEAD_NUM]
+                            [--test_batch_num TEST_BATCH_NUM]
+                            [--n_train_classes N_TRAIN_CLASSES]
+                            [--n_test_classes N_TEST_CLASSES]
+                            [--save_dir SAVE_DIR] [--data_dir DATA_DIR]
+                            [--dataset_type DATASET_TYPE]
+                            [--controller_type CONTROLLER_TYPE]
+                            [--sample_nframes SAMPLE_NFRAMES]
+                            [--optimizer OPTIMIZER]
+                            [--tensorboard_dir TENSORBOARD_DIR]
+one_shot_learning.py: error: argument --memory_size: invalid int value: ''
