@@ -110,7 +110,7 @@ def train(args):
             # Test
 
             if b % args.validation_freq == 0:
-                learning_loss_list, output_list = [], []
+                learning_loss_list, output_list, y_list = [], [], []
                 for val_index in range(args.batches_validation):
                     if args.dataset_type == 'omniglot':
                         x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
@@ -128,18 +128,21 @@ def train(args):
                         train_writer.add_summary(merged_summary, b)
                     learning_loss_list.append(learning_loss)
                     output_list.append(output)
+                    y_list.append(y)
                 # state_list = sess.run(model.state_list, feed_dict=feed_dict)  # For debugging
                 # with open('state_long.txt', 'w') as f:
                 #     print(state_list, file=f)
-                set_trace()
-                accuracy, total = test_f(args, y, output)
+                output_total = np.concatenate(output_list, axis=0)
+                y_total = np.concatenate(y_list, axis=0)
+                learning_loss = np.mean(learning_loss_list)
+                accuracy, total = test_f(args, y_total, output_total)
                 eprint(end='\t')
                 for accu in accuracy:
                     eprint2('%.4f' % accu, end='\t')
                 eprint2(end='\n')
                 eprint(end='\t')
                 for tot in total:
-                    eprint2('%.4f' % tot, end='\t')
+                    eprint2('%d' % tot, end='\t')
 
                 eprint2('%d\t%.4f' % (b, learning_loss))
 
