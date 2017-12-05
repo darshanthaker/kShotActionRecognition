@@ -29,6 +29,7 @@ def main():
     parser.add_argument('--read_head_num', default=4, type=int)
     parser.add_argument('--batch_size', default=16, type=int)
     parser.add_argument('--num_epoches', default=1000, type=int)
+    parser.add_argument('--batches_validation', default=5, type=int)
     parser.add_argument('--model_save_freq', default=500, type=int)
     parser.add_argument('--validation_freq', default=25, type=int)
     parser.add_argument('--learning_rate', default=1e-3, type=int)
@@ -109,30 +110,36 @@ def train(args):
             # Test
 
             if b % args.validation_freq == 0:
-                if args.dataset_type == 'omniglot':
-                    x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
-                                                            type='test',
-                                                            augment=args.augment,
-                                                            label_type=args.label_type)
-                elif args.dataset_type == 'kinetics_dynamic': 
-                    x_image, x_label, y = test_data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
-                                                                  augment=args.augment,
-                                                                  label_type=args.label_type)
-                feed_dict = {model.x_image: x_image, model.x_label: x_label, model.y: y, model.is_training: False}
-                output, learning_loss = sess.run([model.o, model.learning_loss], feed_dict=feed_dict)
-                if args.summary_writer:
-                    merged_summary = sess.run(model.learning_loss_summary, feed_dict=feed_dict)
-                    train_writer.add_summary(merged_summary, b)
+                learning_loss_list, output_list = [], []
+                for val_index in range(args.batches_validation):
+                    if args.dataset_type == 'omniglot':
+                        x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
+                                                                type='test',
+                                                                augment=args.augment,
+                                                                label_type=args.label_type)
+                    elif args.dataset_type == 'kinetics_dynamic': 
+                        x_image, x_label, y = test_data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
+                                                                      augment=args.augment,
+                                                                      label_type=args.label_type)
+                    feed_dict = {model.x_image: x_image, model.x_label: x_label, model.y: y, model.is_training: False}
+                    output, learning_loss = sess.run([model.o, model.learning_loss], feed_dict=feed_dict)
+                    if args.summary_writer:
+                        merged_summary = sess.run(model.learning_loss_summary, feed_dict=feed_dict)
+                        train_writer.add_summary(merged_summary, b)
+                    learning_loss_list.append(learning_loss)
+                    output_list.append(output)
                 # state_list = sess.run(model.state_list, feed_dict=feed_dict)  # For debugging
                 # with open('state_long.txt', 'w') as f:
                 #     print(state_list, file=f)
+                set_trace()
                 accuracy, total = test_f(args, y, output)
-                eprint()
+                eprint(end='\t')
                 for accu in accuracy:
                     eprint2('%.4f' % accu, end='\t')
-                eprint()
+                eprint2(end='\n')
+                eprint(end='\t')
                 for tot in total:
-                    eprint2('%f' % tot, end='\t')
+                    eprint2('%.4f' % tot, end='\t')
 
                 eprint2('%d\t%.4f' % (b, learning_loss))
 
@@ -235,7 +242,7 @@ def test_f(args, y, output):
             if y_i[j] == output_i[j]:
                 correct[class_count[y_i[j]]] += 1
     #  return [float(correct[i]) / total[i] if total[i] > 0. else 0. for i in range(1, int(args.seq_length/args.n_classes))]
-    return [float(correct[i]) / total[i] if total[i] > 0. else 0. for i in range(1, 8)], total
+    return [float(correct[i]) / total[i] if total[i] > 0. else 0. for i in range(1, 8)], total[1:8]
 
 
 if __name__ == '__main__':
