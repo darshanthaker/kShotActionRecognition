@@ -147,9 +147,9 @@ def evaluate_actions(args):
 
     #  class_indices = [15, 16, 17, 18, 19]
     #  class_indices = [10, 11, 12, 13, 14, 15]
-    #  class_indices = [227]
+    class_indices = [150]
     #  class_indices = range(41, 100)
-    class_indices = range(327, 400)
+    #  class_indices = range(327, 400)
     for action_index in class_indices:
     #  for action_index in range(len(kinetics_classes)):
         eprint("[{}] Loading Data".format(action_index))
