@@ -5,10 +5,35 @@ import util
 import os
 from pdb import set_trace
 
+class Sampler(object):
+
+
+    def __init__(self, examples, sorted_labels, max_num_per_lab):
+        self.examples = examples
+        self.sorted_labels = sorted_labels
+        self.max_num_per_lab = max_num_per_lab
+        self.full_lab_examples = dict()
+        for lab in self.sorted_labels:
+            self.full_lab_examples[lab] = list(filter(lambda x: x[1] == lab, self.examples))
+        self.clear()
+
+    def sample(self, label):
+        retval = self.labs_dict[label][self.lab_freq[label]] 
+        self.lab_freq[label] += 1
+        return retval
+
+    def clear(self):
+        self.labs_dict = dict()
+        for lab in self.sorted_labels:
+            np.random.shuffle(self.full_lab_examples[lab])
+            lab_examples = self.full_lab_examples[lab][:self.max_num_per_lab]
+            self.labs_dict[lab] = lab_examples
+        self.lab_freq = {lab: 0 for lab in self.sorted_labels}
+
 class InputLoader(object):
 
     def __init__(self, input_rep, v_type, im_size=128, use_subset_classes=True, \
-            args=None):
+            class_difficulty='easy', args=None):
         self.args = args
         self.input_rep = input_rep
         self.dig = DynamicImageGenerator()
@@ -19,9 +44,8 @@ class InputLoader(object):
                  args.class_difficulty, \
                  use_subset_classes=args.use_subset_classes)
         else:
-            util.eprint("WARNING: in debug mode")
             self.videos, self.labels = util.get_videos_lst(self.v_type,  \
-                 'easy',  # just for debug purposes.
+                 class_difficulty,  # just for debug purposes.
                  use_subset_classes=use_subset_classes)
         self.label_set = set(self.labels)
         self.label_lst = sorted(list(self.label_set))
@@ -68,7 +92,7 @@ class InputLoader(object):
 
     def fetch_batch(self, num_unique_classes, batch_size, seq_length,
             augment=False,
-            sampling_strategy='random',
+            sampling_strategy='uniform',
             label_type='one_hot'):
         if label_type != 'one_hot' and label_type != 'int':
             raise NotImplementedError('Non one-hot encoding/int not supported yet')
@@ -89,12 +113,19 @@ class InputLoader(object):
                         [j] * int(seq_length / num_unique_classes) \
                         for j in range(num_unique_classes)])\
                      for i in range(batch_size)])
+            sorted_labels = sorted(list(set([x[1] for x in filtered_examples])))
+            sampler = Sampler(filtered_examples, sorted_labels, \
+                int(seq_length / num_unique_classes))
+            examples = list()
             for i in range(batch_size):
+                sampler.clear()
                 np.random.shuffle(ordered_indices[i, :])
-            # TODO(dbthaker): Finish this shit.
-            #for i in np.nditer(ordered_indices):
-            #    examples.append(
-            #examples = [filtered_examples[i] for i in np.nditer(ordered_indices)]
+                tmp_examples = list()
+                for j in range(seq_length):
+                    actual_label = sorted_labels[ordered_indices[i, j]]
+                    ex = sampler.sample(actual_label)
+                    tmp_examples.append(ex)
+                examples += tmp_examples
             
         batch_data = list()
         batch_labels = list()
@@ -147,7 +178,7 @@ class InputLoader(object):
 
 def main():
     input_loader = InputLoader("dynamic_image", "train", use_subset_classes=True)
-    #input_loader.fetch_batch(2, 4, 4)
+    input_loader.fetch_batch(2, 4, 4)
     #input_loader._save_all_dynamic_images()
 
 if __name__=="__main__":

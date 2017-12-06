@@ -20,7 +20,7 @@ class ExperimentConfig(object):
             num_epoches=1000, rnn_size=200, batches_validation=5):
         # Sanity checks.
         if controller_type == 'vgg19':
-            assert image_height <= 64 and image_width <= 64  
+            assert image_height <= 64 and image_width <= 64 and batch_size <= 8
         assert debug == True
         assert n_classes in VALID_N_CLASSES
         assert controller_type in VALID_CONTROLLERS
@@ -41,9 +41,13 @@ class ExperimentConfig(object):
         self.command = command
 
 
-exp_to_folder_map = {'al_med': 'difficulty'}
+exp_to_folder_map = {'al_med': 'difficulty', 'vgg': 'controllers'}
 
-all_configs = {'difficulty/al_med': ExperimentConfig(class_difficulty='medium')}
+all_configs = {'difficulty/al_med': ExperimentConfig(class_difficulty='medium'), \
+               'controllers/vgg': ExperimentConfig(controller_type='vgg19', \
+                                                   image_width=64, image_height=64, \
+                                                   batch_size=8)
+              }
 
 class ExperimentRunner(object):
 
@@ -75,14 +79,13 @@ class ExperimentRunner(object):
             print("#SBATCH -A CS381V-Visual-Recogn", file=fp)
             print("", file=fp)
             print("module load gcc/4.9.1 cuda/8.0 cudnn/5.1 "\
-                  " python3/3.5.2 tensorflow-gpu/1.0.0", file=fp)
+                  "python3/3.5.2 tensorflow-gpu/1.0.0", file=fp)
             print(config.command, file=fp)
         os.chmod(job_file, 0o755)
         p = subprocess.Popen('sbatch ./{}'.format(job_file), shell=True)
         out, err = p.communicate()
 
 def main(experiments):
-    set_trace()
     runner = ExperimentRunner(experiments)
 
 if __name__=='__main__':

@@ -16,6 +16,11 @@ def serialize_plot(lst, dirname, name):
     with open(dirname + '/' + name, 'wb') as fp:
         pickle.dump(lst, fp)
 
+def load_file(dir_name, name):
+    with open(dir_name + '/' + name, 'rb') as fp:
+        lst = pickle.load(fp)
+        return lst 
+
 def gen_exp_name(args):
     return "controller:{}_dataset:{}_nclasses:{}_seqlength:{}_pretrained:{}_classdifficulty:{}"\
                 .format(args.controller_type, args.dataset_type, args.n_classes, args.seq_length, args.use_pretrained, args.class_difficulty)

@@ -4,22 +4,24 @@ from util import *
 from input_loader import InputLoader
 
 def main():
-    val_input_loader = InputLoader('dynamic_image', 'val')
-    num_unique_classes = 10
-    batch_size = 256
-    num_batches = 1
-    seq_length = 35
+    num_unique_classes = 25
+    batch_size = 80
+    seq_length = 100
+    class_difficulty = 'hard'
+    val_input_loader = InputLoader('dynamic_image', 'val', \
+            class_difficulty=class_difficulty)
 
     print("Number of unique classes: {}, Batch size: {}, Sequence length: {}".format( \
         num_unique_classes, batch_size, seq_length))
 
     all_labs = list()
     all_pred_labs = list()
-    for i in range(batch_size):
-        batch_data, batch_labels, _ = val_input_loader.fetch_batch(num_unique_classes, \
-            batch_size, seq_length, label_type='int')
 
-        batch_data = batch_data.reshape((batch_size, seq_length, -1))
+    batch_data, batch_labels, _ = val_input_loader.fetch_batch(num_unique_classes, \
+        batch_size, seq_length, label_type='int', sampling_strategy='random')
+    batch_data = batch_data.reshape((batch_size, seq_length, -1))
+    for i in range(batch_size):
+        print(i)
         feat_vecs = batch_data[i, :, :]
         labs = batch_labels[i, :]
         kmeans = KMeans(n_clusters=num_unique_classes).fit(feat_vecs)
