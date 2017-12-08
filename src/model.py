@@ -74,6 +74,10 @@ class NTMOneShotLearningModel():
                                           #  shape=[args.batch_size, args.seq_length, args.sample_nframes, args.image_width, args.image_height, 3])
             self.x_image = tf.placeholder(dtype=tf.float32,
                                           shape=[args.batch_size, args.seq_length, args.sample_nframes, args.image_width, args.image_height, 3])
+        elif args.dataset_type == 'kinetics_single_frame':
+            self.x_image = tf.placeholder(dtype=tf.float32,
+                                          shape=[args.batch_size, args.seq_length, args.image_width, args.image_height, 3])
+
 
         self.is_training = tf.placeholder(tf.bool)
 
@@ -117,10 +121,12 @@ class NTMOneShotLearningModel():
             eprint("Seq: [{}] Passing data into the cell".format(t))
             if args.dataset_type == 'omniglot':
                 output, state = cell(self.x_image[:, t, :], self.x_label[:, t, :], state)
-            if args.dataset_type == 'kinetics_dynamic':
-                output, state = cell(self.x_image[:, t, :, :, :], self.x_label[:, t, :], state)
             elif args.dataset_type == 'kinetics_video':
                 output, state = cell(self.x_image[:, t, :, :, :, :], self.x_label[:, t, :], state)
+            else:
+                # in the case of kinetics dynamic.. aka default
+                output, state = cell(self.x_image[:, t, :, :, :], self.x_label[:, t, :], state)
+
             # output, state = cell(self.y[:, t, :], state)
             # go from the memory stored dimensionality to the number of classes / predictions
             with tf.variable_scope("o2o", reuse=(t > 0)):

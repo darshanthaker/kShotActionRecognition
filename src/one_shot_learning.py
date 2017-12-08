@@ -122,11 +122,17 @@ def train(args):
                                                                 type='test',
                                                                 augment=args.augment,
                                                                 label_type=args.label_type)
-                    elif args.dataset_type == 'kinetics_dynamic': 
+                    else: 
+                        # all kinetics loaders
+                        if args.debug:
+                            eprint("Loading in validation data")
                         x_image, x_label, y = test_data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
                                                                       augment=args.augment,
                                                                       label_type=args.label_type)
                     feed_dict = {model.x_image: x_image, model.x_label: x_label, model.y: y, model.is_training: False}
+                    if args.debug:
+                        eprint("Validation running session")
+
                     output, learning_loss = sess.run([model.o, model.learning_loss], feed_dict=feed_dict)
                     if args.summary_writer:
                         merged_summary = sess.run(model.learning_loss_summary, feed_dict=feed_dict)
@@ -171,7 +177,7 @@ def train(args):
                                                               type='train',
                                                               augment=args.augment,
                                                               label_type=args.label_type)
-            elif args.dataset_type == 'kinetics_dynamic': 
+            else: 
                 x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
                                                               augment=args.augment,
                                                               label_type=args.label_type)

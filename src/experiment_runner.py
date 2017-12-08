@@ -15,7 +15,7 @@ class ExperimentConfig(object):
   
     def __init__(self, dataset_type='kinetics_dynamic', controller_type='alex', \
             batch_size=16, image_width=128, image_height=128, \
-            summary_writer=True, model_saver=False, debug=True, \
+            summary_writer=False, model_saver=False, debug=True, \
             memory_size=128, memory_vector_dim=40, seq_length=100, \
             n_classes=25, class_difficulty='all', use_pretrained=False, \
             num_epoches=1000, rnn_size=200, batches_validation=5, im_normalization=True):
@@ -46,7 +46,8 @@ class ExperimentConfig(object):
 exp_to_folder_map = {'al_med': 'difficulty', 'vgg': 'controllers',
                     'no_norm': 'no_norm',
                     'mem128x80': 'memory', 'mem128x20': 'memory', 'mem64x40':'memory', 'mem256x40':'memory',
-                    'center_frame': 'inputs'} 
+                    'center_frame': 'inputs',
+                    'lstm100': 'lstm', 'lstm1': 'lstm', 'lstm300':'lstm'} 
 
 all_configs = {'difficulty/al_med': ExperimentConfig(class_difficulty='medium'), \
                'controllers/vgg': ExperimentConfig(controller_type='vgg19', \
@@ -59,6 +60,9 @@ all_configs = {'difficulty/al_med': ExperimentConfig(class_difficulty='medium'),
                'memory/mem64x40': ExperimentConfig(memory_size=64, memory_vector_dim=40),
                'memory/mem256x40': ExperimentConfig(memory_size=256, memory_vector_dim=40),
                'inputs/center_frame': ExperimentConfig(dataset_type='kinetics_single_frame'),
+               'lstm/lstm1': ExperimentConfig(rnn_size=1),
+               'lstm/lstm100': ExperimentConfig(rnn_size=100),
+               'lstm/lstm300': ExperimentConfig(rnn_size=300),
               }
 
 class ExperimentRunner(object):
