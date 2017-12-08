@@ -22,8 +22,8 @@
 # http://www.tacc.utexas.edu/user-services/user-guides/maverick-user-guide
 #-----------------------------------------------------------------------------
 #
-#SBATCH -J vgg64                           # Job name
-#SBATCH -o job_outputs/controller/vgg64-%j.out                     # Name of stdout output file (%j expands to jobId)
+#SBATCH -J vgg                           # Job name
+#SBATCH -o job_outputs/controller/vgg-%j.out                     # Name of stdout output file (%j expands to jobId)
 #SBATCH -p gpu                                      # Queue name
 #SBATCH -N 1                                        # Total number of nodes requested (20 cores/node)
 #SBATCH -n 1                                        # Total number of mpi tasks requested

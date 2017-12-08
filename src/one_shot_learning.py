@@ -25,6 +25,7 @@ def main():
     parser.add_argument('--n_classes', default=5, type=int)
     parser.add_argument('--seq_length', default=35, type=int) # Bruh.. Don't use above 35
     parser.add_argument('--augment', default=True, type=str2bool)
+    parser.add_argument('--im_normalization', default=True, type=str2bool)
     parser.add_argument('--model', default="MANN", help='LSTM, MANN, MANN2 or NTM')
     parser.add_argument('--read_head_num', default=4, type=int)
     parser.add_argument('--batch_size', default=16, type=int)
@@ -46,7 +47,7 @@ def main():
     parser.add_argument('--n_test_classes', default=423, type=int)
     parser.add_argument('--save_dir', default='job_outputs/experiments')
     parser.add_argument('--data_dir', default='../../images_background')
-    parser.add_argument('--dataset_type', default='kinetics_dynamic') # options: omniglot, kinetics_dynamic, kinetics_video
+    parser.add_argument('--dataset_type', default='kinetics_dynamic') # options: omniglot, kinetics_dynamic, kinetics_video, kinetics_single_frame
     parser.add_argument('--controller_type', default='alex') # options: alex, vgg19, i3d, default 
     parser.add_argument('--sample_nframes', default=64, type=int)
     parser.add_argument('--optimizer', default='adam')
@@ -80,6 +81,10 @@ def train(args):
     elif args.dataset_type == 'kinetics_video':
         data_loader = InputLoader('raw_video', 'train', args=args, im_size=args.image_height)
         test_data_loader = InputLoader('raw_video', 'val', args=args, im_size=args.image_height)
+    elif args.dataset_type == 'kinetics_single_frame':
+        data_loader = InputLoader('single_frame', 'train', args=args, im_size=args.image_height)
+        test_data_loader = InputLoader('single_frame', 'val', args=args, im_size=args.image_height)
+
 
     eprint("Starting Session")
     with tf.Session() as sess:

@@ -4,6 +4,7 @@ import numpy as np
 import argparse
 import subprocess
 from pdb import set_trace
+from util import eprint
 
 VALID_N_CLASSES = [5, 15, 25]
 VALID_CONTROLLERS = ['alex', 'vgg19']
@@ -17,7 +18,7 @@ class ExperimentConfig(object):
             summary_writer=True, model_saver=False, debug=True, \
             memory_size=128, memory_vector_dim=40, seq_length=100, \
             n_classes=25, class_difficulty='all', use_pretrained=False, \
-            num_epoches=1000, rnn_size=200, batches_validation=5):
+            num_epoches=1000, rnn_size=200, batches_validation=5, im_normalization=True):
         # Sanity checks.
         if controller_type == 'vgg19':
             assert image_height <= 64 and image_width <= 64 and batch_size <= 8
@@ -32,21 +33,32 @@ class ExperimentConfig(object):
                   "--model_saver={} --debug={} --memory_size={} " \
                   "--memory_vector_dim={} --seq_length={} " \
                   "--n_classes={} --class_difficulty={} --use_pretrained={} " \
-                  "--num_epoches={} --rnn_size={} --batches_validation={}"
+                  "--num_epoches={} --rnn_size={} --batches_validation={} " \
+                  "--im_normalization={}"
         command = command.format(dataset_type, controller_type, batch_size, \
                 image_width, image_height, summary_writer, model_saver, debug, \
                 memory_size, memory_vector_dim, seq_length, n_classes, \
                 class_difficulty, use_pretrained, num_epoches, rnn_size, \
-                batches_validation)
+                batches_validation, im_normalization)
         self.command = command
 
 
-exp_to_folder_map = {'al_med': 'difficulty', 'vgg': 'controllers'}
+exp_to_folder_map = {'al_med': 'difficulty', 'vgg': 'controllers',
+                    'no_norm': 'no_norm',
+                    'mem128x80': 'memory', 'mem128x20': 'memory', 'mem64x40':'memory', 'mem256x40':'memory',
+                    'center_frame': 'inputs'} 
 
 all_configs = {'difficulty/al_med': ExperimentConfig(class_difficulty='medium'), \
                'controllers/vgg': ExperimentConfig(controller_type='vgg19', \
                                                    image_width=64, image_height=64, \
-                                                   batch_size=8)
+                                                   batch_size=8),
+               'no_norm/no_norm': ExperimentConfig(im_normalization=False),
+               'no_norm/norm': ExperimentConfig(im_normalization=True),
+               'memory/mem128x80': ExperimentConfig(memory_size=128, memory_vector_dim=80),
+               'memory/mem128x20': ExperimentConfig(memory_size=128, memory_vector_dim=20),
+               'memory/mem64x40': ExperimentConfig(memory_size=64, memory_vector_dim=40),
+               'memory/mem256x40': ExperimentConfig(memory_size=256, memory_vector_dim=40),
+               'inputs/center_frame': ExperimentConfig(dataset_type='kinetics_single_frame'),
               }
 
 class ExperimentRunner(object):
@@ -61,6 +73,7 @@ class ExperimentRunner(object):
         out_file_path = os.path.join('job_outputs', \
             exp_to_folder_map[exp], exp + '-%j.out')
         type_and_exp = os.path.join(exp_to_folder_map[exp], exp)
+        eprint(type_and_exp)
         config = all_configs[type_and_exp]
         if not os.path.exists('job_files'):
             os.mkdir('job_files')
@@ -81,9 +94,13 @@ class ExperimentRunner(object):
             print("module load gcc/4.9.1 cuda/8.0 cudnn/5.1 "\
                   "python3/3.5.2 tensorflow-gpu/1.0.0", file=fp)
             print(config.command, file=fp)
+        eprint("Job File: ", job_file)
+        eprint(config.command)
         os.chmod(job_file, 0o755)
         p = subprocess.Popen('sbatch ./{}'.format(job_file), shell=True)
         out, err = p.communicate()
+        eprint(err)
+        eprint(out)
 
 def main(experiments):
     runner = ExperimentRunner(experiments)

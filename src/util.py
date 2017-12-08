@@ -22,8 +22,8 @@ def load_file(dir_name, name):
         return lst 
 
 def gen_exp_name(args):
-    return "controller:{}_dataset:{}_nclasses:{}_seqlength:{}_pretrained:{}_classdifficulty:{}"\
-                .format(args.controller_type, args.dataset_type, args.n_classes, args.seq_length, args.use_pretrained, args.class_difficulty)
+    return "controller:{}_dataset:{}_nclasses:{}_seqlength:{}_pretrained:{}_classdifficulty:{}_memsize:{}_memvector:{}"\
+                .format(args.controller_type, args.dataset_type, args.n_classes, args.seq_length, args.use_pretrained, args.class_difficulty, args.memory_size, args.memory_vector_dim)
 
 def mkdir(path):
     os.system("mkdir -p {}".format(path))

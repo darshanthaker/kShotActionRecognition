@@ -75,7 +75,11 @@ class InputLoader(object):
             rep = util.find_dynamic_image(filename, resize=(self.im_size, self.im_size))
         elif self.input_rep == 'raw_video':
             rep = util.video_to_frames(filename, resize=(self.im_size, self.im_size), sample_nframes=self.args.sample_nframes)
-        rep = (rep/255.0 * 2.0) - 1.0
+        elif self.input_rep == 'single_frame':
+            rep = util.video_to_frames(filename, resize=(self.im_size, self.im_size), sample_nframes=None)
+            rep = rep[len(rep)//2, :, :, :]
+        if self.args.im_normalization:
+            rep = (rep/255.0 * 2.0) - 1.0
         return rep
 
     def fetch_serial_batch(self, batch_size):
@@ -161,7 +165,8 @@ class InputLoader(object):
                 sample_nframes=sample_nframes)
             all_videos.append(video)
         all_videos = np.array(all_videos)
-        all_videos = (all_videos/255.0 * 2.0) - 1.0
+        if self.args.im_normalization:
+            all_videos = (all_videos/255.0 * 2.0) - 1.0
         return all_videos
 
     def _save_all_dynamic_images(self):
