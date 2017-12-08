@@ -2,6 +2,7 @@ import numpy as np
 import random
 from compute_dynamic_image import DynamicImageGenerator
 import util
+import argparse
 import os
 from pdb import set_trace
 
@@ -182,8 +183,15 @@ class InputLoader(object):
             util.eprint("Serialized DI for {}".format(filename))
 
 def main():
-    input_loader = InputLoader("dynamic_image", "train", use_subset_classes=True)
-    input_loader.fetch_batch(2, 4, 4)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dataset_type', default='kinetics_dynamic') # options: omniglot, kinetics_dynamic, kinetics_video, kinetics_single_frame
+    parser.add_argument('--im_normalization', default=True, type=util.str2bool)
+    parser.add_argument('--class_difficulty', default='easy')
+    parser.add_argument('--use_subset_classes', default=True, type=util.str2bool)
+    args = parser.parse_args()
+    input_loader = InputLoader("single_frame", "val", use_subset_classes=True, args=args)
+    images, shifted_labels, y= input_loader.fetch_batch(5, 16, 35)
+    set_trace()
     #input_loader._save_all_dynamic_images()
 
 if __name__=="__main__":
