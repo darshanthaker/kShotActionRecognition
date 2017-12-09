@@ -59,7 +59,7 @@ all_configs = {'difficulty/al_med': ExperimentConfig(class_difficulty='medium'),
                'memory/mem128x20': ExperimentConfig(memory_size=128, memory_vector_dim=20),
                'memory/mem64x40': ExperimentConfig(memory_size=64, memory_vector_dim=40),
                'memory/mem256x40': ExperimentConfig(memory_size=256, memory_vector_dim=40),
-               'inputs/center_frame': ExperimentConfig(dataset_type='kinetics_single_frame'),
+               'inputs/center_frame': ExperimentConfig(dataset_type='kinetics_single_frame', seq_length=35, n_classes=5, num_epoches=250),
                'lstm/lstm1': ExperimentConfig(rnn_size=1),
                'lstm/lstm100': ExperimentConfig(rnn_size=100),
                'lstm/lstm300': ExperimentConfig(rnn_size=300),
@@ -68,8 +68,9 @@ all_configs = {'difficulty/al_med': ExperimentConfig(class_difficulty='medium'),
 class ExperimentRunner(object):
 
 
-    def __init__(self, experiments):
+    def __init__(self, experiments, duration=4):
         self.experiments = experiments
+        self.duration = 4
         for exp in experiments:
             self.run_job(exp)
 
@@ -92,7 +93,7 @@ class ExperimentRunner(object):
             print("#SBATCH -p gpu", file=fp)
             print("#SBATCH -N 1", file=fp)
             print("#SBATCH -n 1", file=fp)
-            print("#SBATCH -t 4:00:00", file=fp)
+            print("#SBATCH -t {}:00:00".format(self.duration), file=fp)
             print("#SBATCH -A CS381V-Visual-Recogn", file=fp)
             print("", file=fp)
             print("module load gcc/4.9.1 cuda/8.0 cudnn/5.1 "\
@@ -106,14 +107,15 @@ class ExperimentRunner(object):
         eprint(err)
         eprint(out)
 
-def main(experiments):
-    runner = ExperimentRunner(experiments)
-
-if __name__=='__main__':
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--experiments', type=str)
+    parser.add_argument('--duration', default=4, type=int)
     args = parser.parse_args()
     if not args.experiments:
         print("0 Experiments passed in!")
         sys.exit(1)
-    main(args.experiments.split())
+    runner = ExperimentRunner(args.experiments.split())
+
+if __name__=='__main__':
+    main()

@@ -18,7 +18,7 @@ def main():
     parser.add_argument('--model_saver', default=False, type=str2bool)
     parser.add_argument('--use_subset_classes', default=True, type=str2bool)
     parser.add_argument('--use_pretrained', default=False, type=str2bool)
-    parser.add_argument('--class_difficulty', default='easy')
+    parser.add_argument('--class_difficulty', default='all')
     parser.add_argument('--debug', default=False, type=str2bool)
     parser.add_argument('--tf_debug_flag', default=False, type=str2bool)
     parser.add_argument('--label_type', default="one_hot", help='one_hot or five_hot')

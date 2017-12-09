@@ -97,7 +97,7 @@ class InputLoader(object):
 
     def fetch_batch(self, num_unique_classes, batch_size, seq_length,
             augment=False,
-            sampling_strategy='uniform',
+            sampling_strategy='random',
             label_type='one_hot'):
         if label_type != 'one_hot' and label_type != 'int':
             raise NotImplementedError('Non one-hot encoding/int not supported yet')
@@ -186,11 +186,12 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset_type', default='kinetics_dynamic') # options: omniglot, kinetics_dynamic, kinetics_video, kinetics_single_frame
     parser.add_argument('--im_normalization', default=True, type=util.str2bool)
-    parser.add_argument('--class_difficulty', default='easy')
+    parser.add_argument('--class_difficulty', default='all')
     parser.add_argument('--use_subset_classes', default=True, type=util.str2bool)
     args = parser.parse_args()
+    np.random.seed(0)
     input_loader = InputLoader("single_frame", "val", use_subset_classes=True, args=args)
-    images, shifted_labels, y= input_loader.fetch_batch(5, 16, 35)
+    images, shifted_labels, y= input_loader.fetch_batch(1, 16, 9)
     set_trace()
     #input_loader._save_all_dynamic_images()
 
