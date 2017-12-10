@@ -59,7 +59,7 @@ all_configs = {'difficulty/al_med': ExperimentConfig(class_difficulty='medium'),
                'memory/mem128x20': ExperimentConfig(memory_size=128, memory_vector_dim=20),
                'memory/mem64x40': ExperimentConfig(memory_size=64, memory_vector_dim=40),
                'memory/mem256x40': ExperimentConfig(memory_size=256, memory_vector_dim=40),
-               'inputs/center_frame': ExperimentConfig(dataset_type='kinetics_single_frame', seq_length=35, n_classes=5, num_epoches=250),
+               'inputs/center_frame': ExperimentConfig(dataset_type='kinetics_single_frame', seq_length=35, n_classes=5, num_epoches=250, batches_validation=1),
                'lstm/lstm1': ExperimentConfig(rnn_size=1),
                'lstm/lstm100': ExperimentConfig(rnn_size=100),
                'lstm/lstm300': ExperimentConfig(rnn_size=300),
@@ -70,7 +70,7 @@ class ExperimentRunner(object):
 
     def __init__(self, experiments, duration=4):
         self.experiments = experiments
-        self.duration = 4
+        self.duration = duration
         for exp in experiments:
             self.run_job(exp)
 
@@ -115,7 +115,7 @@ def main():
     if not args.experiments:
         print("0 Experiments passed in!")
         sys.exit(1)
-    runner = ExperimentRunner(args.experiments.split())
+    runner = ExperimentRunner(args.experiments.split(), duration=args.duration)
 
 if __name__=='__main__':
     main()

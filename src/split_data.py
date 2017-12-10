@@ -30,6 +30,7 @@ def save_split(class_list, name):
     np.save("{}_train.npy".format(name), train_split)
     np.save("{}_test.npy".format(name), test_split)
 
+set_trace()
 save_split(hard_class_list, 'hard')
 save_split(medium_class_list, 'medium')
 save_split(easy_class_list, 'easy')

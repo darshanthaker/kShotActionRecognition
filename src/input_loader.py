@@ -99,6 +99,26 @@ class InputLoader(object):
             augment=False,
             sampling_strategy='random',
             label_type='one_hot'):
+        batch_data, batch_labels, shifted_batch_labels = self._fetch_batch(num_unique_classes, batch_size, seq_length,\
+                            augment=augment, sampling_strategy=sampling_strategy, label_type=label_type)
+        while True:
+            #  set_trace()
+            exist_none = False
+            for d in np.nditer(batch_data):
+                if d is None:
+                    exist_none = True
+                    break
+            #  set_trace()
+            if not exist_none:
+                return batch_data, batch_labels, shifted_batch_labels
+            batch_data, batch_labels, shifted_batch_labels = self._fetch_batch(num_unique_classes, batch_size, seq_length,\
+                                augment=augment, sampling_strategy=sampling_strategy, label_type=label_type)
+
+
+    def _fetch_batch(self, num_unique_classes, batch_size, seq_length,
+            augment=False,
+            sampling_strategy='random',
+            label_type='one_hot'):
         if label_type != 'one_hot' and label_type != 'int':
             raise NotImplementedError('Non one-hot encoding/int not supported yet')
 

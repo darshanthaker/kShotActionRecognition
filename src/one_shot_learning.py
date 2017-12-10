@@ -146,6 +146,7 @@ def train(args):
                 output_total = np.concatenate(output_list, axis=0)
                 y_total = np.concatenate(y_list, axis=0)
                 learning_loss = np.mean(learning_loss_list)
+                set_trace()
                 accuracy, total = test_f(args, y_total, output_total)
                 eprint(end='\t')
                 for accu in accuracy:

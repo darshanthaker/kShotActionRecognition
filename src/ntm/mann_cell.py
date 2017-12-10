@@ -1,6 +1,7 @@
 import tensorflow as tf
 import numpy as np
 from ntm.controller import DefaultController, AlexNetController, I3DController, VGG19Controller
+from pdb import set_trace
 
 class MANNCell():
     # Q: what is k_strategy
