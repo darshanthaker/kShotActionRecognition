@@ -97,7 +97,27 @@ class InputLoader(object):
 
     def fetch_batch(self, num_unique_classes, batch_size, seq_length,
             augment=False,
-            sampling_strategy='uniform',
+            sampling_strategy='random',
+            label_type='one_hot'):
+        batch_data, batch_labels, shifted_batch_labels = self._fetch_batch(num_unique_classes, batch_size, seq_length,\
+                            augment=augment, sampling_strategy=sampling_strategy, label_type=label_type)
+        while True:
+            #  set_trace()
+            exist_none = False
+            for d in np.nditer(batch_data):
+                if d is None:
+                    exist_none = True
+                    break
+            #  set_trace()
+            if not exist_none:
+                return batch_data, batch_labels, shifted_batch_labels
+            batch_data, batch_labels, shifted_batch_labels = self._fetch_batch(num_unique_classes, batch_size, seq_length,\
+                                augment=augment, sampling_strategy=sampling_strategy, label_type=label_type)
+
+
+    def _fetch_batch(self, num_unique_classes, batch_size, seq_length,
+            augment=False,
+            sampling_strategy='random',
             label_type='one_hot'):
         if label_type != 'one_hot' and label_type != 'int':
             raise NotImplementedError('Non one-hot encoding/int not supported yet')
@@ -151,7 +171,8 @@ class InputLoader(object):
         elif label_type =='int':
             batch_labels = batch_labels.reshape((batch_size, seq_length))
             shifted_batch_labels = None
-        return batch_data, batch_labels, shifted_batch_labels
+        #  return batch_data, batch_labels, shifted_batch_labels
+        return batch_data, shifted_batch_labels, batch_labels
 
     def sample_from_action(self, action, k, resize=(128, 128), \
             sample_nframes=64):
@@ -189,8 +210,9 @@ def main():
     parser.add_argument('--class_difficulty', default='all')
     parser.add_argument('--use_subset_classes', default=True, type=util.str2bool)
     args = parser.parse_args()
+    np.random.seed(0)
     input_loader = InputLoader("single_frame", "val", use_subset_classes=True, args=args)
-    images, shifted_labels, y= input_loader.fetch_batch(5, 16, 35)
+    images, shifted_labels, y= input_loader.fetch_batch(1, 16, 9)
     set_trace()
     #input_loader._save_all_dynamic_images()
 

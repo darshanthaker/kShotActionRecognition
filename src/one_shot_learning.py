@@ -18,7 +18,7 @@ def main():
     parser.add_argument('--model_saver', default=False, type=str2bool)
     parser.add_argument('--use_subset_classes', default=True, type=str2bool)
     parser.add_argument('--use_pretrained', default=False, type=str2bool)
-    parser.add_argument('--class_difficulty', default='easy')
+    parser.add_argument('--class_difficulty', default='all')
     parser.add_argument('--debug', default=False, type=str2bool)
     parser.add_argument('--tf_debug_flag', default=False, type=str2bool)
     parser.add_argument('--label_type', default="one_hot", help='one_hot or five_hot')
@@ -149,6 +149,7 @@ def train(args):
                 output_total = np.concatenate(output_list, axis=0)
                 y_total = np.concatenate(y_list, axis=0)
                 learning_loss = np.mean(learning_loss_list)
+                #  set_trace()
                 accuracy, total = test_f(args, y_total, output_total)
                 eprint(end='\t')
                 for accu in accuracy:
@@ -271,6 +272,7 @@ def test_f(args, y, output):
             total[class_count[y_i[j]]] += 1
             if y_i[j] == output_i[j]:
                 correct[class_count[y_i[j]]] += 1
+        #  set_trace()
     #  return [float(correct[i]) / total[i] if total[i] > 0. else 0. for i in range(1, int(args.seq_length/args.n_classes))]
     return [float(correct[i]) / total[i] if total[i] > 0. else 0. for i in range(1, 8)], total[1:8]
 
