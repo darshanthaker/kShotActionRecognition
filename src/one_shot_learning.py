@@ -24,6 +24,7 @@ def main():
     parser.add_argument('--label_type', default="one_hot", help='one_hot or five_hot')
     parser.add_argument('--n_classes', default=5, type=int)
     parser.add_argument('--seq_length', default=35, type=int) # Bruh.. Don't use above 35
+    parser.add_argument('--sampling_strategy', default='random')
     parser.add_argument('--augment', default=True, type=str2bool)
     parser.add_argument('--im_normalization', default=True, type=str2bool)
     parser.add_argument('--model', default="MANN", help='LSTM, MANN, MANN2 or NTM')
@@ -120,6 +121,7 @@ def train(args):
                     if args.dataset_type == 'omniglot':
                         x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
                                                                 type='test',
+                                                                sampling_strategy=args.sampling_strategy,
                                                                 augment=args.augment,
                                                                 label_type=args.label_type)
                     else: 
@@ -127,8 +129,9 @@ def train(args):
                         if args.debug:
                             eprint("Loading in validation data")
                         x_image, x_label, y = test_data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
-                                                                      augment=args.augment,
-                                                                      label_type=args.label_type)
+                                                sampling_strategy=args.sampling_strategy,
+                                                augment=args.augment,
+                                                label_type=args.label_type)
                     feed_dict = {model.x_image: x_image, model.x_label: x_label, model.y: y, model.is_training: False}
                     if args.debug:
                         eprint("Validation running session")
@@ -159,6 +162,10 @@ def train(args):
 
                 if args.serialize:
                     accuracy_list.append(accuracy)
+                    dir_name = args.save_dir + '/' + exp_name
+                    mkdir(dir_name)
+                    eprint("Serializing intermediate accuracy")
+                    serialize_plot(accuracy_list, dir_name, "inter_accuracy")
 
             # Save model
 
@@ -175,10 +182,12 @@ def train(args):
             if args.dataset_type == 'omniglot':
                 x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
                                                               type='train',
+                                                              sampling_strategy=args.sampling_strategy,
                                                               augment=args.augment,
                                                               label_type=args.label_type)
             else: 
                 x_image, x_label, y = data_loader.fetch_batch(args.n_classes, args.batch_size, args.seq_length,
+                                                              sampling_strategy=args.sampling_strategy,
                                                               augment=args.augment,
                                                               label_type=args.label_type)
 
@@ -191,6 +200,11 @@ def train(args):
                 eprint("[{}] Learning Loss: {:.3f}".format(b, learning_loss))
             if args.serialize:
                 loss_list.append(learning_loss)
+                dir_name = args.save_dir + '/' + exp_name
+                mkdir(dir_name)
+                rand_val = str(np.random.randint(0, 100))
+                eprint("Serializing intermediate loss")
+                serialize_plot(loss_list, dir_name, "inter_loss")
 
     if args.serialize:
         dir_name = args.save_dir + '/' + exp_name

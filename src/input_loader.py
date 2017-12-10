@@ -186,7 +186,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset_type', default='kinetics_dynamic') # options: omniglot, kinetics_dynamic, kinetics_video, kinetics_single_frame
     parser.add_argument('--im_normalization', default=True, type=util.str2bool)
-    parser.add_argument('--class_difficulty', default='easy')
+    parser.add_argument('--class_difficulty', default='all')
     parser.add_argument('--use_subset_classes', default=True, type=util.str2bool)
     args = parser.parse_args()
     input_loader = InputLoader("single_frame", "val", use_subset_classes=True, args=args)
