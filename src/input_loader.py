@@ -171,7 +171,8 @@ class InputLoader(object):
         elif label_type =='int':
             batch_labels = batch_labels.reshape((batch_size, seq_length))
             shifted_batch_labels = None
-        return batch_data, batch_labels, shifted_batch_labels
+        #  return batch_data, batch_labels, shifted_batch_labels
+        return batch_data, shifted_batch_labels, batch_labels
 
     def sample_from_action(self, action, k, resize=(128, 128), \
             sample_nframes=64):

@@ -146,7 +146,7 @@ def train(args):
                 output_total = np.concatenate(output_list, axis=0)
                 y_total = np.concatenate(y_list, axis=0)
                 learning_loss = np.mean(learning_loss_list)
-                set_trace()
+                #  set_trace()
                 accuracy, total = test_f(args, y_total, output_total)
                 eprint(end='\t')
                 for accu in accuracy:
@@ -258,6 +258,7 @@ def test_f(args, y, output):
             total[class_count[y_i[j]]] += 1
             if y_i[j] == output_i[j]:
                 correct[class_count[y_i[j]]] += 1
+        #  set_trace()
     #  return [float(correct[i]) / total[i] if total[i] > 0. else 0. for i in range(1, int(args.seq_length/args.n_classes))]
     return [float(correct[i]) / total[i] if total[i] > 0. else 0. for i in range(1, 8)], total[1:8]
 

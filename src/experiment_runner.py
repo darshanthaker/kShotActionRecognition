@@ -7,7 +7,7 @@ from pdb import set_trace
 from util import eprint
 
 VALID_N_CLASSES = [5, 15, 25]
-VALID_CONTROLLERS = ['alex', 'vgg19']
+VALID_CONTROLLERS = ['alex', 'vgg19', 'default']
 VALID_CLASS_DIFFICULTIES = ['easy', 'medium', 'hard', 'all']
 
 class ExperimentConfig(object):
@@ -18,10 +18,11 @@ class ExperimentConfig(object):
             summary_writer=False, model_saver=False, debug=True, \
             memory_size=128, memory_vector_dim=40, seq_length=100, \
             n_classes=25, class_difficulty='all', use_pretrained=False, \
-            num_epoches=1000, rnn_size=200, batches_validation=5, im_normalization=True):
+            num_epoches=5000, rnn_size=200, batches_validation=5, im_normalization=True):
         # Sanity checks.
         if controller_type == 'vgg19':
             assert image_height <= 64 and image_width <= 64 and batch_size <= 8
+        
         assert debug == True
         assert n_classes in VALID_N_CLASSES
         assert controller_type in VALID_CONTROLLERS
@@ -45,9 +46,13 @@ class ExperimentConfig(object):
 
 exp_to_folder_map = {'al_med': 'difficulty', 'vgg': 'controllers',
                     'no_norm': 'no_norm',
-                    'mem128x80': 'memory', 'mem128x20': 'memory', 'mem64x40':'memory', 'mem256x40':'memory',
+                    'mem128x80': 'memory', 'mem128x20': 'memory', 'mem64x40':'memory', \
+                            'mem256x40':'memory','mem32x40':'memory','mem16x40':'memory',\
+                            'mem16x20':'memory',
                     'center_frame': 'inputs',
-                    'lstm100': 'lstm', 'lstm1': 'lstm', 'lstm300':'lstm'} 
+                    'omni_alex': 'omniglot',
+                    'omni_default': 'omniglot',
+                    'lstm100': 'lstm', 'lstm1': 'lstm', 'lstm300':'lstm', 'lstm25':'lstm'} 
 
 all_configs = {'difficulty/al_med': ExperimentConfig(class_difficulty='medium'), \
                'controllers/vgg': ExperimentConfig(controller_type='vgg19', \
@@ -59,10 +64,19 @@ all_configs = {'difficulty/al_med': ExperimentConfig(class_difficulty='medium'),
                'memory/mem128x20': ExperimentConfig(memory_size=128, memory_vector_dim=20),
                'memory/mem64x40': ExperimentConfig(memory_size=64, memory_vector_dim=40),
                'memory/mem256x40': ExperimentConfig(memory_size=256, memory_vector_dim=40),
+               'memory/mem32x40': ExperimentConfig(memory_size=32, memory_vector_dim=40),
+               'memory/mem16x40': ExperimentConfig(memory_size=16, memory_vector_dim=40),
+               'memory/mem16x20': ExperimentConfig(memory_size=16, memory_vector_dim=40),
                'inputs/center_frame': ExperimentConfig(dataset_type='kinetics_single_frame', seq_length=35, n_classes=5, num_epoches=250, batches_validation=1),
                'lstm/lstm1': ExperimentConfig(rnn_size=1),
+               'lstm/lstm25': ExperimentConfig(rnn_size=25),
                'lstm/lstm100': ExperimentConfig(rnn_size=100),
                'lstm/lstm300': ExperimentConfig(rnn_size=300),
+               'seq_length/seq50': ExperimentConfig(seq_length=50),
+               'seq_length/seq150': ExperimentConfig(seq_length=150),
+               'seq_length/seq200': ExperimentConfig(seq_length=150),
+               'omniglot/omni_alex': ExperimentConfig(dataset_type='omniglot', controller_type='alex', image_height=20, image_width=20, n_classes=5, seq_length=35, num_epoches=17000),
+               'omniglot/omni_default': ExperimentConfig(dataset_type='omniglot', controller_type='default', image_height=20, image_width=20, n_classes=5, seq_length=35, num_epoches=17000),
               }
 
 class ExperimentRunner(object):
