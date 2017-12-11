@@ -212,7 +212,7 @@ def train(args):
     if args.serialize:
         dir_name = args.save_dir + '/' + exp_name
         mkdir(dir_name)
-        rand_val = str(np.random.randint(0, 100))
+        # rand_val = str(np.random.randint(0, 100))
         eprint("Serializing: ", rand_val)
         serialize_plot(loss_list, dir_name, "loss" + rand_val)
         serialize_plot(accuracy_list, dir_name, "accuracy" + rand_val)

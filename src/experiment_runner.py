@@ -51,7 +51,7 @@ exp_to_folder_map = {'al_med': 'difficulty', 'al_hard': 'difficulty','al_easy': 
                     'no_norm': 'no_norm',
                     'mem128x80': 'memory', 'mem128x20': 'memory', 'mem64x40':'memory', 'mem2x40':'memory',\
                             'mem256x40':'memory','mem32x40':'memory','mem16x40':'memory',\
-                            'mem16x20':'memory',
+                            'mem16x20':'memory', 'mem128x320': 'memory', \
                     'center_frame': 'inputs',
                     'n10seq70': 'classes','n15seq105': 'classes','n25seq175': 'classes',
                     'omni_alex': 'omniglot',
