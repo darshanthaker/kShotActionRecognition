@@ -14,7 +14,7 @@ def main():
     parser.add_argument('--mode', default="train")
     parser.add_argument('--restore_training', default=False, type=str2bool)
     parser.add_argument('--summary_writer', default=False, type=str2bool)
-    parser.add_argument('--serialize', default=False, type=str2bool)
+    parser.add_argument('--serialize', default=True, type=str2bool)
     parser.add_argument('--model_saver', default=False, type=str2bool)
     parser.add_argument('--use_subset_classes', default=True, type=str2bool)
     parser.add_argument('--use_pretrained', default=False, type=str2bool)
@@ -34,7 +34,7 @@ def main():
     parser.add_argument('--batches_validation', default=5, type=int)
     parser.add_argument('--model_save_freq', default=500, type=int)
     parser.add_argument('--validation_freq', default=25, type=int)
-    parser.add_argument('--learning_rate', default=1e-4, type=float)
+    parser.add_argument('--learning_rate', default=1e-3, type=float)
     parser.add_argument('--rnn_size', default=200, type=int)
     parser.add_argument('--image_width', default=128, type=int)
     parser.add_argument('--image_height', default=128, type=int)
@@ -109,6 +109,9 @@ def train(args):
         eprint(args)
         eprint("1st\t2nd\t3rd\t4th\t5th\t6th\t7th\t8th\t9th\t10th\tbatch\tloss")
 
+
+        rand_val = str(np.random.randint(0, 100))
+
         loss_list = []
         accuracy_list = []
         for b in range(args.num_epoches):
@@ -166,7 +169,7 @@ def train(args):
                     dir_name = args.save_dir + '/' + exp_name
                     mkdir(dir_name)
                     eprint("Serializing intermediate accuracy")
-                    serialize_plot(accuracy_list, dir_name, "inter_accuracy")
+                    serialize_plot(accuracy_list, dir_name, "inter_accuracy" + rand_val)
 
             # Save model
 
@@ -203,9 +206,8 @@ def train(args):
                 loss_list.append(learning_loss)
                 dir_name = args.save_dir + '/' + exp_name
                 mkdir(dir_name)
-                rand_val = str(np.random.randint(0, 100))
                 eprint("Serializing intermediate loss")
-                serialize_plot(loss_list, dir_name, "inter_loss")
+                serialize_plot(loss_list, dir_name, "inter_loss" + rand_val)
 
     if args.serialize:
         dir_name = args.save_dir + '/' + exp_name
