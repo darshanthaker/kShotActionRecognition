@@ -54,7 +54,7 @@ def main():
     parser.add_argument('--optimizer', default='adam')
     parser.add_argument('--tensorboard_dir', default='./summary/one_shot_learning')
     args = parser.parse_args()
-    np.random.seed(0)
+    #  np.random.seed(0)
     if args.mode == 'train':
         train(args)
     elif args.mode == 'test':
