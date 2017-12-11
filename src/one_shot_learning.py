@@ -14,7 +14,7 @@ def main():
     parser.add_argument('--mode', default="train")
     parser.add_argument('--restore_training', default=False, type=str2bool)
     parser.add_argument('--summary_writer', default=False, type=str2bool)
-    parser.add_argument('--serialize', default=True, type=str2bool)
+    parser.add_argument('--serialize', default=False, type=str2bool)
     parser.add_argument('--model_saver', default=False, type=str2bool)
     parser.add_argument('--use_subset_classes', default=True, type=str2bool)
     parser.add_argument('--use_pretrained', default=False, type=str2bool)
@@ -30,11 +30,11 @@ def main():
     parser.add_argument('--model', default="MANN", help='LSTM, MANN, MANN2 or NTM')
     parser.add_argument('--read_head_num', default=4, type=int)
     parser.add_argument('--batch_size', default=16, type=int)
-    parser.add_argument('--num_epoches', default=1000, type=int)
+    parser.add_argument('--num_epoches', default=5000, type=int)
     parser.add_argument('--batches_validation', default=5, type=int)
     parser.add_argument('--model_save_freq', default=500, type=int)
     parser.add_argument('--validation_freq', default=25, type=int)
-    parser.add_argument('--learning_rate', default=1e-3, type=int)
+    parser.add_argument('--learning_rate', default=1e-4, type=float)
     parser.add_argument('--rnn_size', default=200, type=int)
     parser.add_argument('--image_width', default=128, type=int)
     parser.add_argument('--image_height', default=128, type=int)
@@ -274,7 +274,7 @@ def test_f(args, y, output):
                 correct[class_count[y_i[j]]] += 1
         #  set_trace()
     #  return [float(correct[i]) / total[i] if total[i] > 0. else 0. for i in range(1, int(args.seq_length/args.n_classes))]
-    return [float(correct[i]) / total[i] if total[i] > 0. else 0. for i in range(1, 8)], total[1:8]
+    return [float(correct[i]) / total[i] if total[i] > 0. else 0. for i in range(1, 11)], total[1:11]
 
 
 if __name__ == '__main__':
