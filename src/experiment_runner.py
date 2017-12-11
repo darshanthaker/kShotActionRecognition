@@ -14,11 +14,11 @@ class ExperimentConfig(object):
 
   
     def __init__(self, dataset_type='kinetics_dynamic', controller_type='alex', \
-            batch_size=16, image_width=128, image_height=128, \
+            batch_size=16, image_width=64, image_height=64, \
             summary_writer=False, model_saver=False, debug=True, \
             memory_size=128, memory_vector_dim=40, seq_length=35, \
             n_classes=5, class_difficulty='all', use_pretrained=False, \
-            num_epoches=5000, rnn_size=200, batches_validation=2, im_normalization=True, validation_freq=25,
+            num_epoches=100000, rnn_size=200, batches_validation=2, im_normalization=True, validation_freq=25,
             sampling_strategy='random'):
         # Sanity checks.
         if controller_type == 'vgg19':
@@ -29,6 +29,7 @@ class ExperimentConfig(object):
         assert controller_type in VALID_CONTROLLERS
         assert class_difficulty in VALID_CLASS_DIFFICULTIES
             
+        # TODO: REMEMBER TO PUT SPACE
         command = "python3 one_shot_learning.py --dataset_type={} " \
                   "--controller_type={} --batch_size={} " \
                   "--image_width={} --image_height={} --summary_writer={} " \
@@ -36,7 +37,7 @@ class ExperimentConfig(object):
                   "--memory_vector_dim={} --seq_length={} " \
                   "--n_classes={} --class_difficulty={} --use_pretrained={} " \
                   "--num_epoches={} --rnn_size={} --batches_validation={} " \
-                  "--im_normalization={} --validation_freq={}" \
+                  "--im_normalization={} --validation_freq={} " \
                   "--sampling_strategy={}"
         command = command.format(dataset_type, controller_type, batch_size, \
                 image_width, image_height, summary_writer, model_saver, debug, \
@@ -48,7 +49,7 @@ class ExperimentConfig(object):
 
 exp_to_folder_map = {'al_med': 'difficulty', 'al_hard': 'difficulty','al_easy': 'difficulty',
                     'no_norm': 'no_norm',
-                    'mem128x80': 'memory', 'mem128x20': 'memory', 'mem64x40':'memory', \
+                    'mem128x80': 'memory', 'mem128x20': 'memory', 'mem64x40':'memory', 'mem2x40':'memory',\
                             'mem256x40':'memory','mem32x40':'memory','mem16x40':'memory',\
                             'mem16x20':'memory',
                     'center_frame': 'inputs',
@@ -65,19 +66,21 @@ all_configs = {
                'controllers/default_controller': ExperimentConfig(controller_type='default', \
                                                    image_width=64, image_height=64),
                'controllers/alex_pretrained': ExperimentConfig(controller_type='alex',use_pretrained=True),
-               'controllers/alex_not_pretrained': ExperimentConfig(controller_type='alex')
-                #  'difficulty/al_med': ExperimentConfig(class_difficulty='medium'), \
-               #  'difficulty/al_hard': ExperimentConfig(class_difficulty='hard'), \
-               #  'difficulty/al_easy': ExperimentConfig(class_difficulty='easy'), \
+               'controllers/alex_not_pretrained': ExperimentConfig(controller_type='alex'),
+               'difficulty/al_med': ExperimentConfig(class_difficulty='medium'), \
+               'difficulty/al_hard': ExperimentConfig(class_difficulty='hard'), \
+               'difficulty/al_easy': ExperimentConfig(class_difficulty='easy') \
                #  'no_norm/no_norm': ExperimentConfig(im_normalization=False),
                #  'no_norm/norm': ExperimentConfig(im_normalization=True),
-               #  'memory/mem128x80': ExperimentConfig(memory_size=128, memory_vector_dim=80),
                #  'memory/mem128x20': ExperimentConfig(memory_size=128, memory_vector_dim=20),
+               #  'memory/mem128x80': ExperimentConfig(memory_size=128, memory_vector_dim=80),
+               #  'memory/mem128x320': ExperimentConfig(memory_size=128, memory_vector_dim=320),
                #  'memory/mem64x40': ExperimentConfig(memory_size=64, memory_vector_dim=40),
                #  'memory/mem256x40': ExperimentConfig(memory_size=256, memory_vector_dim=40),
+               #  'memory/mem2x40': ExperimentConfig(memory_size=2, memory_vector_dim=40),
                #  'memory/mem32x40': ExperimentConfig(memory_size=32, memory_vector_dim=40),
                #  'memory/mem16x40': ExperimentConfig(memory_size=16, memory_vector_dim=40),
-               #  'memory/mem16x20': ExperimentConfig(memory_size=16, memory_vector_dim=40),
+               #  'memory/mem16x20': ExperimentConfig(memory_size=16, memory_vector_dim=20),
                #  'inputs/center_frame': ExperimentConfig(dataset_type='kinetics_single_frame', seq_length=35, n_classes=5, num_epoches=250, batches_validation=1),
                #  'lstm/lstm1': ExperimentConfig(rnn_size=1),
                #  'lstm/lstm25': ExperimentConfig(rnn_size=25),
@@ -88,6 +91,7 @@ all_configs = {
                #  'seq_length/seq200': ExperimentConfig(seq_length=150),
                #  'omniglot/omni_alex': ExperimentConfig(dataset_type='omniglot', controller_type='alex', image_height=20, image_width=20, n_classes=5, seq_length=35, num_epoches=17000),
                #  'omniglot/omni_default': ExperimentConfig(dataset_type='omniglot', controller_type='default', image_height=20, image_width=20, n_classes=5, seq_length=35, num_epoches=17000),
+               #  'sampling'
               }
 
 class ExperimentRunner(object):
