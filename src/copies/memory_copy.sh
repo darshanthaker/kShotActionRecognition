@@ -1,0 +1,8 @@
+cd ../
+cp job_outputs/experiments/"controller:alex_dataset:kinetics_dynamic_nclasses:5_seqlength:35_pretrained:False_classdifficulty:all_memsize:2_memvector:40_rnn_size:200_img:64"/inter_accuracy44 job_outputs/experiments/cleaned/memory/2x40/
+cp job_outputs/experiments/"controller:alex_dataset:kinetics_dynamic_nclasses:5_seqlength:35_pretrained:False_classdifficulty:all_memsize:64_memvector:40_rnn_size:200_img:64"/inter_accuracy44 job_outputs/experiments/cleaned/memory/64x40/
+cp job_outputs/experiments/"controller:alex_dataset:kinetics_dynamic_nclasses:5_seqlength:35_pretrained:False_classdifficulty:all_memsize:128_memvector:20_rnn_size:200_img:64"/inter_accuracy44 job_outputs/experiments/cleaned/memory/128x20/
+cp job_outputs/experiments/"controller:alex_dataset:kinetics_dynamic_nclasses:5_seqlength:35_pretrained:False_classdifficulty:all_memsize:128_memvector:320_rnn_size:200_img:64"/inter_accuracy44 job_outputs/experiments/cleaned/memory/128x320/
+cp job_outputs/experiments/"controller:alex_dataset:kinetics_dynamic_nclasses:5_seqlength:35_pretrained:False_classdifficulty:all_memsize:256_memvector:40_rnn_size:200_img:64"/inter_accuracy44 job_outputs/experiments/cleaned/memory/256x40/
+cp job_outputs/experiments/"controller:alex_dataset:kinetics_dynamic_nclasses:5_seqlength:35_pretrained:False_classdifficulty:all_memsize:128_memvector:80_rnn_size:200_img:64"/inter_accuracy44 job_outputs/experiments/cleaned/memory/128x80/
+cd copies
