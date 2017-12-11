@@ -43,7 +43,7 @@ SMOOTHING = 2
 # folder: Folder in which accuracy pickle lives.
 # kshots: For number of epochs, plot how $k$-shot accuracy increase for all k in kshots.
 # subfolder: Used for labeling graph.
-def plot_test_accuracy_for_exp(folder, kshots, subfolder, exp_type, num_epochs=None):
+def plot_all_kshot_for_exp(folder, kshots, subfolder, exp_type, num_epochs=None):
     plt.clf()
     acc = util.load_file(folder, 'inter_accuracy44')
     finals = list()
@@ -83,6 +83,29 @@ def plot_test_accuracy_for_exp(folder, kshots, subfolder, exp_type, num_epochs=N
     #plt.show()
     plt.savefig('plots/{}_{}.png'.format(exp_type, subfolder))
 
+
+def plot_single_kshot_for_exps(kshot, folders, subfolders, exp_type, num_epochs=None):
+    plt.clf()
+    step_size = 25
+    for (subfolder, folder) in zip(subfolders, folders):
+        acc = util.load_file(folder, 'inter_accuracy44')
+        x = np.arange(1, len(acc) * step_size, step_size * SMOOTHING)
+        k_acc = [a[kshot] for a in acc]
+        chunked = chunk(k_acc, SMOOTHING)
+        if num_epochs:
+            comb = list(filter(lambda y: y[0] <= num_epochs, list(zip(x, chunked))))
+            x = [c[0] for c in comb]
+            chunked = [c[1] for c in comb]
+            assert len(x) == len(chunked)
+        plt.plot(x, chunked, label=subfolder, linewidth=2, marker='.', markersize=6)
+    plt.ylim(0.1, 0.8)
+    plt.xlabel('Number of epochs')
+    plt.ylabel('% Accurate Test Set')
+    plt.title(exp_type)
+    plt.legend(loc=2)
+    #plt.show()
+    plt.savefig('plots/{}_{}.png'.format(exp_type, kshot))
+
 def plot_all_loss(folders):
     loss = util.load_file(folder, 'loss')
     for folder in folders:
@@ -94,8 +117,9 @@ def plot_all_loss(folders):
 def main():
     file_prefix = 'job_outputs/experiments/cleaned'
     exp_type = 'memory'
-    subfolders = ['2x40', '64x40', '128x20', '128x40', '128x80', '128x320', '256x40']
-    #subfolders = ['All', 'Easy', 'Medium', 'Hard']
+    exp_type = 'difficulty'
+    #  subfolders = ['2x40', '64x40', '128x20', '128x40', '128x80', '128x320', '256x40']
+    subfolders = ['All', 'Easy', 'Medium', 'Hard']
     #exp_type = 'lstm'
     #subfolders = ['1', '100', '200', '300']
     #subfolders = ['hard']
@@ -104,6 +128,9 @@ def main():
     #subfolders = ['no_pretrained', 'pretrained']
     folders = [os.path.join(file_prefix, exp_type, s.lower()) for s in subfolders]
     kshots = [1, 2, 5, 7, 9]
+
+    for i in kshots:
+        plot_single_kshot_for_exps(i, folders, subfolders, exp_type, num_epochs=4000)
 
     for (subfolder, folder) in zip(subfolders, folders):
         plot_test_accuracy_for_exp(folder, kshots, subfolder, exp_type, num_epochs=None)

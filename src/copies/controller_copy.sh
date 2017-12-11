@@ -1,0 +1,6 @@
+cd ../
+cp job_outputs/experiments/"controller:alex_dataset:kinetics_dynamic_nclasses:5_seqlength:35_pretrained:False_classdifficulty:all_memsize:128_memvector:40_rnn_size:200_img:64"/inter_accuracy44 job_outputs/experiments/cleaned/controllers/alexnet_no_pretrained/
+cp job_outputs/experiments/"controller:vgg19_dataset:kinetics_dynamic_nclasses:5_seqlength:35_pretrained:False_classdifficulty:all_memsize:128_memvector:40_rnn_size:200_img:64"/inter_accuracy44 job_outputs/experiments/cleaned/controllers/vgg/
+cp job_outputs/experiments/"controller:default_dataset:kinetics_dynamic_nclasses:5_seqlength:35_pretrained:False_classdifficulty:all_memsize:128_memvector:40_rnn_size:200_img:64"/inter_accuracy44 job_outputs/experiments/cleaned/controllers/default/
+cp job_outputs/experiments/"controller:alex_dataset:kinetics_dynamic_nclasses:5_seqlength:35_pretrained:True_classdifficulty:all_memsize:128_memvector:40_rnn_size:200_img:64"/inter_accuracy44 job_outputs/experiments/cleaned/controllers/alexnet_pretrained/
+cd copies
