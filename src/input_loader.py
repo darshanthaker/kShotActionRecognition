@@ -44,10 +44,12 @@ class InputLoader(object):
             self.videos, self.labels = util.get_videos_lst(self.v_type, \
                  args.class_difficulty, \
                  use_subset_classes=args.use_subset_classes)
+            self.im_normalization = args.im_normalization
         else:
             self.videos, self.labels = util.get_videos_lst(self.v_type,  \
                  class_difficulty,  # just for debug purposes.
                  use_subset_classes=use_subset_classes)
+            self.im_normalization = True 
         self.label_set = set(self.labels)
         self.label_lst = sorted(list(self.label_set))
         self.int_labels = [self.get_int_label(str_lab) for str_lab in self.labels]
@@ -79,7 +81,7 @@ class InputLoader(object):
         elif self.input_rep == 'single_frame':
             rep = util.video_to_frames(filename, resize=(self.im_size, self.im_size), sample_nframes=None)
             rep = rep[len(rep)//2, :, :, :]
-        if self.args.im_normalization:
+        if self.im_normalization:
             rep = (rep/255.0 * 2.0) - 1.0
         return rep
 
@@ -187,7 +189,7 @@ class InputLoader(object):
                 sample_nframes=sample_nframes)
             all_videos.append(video)
         all_videos = np.array(all_videos)
-        if self.args.im_normalization:
+        if self.im_normalization:
             all_videos = (all_videos/255.0 * 2.0) - 1.0
         return all_videos
 

@@ -168,7 +168,7 @@ def train(args):
                     accuracy_list.append(accuracy)
                     dir_name = args.save_dir + '/' + exp_name
                     mkdir(dir_name)
-                    eprint("Serializing intermediate accuracy")
+                    eprint("Serializing intermediate accuracy: " + rand_val, " exp_name", dir_name)
                     serialize_plot(accuracy_list, dir_name, "inter_accuracy" + rand_val)
 
             # Save model
